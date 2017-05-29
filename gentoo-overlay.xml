@@ -2,7 +2,7 @@
 <!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
 <repositories xmlns="" version="1.0">
     <repo quality="experimental" status="unofficial">
-        <name><![CDATA[gentoo-overlay]]></name>
+        <name><![CDATA[linxon]]></name>
         <description><![CDATA[Overlay of all the ebuilds I've made ]]></description>
         <homepage>https://github.com/linxon/gentoo-overlay</homepage>
         <owner type="person">
