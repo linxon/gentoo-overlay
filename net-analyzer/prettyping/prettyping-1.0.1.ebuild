@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-DESCRIPTION="wrapper around the standard ping tool"
+DESCRIPTION="Wrapper around the standard ping tool"
 HOMEPAGE="http://denilson.sa.nom.br/prettyping/"
 
 if [[ ${PV} == 9999 ]]; then
