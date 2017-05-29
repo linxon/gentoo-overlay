@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+    <repo quality="experimental" status="unofficial">
+        <name><![CDATA[gentoo-overlay]]></name>
+        <description><![CDATA[Overlay of all the ebuilds I've made ]]></description>
+        <homepage>https://github.com/linxon/gentoo-overlay</homepage>
+        <owner type="person">
+            <email>email@linxon.ru</email>
+            <name>Poncho</name>
+        </owner>
+        <source type="git">git://github.com/linxon/gentoo-overlay.git</source>
+        <feed>https://github.com/linxon/gentoo-overlay/commits/master.atom</feed>
+    </repo>
+</repositories>
