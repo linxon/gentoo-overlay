@@ -25,5 +25,5 @@ RDEPEND="net-misc/iputils
 
 src_install() {
 	dobin ${PN}
-    dosym /usr/bin/${PN} /usr/bin/pping
+	dosym /usr/bin/${PN} /usr/bin/pping
 }
