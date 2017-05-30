@@ -1,0 +1,44 @@
+#!/sbin/openrc-run
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+DAEMON="/usr/bin/${RC_SVCNAME}"
+PID_DIR=${PID_DIR:-/var/run/${RC_SVCNAME}}
+PID_FILE=${PID_DIR}/${RC_SVCNAME}.pid
+CONF_FILE="/etc/conf.d/${RC_SVCNAME}"
+USER=${RC_SVCNAME}
+GROUP=${RC_SVCNAME}
+
+depend() {
+	need net
+	use netmount
+}
+
+checkconfig() {
+	if [ ! -d ${PID_DIR} ]; then
+		checkpath -q -d -o ${USER}:${GROUP} -m 0755 ${PID_DIR} || return 1
+	fi
+
+	if [ ! -f ${CONF_FILE} ]; then
+		eerror "Configuration file ${CONF_FILE} not found"
+		return 1
+	else
+		. ${CONF_FILE}
+		DAEMON_ARGS="-d ${DOMAIN} -p ${PORT} -l ${LOGFILE} -o ${BASEDIR}"
+	fi
+}
+
+start() {
+	checkconfig || return 1
+	ebegin "Starting ${RC_SVCNAME}"
+	start-stop-daemon --start --background --make-pidfile --pidfile "${PID_FILE}" \
+		--user "${USER}" --exec "${DAEMON}" -- ${DAEMON_ARGS}
+	eend ${?}
+}
+
+stop() {
+	ebegin "Stopping ${RC_SVCNAME}"
+	start-stop-daemon --stop --quiet --pidfile "${PID_FILE}" --user "${USER}"
+	eend ${?}
+}
+

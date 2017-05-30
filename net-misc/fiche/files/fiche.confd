@@ -1,0 +1,37 @@
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+################################################################################
+# /etc/conf.d/fiche: config file for /etc/init.d/fiche
+# Thanks for: 
+#		solusipse (root@solusipse.net)
+#		linxon (email@linxon.ru)
+#
+# Most important is providing DOMAIN and BASEDIR
+# many information: https://github.com/solusipse/fiche/blob/0.9/README.md
+################################################################################
+
+## Domain should be provided in such format "domain.com"
+## Example: pastebin.example.com
+DOMAIN="pastebin.example.com"
+
+## Should be absolute path to directory where you would like to store text files.
+BASEDIR="/path/to/your/web-server/directory"
+
+## White list
+WHILE_LIST="/var/lib/fiche/whilelist.txt"
+
+## Path to file where you provided all banned IP adresses
+BAN_LIST="/var/lib/fiche/banlist.txt"
+
+## Default port: 9999
+PORT=9999
+
+## This will force fiche to create random slugs with given length
+SLUG_SIZE=4
+
+## This parameter defines max file size uploaded by user, by default it is set to 32768.
+BUFFER_SIZE=32768
+
+## Path to file where all logs will be stored
+LOGFILE="/var/log/fiche/fiche.log"
