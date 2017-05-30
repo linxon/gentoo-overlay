@@ -28,9 +28,6 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
-src_prepare() {
-	epatch "${FILESDIR}"/fix_revision_information.diff
-}
 src_compile() {
 	use unique && WITH_UNIQUE=yes
 	use dbus && WITH_DBUSGLIB=yes
