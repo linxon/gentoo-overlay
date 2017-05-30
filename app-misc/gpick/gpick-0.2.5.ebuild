@@ -22,7 +22,7 @@ RDEPEND=">=x11-libs/gtk+-2.12.0
 	dev-libs/boost
 	dbus? ( >=dev-libs/dbus-glib-0.76 )
 	unique? ( >=dev-libs/libunique-1.0.8 )
-	dev-util/lemon"
+	sci-libs/lemon"
 
 DEPEND="${RDEPEND}
 	>=dev-util/scons-1.0.0"
