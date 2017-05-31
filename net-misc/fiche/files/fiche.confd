@@ -11,7 +11,7 @@
 # many information: https://github.com/solusipse/fiche/blob/0.9/README.md
 ################################################################################
 
-## Should be absolute path to directory where you would like to store text files.
+## Should be absolute path to directory where you would like to store text files
 #BASEDIR="/path/to/your/web-server/directory"
 
 ## Domain should be provided in such format "domain.com"
@@ -22,17 +22,17 @@
 ## Default port: 9999
 PORT=9999
 
-## White list
-WHILE_LIST="/var/lib/fiche/whilelist.txt"
+## White list (uncomment a line for enable; needs to be absolute path)
+#WHILE_LIST="/var/lib/fiche/whilelist.txt"
 
-## Path to file where you provided all banned IP adresses
-BAN_LIST="/var/lib/fiche/banlist.txt"
+## Path to file where you provided all banned IP adresses (uncomment a line for enable; needs to be absolute path)
+#BAN_LIST="/var/lib/fiche/banlist.txt"
 
 ## This will force fiche to create random slugs with given length
 SLUG_SIZE=4
 
-## This parameter defines max file size uploaded by user, by default it is set to 32768.
+## This parameter defines max file size uploaded by user, by default it is set to 32768
 BUFFER_SIZE=32768
 
-## Path to file where all logs will be stored
+## Path to file where all logs will be stored (uncomment a line for enable; needs to be absolute path)
 LOGFILE="/var/log/fiche/fiche.log"
