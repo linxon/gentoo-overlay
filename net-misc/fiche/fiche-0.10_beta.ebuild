@@ -29,6 +29,9 @@ src_install() {
 	newinitd "${FILESDIR}"/fiche.initd fiche
 	newconfd "${FILESDIR}"/fiche.confd fiche
 
+	insinto /etc/logrotate.d/
+	newins "${FILESDIR}"/fiche.logrotated fiche
+
 	dobin ${PN}
 }
 
