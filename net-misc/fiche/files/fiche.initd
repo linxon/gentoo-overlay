@@ -26,7 +26,7 @@ checkconfig() {
 		. ${CONF_FILE}
 
 		## (!!!) Most important is providing DOMAIN and BASEDIR
-		[[ -n "${DOMAIN}" && -n "${BASEDIR}" ]] && DAEMON_ARGS="-d ${DOMAIN} -o ${BASEDIR} " || {
+		[[ -n "${DOMAIN}" && ( -n "${BASEDIR}" && -d "${BASEDIR}" ) ]] && DAEMON_ARGS="-d ${DOMAIN} -o ${BASEDIR} " || {
 			eerror "Please, see configuration file: /etc/conf.d/${RC_SVCNAME}."
 			return 1
 		}
