@@ -23,10 +23,12 @@ checkconfig() {
 		eerror "Configuration file ${CONF_FILE} not found"
 		return 1
 	else
+		## include config
 		. ${CONF_FILE}
 
 		## (!!!) Most important is providing DOMAIN and BASEDIR
 		[[ -n "${DOMAIN}" && ( -n "${BASEDIR}" && -d "${BASEDIR}" ) ]] && DAEMON_ARGS="-d ${DOMAIN} -o ${BASEDIR} " || {
+			eerror "You're is not use DOMAIN or BASEDIR is not found"
 			eerror "Please, see configuration file: /etc/conf.d/${RC_SVCNAME}."
 			return 1
 		}
@@ -49,11 +51,9 @@ checkconfig() {
 		[ -z "${BUFFER_SIZE}" ] || DAEMON_ARGS+="-B ${BUFFER_SIZE} "
 		[ -z "${LOGFILE}" ] || {
 			[ -f "${LOGFILE}" ] && DAEMON_ARGS+="-l ${LOGFILE} " || {
-				[ ! -d $(dirname "${LOGFILE}") ] && mkdir --mode=0740 -p $(dirname "${LOGFILE}") && {
-					touch "${LOGFILE}" > /dev/null && chown -R ${USER}:${GROUP} $(dirname "${LOGFILE}") || \
+				touch "${LOGFILE}" > /dev/null && chown ${USER}:${GROUP} "${LOGFILE}" || \
 						( eerror "Cannot create: ${LOGFILE}" && return 1 )
-					DAEMON_ARGS+="-l ${LOGFILE} "
-				}
+				DAEMON_ARGS+="-l ${LOGFILE} "
 			}
 		}
 	fi
