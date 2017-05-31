@@ -11,21 +11,22 @@
 # many information: https://github.com/solusipse/fiche/blob/0.9/README.md
 ################################################################################
 
-## Domain should be provided in such format "domain.com"
-## Example: pastebin.example.com
-DOMAIN="pastebin.example.com"
-
 ## Should be absolute path to directory where you would like to store text files.
-BASEDIR="/path/to/your/web-server/directory"
+#BASEDIR="/path/to/your/web-server/directory"
+
+## Domain should be provided in such format "domain.com"
+## because 'fiche' return URL to clients use this option
+## Example: pastebin.example.com
+#DOMAIN="pastebin.yourdomain.com"
+
+## Default port: 9999
+PORT=9999
 
 ## White list
 WHILE_LIST="/var/lib/fiche/whilelist.txt"
 
 ## Path to file where you provided all banned IP adresses
 BAN_LIST="/var/lib/fiche/banlist.txt"
-
-## Default port: 9999
-PORT=9999
 
 ## This will force fiche to create random slugs with given length
 SLUG_SIZE=4
