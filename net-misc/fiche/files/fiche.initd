@@ -24,7 +24,36 @@ checkconfig() {
 		return 1
 	else
 		. ${CONF_FILE}
-		DAEMON_ARGS="-d ${DOMAIN} -p ${PORT} -l ${LOGFILE} -o ${BASEDIR}"
+
+		## (!!!) Most important is providing DOMAIN and BASEDIR
+		[[ -n "${DOMAIN}" && -n "${BASEDIR}" ]] && DAEMON_ARGS="-d ${DOMAIN} -o ${BASEDIR} " || {
+			eerror "Please, see configuration file: /etc/conf.d/${RC_SVCNAME}."
+			return 1
+		}
+		[ -z "${PORT}" ] || DAEMON_ARGS+="-p ${PORT} "
+		[ -z "${WHILE_LIST}" ] || {
+			[ -f "${WHILE_LIST}" ] && DAEMON_ARGS+="-w ${WHILE_LIST} " || {
+				touch "${WHILE_LIST}" > /dev/null && chown ${USER}:${GROUP} "${WHILE_LIST}" || \
+					( eerror "Cannot create: ${WHILE_LIST}" && return 1 )
+				DAEMON_ARGS+="-w ${WHILE_LIST} "
+			}
+		}
+		[ -z "${BAN_LIST}" ] || {
+			[ -f "${BAN_LIST}" ] && DAEMON_ARGS+="-b ${BAN_LIST} " || {
+				touch "${BAN_LIST}" > /dev/null && chown ${USER}:${GROUP} "${BAN_LIST}" || \
+					( eerror "Cannot create: ${BAN_LIST}" && return 1 )
+				DAEMON_ARGS+="-b ${BAN_LIST} "
+			}
+		}
+		[ -z "${SLUG_SIZE}" ] || DAEMON_ARGS+="-s ${SLUG_SIZE} "
+		[ -z "${BUFFER_SIZE}" ] || DAEMON_ARGS+="-B ${BUFFER_SIZE} "
+		[ -z "${LOGFILE}" ] || {
+			[ -f "${LOGFILE}" ] && DAEMON_ARGS+="-l ${LOGFILE} " || {
+				touch "${LOGFILE}" > /dev/null && chown ${USER}:${GROUP} "${LOGFILE}" || \
+					( eerror "Cannot create: ${LOGFILE}" && return 1 )
+				DAEMON_ARGS+="-l ${LOGFILE} "
+			}
+		}
 	fi
 }
 
@@ -41,4 +70,3 @@ stop() {
 	start-stop-daemon --stop --quiet --pidfile "${PID_FILE}" --user "${USER}"
 	eend ${?}
 }
-
