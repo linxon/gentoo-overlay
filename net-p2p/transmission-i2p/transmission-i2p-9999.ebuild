@@ -16,7 +16,6 @@ HOMEPAGE="https://github.com/l-n-s/transmission-i2p"
 LICENSE="|| ( GPL-2 GPL-3 Transmission-OpenSSL-exception ) GPL-2 MIT"
 SLOT="0"
 IUSE="gtk lightweight ayatana systemd nls xfs"
-KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86 ~x86-fbsd ~amd64-linux"
 
 RDEPEND=">=dev-libs/libevent-2.0.10:=
 		dev-libs/openssl:0=
