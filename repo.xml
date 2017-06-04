@@ -3,7 +3,7 @@
 <repositories xmlns="" version="1.0">
     <repo quality="experimental" status="unofficial">
         <name><![CDATA[linxon]]></name>
-        <description><![CDATA[Overlay of all the ebuilds I've made ]]></description>
+        <description><![CDATA[Another tools for gentoo linux]]></description>
         <homepage>https://github.com/linxon/gentoo-overlay</homepage>
         <owner type="person">
             <email>email@linxon.ru</email>
