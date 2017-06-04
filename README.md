@@ -1,2 +1,2 @@
 # gentoo-overlay
-Overlay of all the ebuilds I've made
+Another tools for gentoo linux
