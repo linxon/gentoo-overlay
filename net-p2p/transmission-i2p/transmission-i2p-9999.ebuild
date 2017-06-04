@@ -23,6 +23,7 @@ RDEPEND=">=dev-libs/libevent-2.0.10:=
 		>=net-libs/miniupnpc-1.6.20120509:=
 		>=net-misc/curl-7.16.3:=[ssl]
 		sys-libs/zlib:=
+		<net-vpn/i2pd-2.11.0:=
 		gtk? (
 			>=dev-libs/dbus-glib-0.100:=
 			>=dev-libs/glib-2.32:2=
@@ -47,7 +48,6 @@ src_unpack() {
 }
 
 src_configure() {
-
 	export ac_cv_header_xfs_xfs_h=$(usex xfs)
 
 	econf --enable-external-natpmp \
