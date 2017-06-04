@@ -69,8 +69,6 @@ src_install() {
 	newconfd "${FILESDIR}"/transmission-daemon.confd.4 transmission-daemon
 	systemd_dounit daemon/transmission-daemon.service
 	systemd_install_serviced "${FILESDIR}"/transmission-daemon.service.conf
-
-	readme.gentoo_create_doc
 }
 
 pkg_preinst() {
@@ -93,6 +91,4 @@ pkg_postinst() {
 		mkdir -p "${EROOT%/}"/var/lib/${PN} || die
 		chown ${PN}:${PN} "${EROOT%/}"/var/lib/${PN} || die
 	fi
-
-	readme.gentoo_print_elog
 }
