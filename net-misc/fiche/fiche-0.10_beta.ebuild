@@ -7,14 +7,23 @@ inherit user eutils
 
 DESCRIPTION="Command line pastebin for sharing terminal output"
 HOMEPAGE="http://termbin.com"
-SRC_URI="https://github.com/linxon/fiche/archive/${PV}.tar.gz -> ${P}.tar.gz"
+
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/solusipse/fiche"
+else
+	SRC_URI="https://github.com/linxon/fiche/archive/${PV}.tar.gz -> ${P}.tar.gz"
+fi
+
 KEYWORDS="~amd64 ~x86"
 LICENSE="MIT"
 SLOT="0"
-IUSE=""
 
-DEPEND=""
-RDEPEND=""
+src_unpack() {
+	if [[ ${PV} == 9999 ]]; then
+		git-r3_src_unpack
+	fi
+}
 
 pkg_setup() {
 	enewgroup ${PN}
