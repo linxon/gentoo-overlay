@@ -7,6 +7,7 @@ PID_DIR=${PID_DIR:-/var/run/${RC_SVCNAME}}
 PID_FILE=${PID_DIR}/${RC_SVCNAME}.pid
 USER=${RC_SVCNAME}
 GROUP=${RC_SVCNAME}
+DAEMON_ARGS=()
 
 depend() {
 	need net
@@ -20,33 +21,33 @@ checkconfig() {
 
 	## /etc/conf.d/fiche: config file for /etc/init.d/fiche
 	## (!!!) Most important is providing DOMAIN and BASEDIR
-	[[ -n "${DOMAIN}" && ( -n "${BASEDIR}" && -d "${BASEDIR}" ) ]] && DAEMON_ARGS="-d ${DOMAIN} -o ${BASEDIR} " || {
+	[[ -n "${DOMAIN}" && ( -n "${BASEDIR}" && -d "${BASEDIR}" ) ]] && DAEMON_ARGS+=("-d ${DOMAIN} -o ${BASEDIR}") || {
 		eerror "You are not use DOMAIN or BASEDIR is not found..."
 		eerror "Please, see configuration file: /etc/conf.d/${RC_SVCNAME}."
 		return 1
 	}
-	[ -z "${PORT}" ] || DAEMON_ARGS+="-p ${PORT} "
+	[ -z "${PORT}" ] || DAEMON_ARGS+=("-p ${PORT}")
 	[ -z "${WHILE_LIST}" ] || {
-		[ -f "${WHILE_LIST}" ] && DAEMON_ARGS+="-w ${WHILE_LIST} " || {
+		[ -f "${WHILE_LIST}" ] && DAEMON_ARGS+=("-w ${WHILE_LIST}") || {
 			touch "${WHILE_LIST}" > /dev/null && chown ${USER}:${GROUP} "${WHILE_LIST}" || \
 				( eerror "Cannot create: ${WHILE_LIST}" && return 1 )
-			DAEMON_ARGS+="-w ${WHILE_LIST} "
+			DAEMON_ARGS+=("-w ${WHILE_LIST}")
 		}
 	}
 	[ -z "${BAN_LIST}" ] || {
-		[ -f "${BAN_LIST}" ] && DAEMON_ARGS+="-b ${BAN_LIST} " || {
+		[ -f "${BAN_LIST}" ] && DAEMON_ARGS+=("-b ${BAN_LIST}") || {
 			touch "${BAN_LIST}" > /dev/null && chown ${USER}:${GROUP} "${BAN_LIST}" || \
 				( eerror "Cannot create: ${BAN_LIST}" && return 1 )
-			DAEMON_ARGS+="-b ${BAN_LIST} "
+			DAEMON_ARGS+=("-b ${BAN_LIST}")
 		}
 	}
-	[ -z "${SLUG_SIZE}" ] || DAEMON_ARGS+="-s ${SLUG_SIZE} "
-	[ -z "${BUFFER_SIZE}" ] || DAEMON_ARGS+="-B ${BUFFER_SIZE} "
+	[ -z "${SLUG_SIZE}" ] || DAEMON_ARGS+=("-s ${SLUG_SIZE}")
+	[ -z "${BUFFER_SIZE}" ] || DAEMON_ARGS+=("-B ${BUFFER_SIZE}")
 	[ -z "${LOGFILE}" ] || {
-		[ -f "${LOGFILE}" ] && DAEMON_ARGS+="-l ${LOGFILE} " || {
+		[ -f "${LOGFILE}" ] && DAEMON_ARGS+=("-l ${LOGFILE}") || {
 			touch "${LOGFILE}" > /dev/null && chown ${USER}:${GROUP} "${LOGFILE}" || \
 				( eerror "Cannot create: ${LOGFILE}" && return 1 )
-			DAEMON_ARGS+="-l ${LOGFILE} "
+			DAEMON_ARGS+=("-l ${LOGFILE}")
 		}
 	}
 }
@@ -55,7 +56,7 @@ start() {
 	checkconfig || return 1
 	ebegin "Starting ${RC_SVCNAME}"
 	start-stop-daemon --start --background --make-pidfile --pidfile "${PID_FILE}" \
-		--user "${USER}" --exec "${DAEMON}" -- ${DAEMON_ARGS}
+		--user "${USER}" --exec "${DAEMON}" -- ${DAEMON_ARGS[@]}
 	eend ${?}
 }
 
