@@ -1,5 +1,5 @@
---- original/gtk-3.0/gtk-widgets.css	2016-10-07 16:21:37.000000000 +0300
-+++ clearlooks-phenix-7.0.1/gtk-3.0/gtk-widgets.css	2017-06-09 15:54:22.672655148 +0300
+--- a/clearlooks-phenix-7.0.1/gtk-3.0/gtk-widgets.css	2016-10-07 16:21:37.000000000 +0300
++++ b/clearlooks-phenix-7.0.1/gtk-3.0/gtk-widgets.css	2017-06-09 15:54:22.672655148 +0300
 @@ -154,9 +154,8 @@
  	-GtkButton-inner-border: 0;
  }
