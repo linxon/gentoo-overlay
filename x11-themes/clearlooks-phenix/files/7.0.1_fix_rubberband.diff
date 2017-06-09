@@ -1,0 +1,14 @@
+--- original/gtk-3.0/gtk-widgets.css	2016-10-07 16:21:37.000000000 +0300
++++ clearlooks-phenix-7.0.1/gtk-3.0/gtk-widgets.css	2017-06-09 15:54:22.672655148 +0300
+@@ -154,9 +154,8 @@
+ 	-GtkButton-inner-border: 0;
+ }
+ 
+-.rubberband,
+-view rubberband,
+-rubberband {
++view.rubberband,
++.rubberband {
+ 	background-color: alpha (@theme_selected_bg_color, 0.35);
+ 	border-color: @theme_selected_bg_color;
+ 	border-style: solid;
