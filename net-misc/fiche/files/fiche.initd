@@ -21,7 +21,7 @@ checkconfig() {
 
 	## /etc/conf.d/fiche: config file for /etc/init.d/fiche
 	## (!!!) Most important is providing DOMAIN and BASEDIR
-	[[ -n "${domain}" && ( -n "${basedir}" && -d "${basedir}" ) ]] && DAEMON_ARGS+=("-d ${domain} -o ${basedir}") || {
+	[[ -n "${domain}" && ( -n "${basedir}" && -d "${basedir}" ) ]] && DAEMON_ARGS+=("-d ${domain} -o ${basedir}/") || {
 		eerror "You are not use DOMAIN or BASEDIR is not found..."
 		eerror "Please, see configuration file: /etc/conf.d/${RC_SVCNAME}"
 		return 1
