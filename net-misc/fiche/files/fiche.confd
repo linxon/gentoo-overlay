@@ -12,27 +12,27 @@
 ################################################################################
 
 ## Should be absolute path to directory where you would like to store text files
-#BASEDIR="/path/to/your/web-server/directory"
+#basedir="/path/to/your/web-server/directory"
 
 ## Domain should be provided in such format "domain.com"
 ## because 'fiche' return URL to clients use this option
 ## Example: pastebin.example.com
-#DOMAIN="pastebin.yourdomain.com"
+#domain="pastebin.yourdomain.com"
 
 ## Default port: 9999
-PORT=9999
+port=9999
 
 ## White list (uncomment a line for enable; needs to be absolute path)
-#WHILE_LIST="/var/lib/fiche/whilelist.txt"
+#while_list="/var/lib/fiche/whilelist.txt"
 
 ## Path to file where you provided all banned IP adresses (uncomment a line for enable; needs to be absolute path)
-#BAN_LIST="/var/lib/fiche/banlist.txt"
+#ban_list="/var/lib/fiche/banlist.txt"
 
 ## This will force fiche to create random slugs with given length
-SLUG_SIZE=4
+slug_size=4
 
 ## This parameter defines max file size uploaded by user, by default it is set to 32768
-BUFFER_SIZE=32768
+buffer_size=32768
 
 ## Path to file where all logs will be stored (uncomment a line for enable; needs to be absolute path)
-LOGFILE="/var/log/fiche.log"
+logfile="/var/log/fiche.log"
