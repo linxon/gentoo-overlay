@@ -19,7 +19,7 @@ RDEPEND="
 	x11-themes/gtk-engines"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PV}_fix_rubberband.diff
+	epatch "${FILESDIR}"/${PV}_fix_rubberband.patch
 }
 
 src_install() {
