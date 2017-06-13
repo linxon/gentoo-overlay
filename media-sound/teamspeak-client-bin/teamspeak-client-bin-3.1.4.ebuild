@@ -25,6 +25,7 @@ RDEPEND="
 	dev-qt/qtnetwork:5
 	dev-qt/qtsql:5[sqlite]
 	dev-qt/qtwidgets:5
+	dev-qt/qtwebengine:5
 	sys-libs/glibc
 	sys-libs/zlib
 	alsa? ( media-libs/alsa-lib )
