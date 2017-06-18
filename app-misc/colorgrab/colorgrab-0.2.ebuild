@@ -12,7 +12,7 @@ SRC_URI="https://github.com/nielssp/colorgrab/archive/v${PV}.tar.gz -> ${P}.tar.
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="x86 amd64"
 IUSE=""
 
 RDEPEND="x11-libs/wxGTK:3.0"
