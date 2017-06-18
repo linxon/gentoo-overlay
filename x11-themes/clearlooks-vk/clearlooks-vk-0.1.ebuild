@@ -5,7 +5,7 @@ EAPI=6
 
 inherit eutils
 
-DESCRIPTION="Clearlooks-VK is a GTK+ 3 port of Clearlooks"
+DESCRIPTION="Clearlooks-VK is a simple GTK theme for XFCE4 and other"
 HOMEPAGE="https://github.com/linxon/clearlooks-vk"
 SRC_URI="https://github.com/linxon/clearlooks-vk/archive/${PV}.tar.gz -> ${P}.tar.gz"
 KEYWORDS="amd64 x86"
