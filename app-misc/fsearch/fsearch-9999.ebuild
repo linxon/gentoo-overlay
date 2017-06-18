@@ -21,8 +21,6 @@ DEPEND="${CDEPEND}
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}"
 
-S="${WORKDIR}/${PN}-9999"
-
 src_prepare() {
 	eapply_user
 	eautoreconf
