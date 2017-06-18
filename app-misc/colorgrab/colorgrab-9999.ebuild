@@ -26,7 +26,7 @@ src_compile() {
 }
 
 src_install() {
-	make_desktop_entry ${PN} "ColorGrab" ${PN} "Graphics;GTK;"
+	make_desktop_entry "${PN}" "ColorGrab" "${PN}" "Utility;Graphics;" "${PN}.desktop"
 
 	insinto /usr/share/icons/hicolor/scalable/apps/
 	newins img/scalable.svg ${PN}.svg
