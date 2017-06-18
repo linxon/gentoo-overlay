@@ -5,7 +5,7 @@ EAPI=6
 
 inherit git-r3 eutils
 
-DESCRIPTION="Clearlooks-VK is a GTK+ 3 port of Clearlooks"
+DESCRIPTION="Clearlooks-VK is a simple GTK theme for XFCE4 and other"
 HOMEPAGE="https://github.com/linxon/clearlooks-vk"
 EGIT_REPO_URI="https://github.com/linxon/clearlooks-vk"
 LICENSE="GPL-3"
