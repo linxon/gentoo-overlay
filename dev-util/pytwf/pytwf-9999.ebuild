@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-inherit git-r3 gnome2-utils xdg-utils
+inherit eutils git-r3 gnome2-utils xdg-utils
 
 DESCRIPTION="Widget Factory for testing GTK styles/themes"
 HOMEPAGE="https://github.com/Aurora-and-Equinox/PyTWF"
@@ -14,6 +14,10 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="dev-python/pygtk"
+
+src_prepare() {
+	epatch "${FILESDIR}"/fix_env.pacth
+}
 
 src_install() {
 	make_desktop_entry "${PN}" "PyTWF" "preferences-desktop-theme" "Utility;Development;GTK;" "${PN}.desktop"

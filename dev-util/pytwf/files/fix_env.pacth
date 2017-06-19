@@ -1,0 +1,17 @@
+--- a/PyTWF.py	2014-05-13 00:37:01.000000000 +0400
++++ b/PyTWF.py	2017-06-19 20:47:37.124076696 +0300
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ """
+ Copyright (c) 2009, http://www.truefusion.trap17.com/
+@@ -34,7 +34,7 @@
+ class WidgetFactory:
+ 	def __init__(self):
+ 		self.ui = gtk.Builder();
+-		self.ui.add_from_file("twf.builder");
++		self.ui.add_from_file("/usr/share/pytwf/twf.builder");
+ 
+ 		self.window = self.ui.get_object("window1");
+ 		self.window.set_title("The Widget Factory");
