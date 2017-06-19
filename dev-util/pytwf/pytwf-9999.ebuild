@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI=6
 
 inherit eutils git-r3 gnome2-utils xdg-utils
 
@@ -21,13 +21,14 @@ src_prepare() {
 }
 
 src_install() {
-	make_desktop_entry "${PN}" "PyTWF" "preferences-desktop-theme" "Utility;Development;GTK;" "${PN}.desktop"
-	
+	make_desktop_entry "${PN}" "PyTWF" "preferences-desktop-theme" "Utility;Development;GTK;"
+
 	insinto /usr/share/pytwf/
 	newins "${S}"/twf.builder twf.builder
-	
-	dobin PyTWF.py
-	dosym /usr/bin/PyTWF.py /usr/bin/${PN}
+
+	mv "${S}"/PyTWF.py "${S}"/${PN}
+
+	dobin ${PN}
 }
 
 pkg_postinst() {
