@@ -16,6 +16,7 @@ DEPEND=""
 RDEPEND="dev-python/pygtk"
 
 src_prepare() {
+	eapply_user
 	epatch "${FILESDIR}"/fix_env.pacth
 }
 
