@@ -20,8 +20,8 @@ S="${WORKDIR}/${ABBREV}"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 ~x86"
-IUSE="qt4 +gtk2"
-REQUIRED_USE=" ^^ ( qt4 gtk2 )"
+IUSE="+gtk2 qt4"
+REQUIRED_USE="^^ ( gtk2 qt4 )"
 QA_PREBUILT="*/doublecmd
              */libQt4Pas.so.5"
 
