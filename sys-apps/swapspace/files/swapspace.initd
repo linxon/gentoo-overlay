@@ -1,0 +1,34 @@
+#!/sbin/openrc-run
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+DAEMON="/usr/sbin/${RC_SVCNAME}"
+PID_DIR=${PID_DIR:-/var/run/${RC_SVCNAME}}
+PID_FILE=${PID_DIR}/${RC_SVCNAME}.pid
+CONFIG_FILE="/etc/swapspace.conf"
+DAEMON_ARGS=("-d -q --configfile=${CONFIG_FILE} --pidfile=${PID_FILE}")
+
+checkconfig() {
+	if [ ! -d ${PID_DIR} ]; then
+		checkpath -q -d -o ${USER}:${GROUP} -m 0755 ${PID_DIR} || return 1
+	fi
+
+	if [ ! -e "${CONFIG_FILE}" ] ; then
+		eerror "You need an ${CONFIG_FILE} file to run ${RC_SVCNAME}"
+		return 1
+	fi
+}
+
+start() {
+	checkconfig || return 1
+	ebegin "Starting ${RC_SVCNAME}"
+	start-stop-daemon --start --pidfile "${PID_FILE}" \
+		--exec "${DAEMON}" -- ${DAEMON_ARGS[@]}
+	eend ${?}
+}
+
+stop() {
+	ebegin "Stopping ${RC_SVCNAME}"
+	start-stop-daemon --stop --quiet --pidfile "${PID_FILE}"
+	eend ${?}
+}
