@@ -6,7 +6,7 @@ DAEMON="/usr/sbin/${RC_SVCNAME}"
 PID_DIR=${PID_DIR:-/var/run/${RC_SVCNAME}}
 PID_FILE=${PID_DIR}/${RC_SVCNAME}.pid
 CONFIG_FILE="/etc/swapspace.conf"
-DAEMON_ARGS=("-d -q --configfile=${CONFIG_FILE} --pidfile=${PID_FILE}")
+DAEMON_ARGS=("-d --configfile=${CONFIG_FILE} --pidfile=${PID_FILE} ${SWAPSPACE_OPTS}")
 
 checkconfig() {
 	if [ ! -d ${PID_DIR} ]; then
