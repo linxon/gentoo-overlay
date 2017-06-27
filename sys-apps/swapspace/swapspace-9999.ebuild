@@ -30,6 +30,7 @@ src_install() {
 	keepdir /var/lib/${PN}
 	fperms 740 /var/lib/${PN}
 
+	newconfd "${FILESDIR}"/swapspace.confd ${PN}
 	newinitd "${FILESDIR}"/swapspace.initd ${PN}
 	systemd_dounit "${FILESDIR}"/swapspace.service
 
