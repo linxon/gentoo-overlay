@@ -1,0 +1,5 @@
+# Config file for /etc/init.d/swapspace
+
+# Any random options you want to pass to swapspace.
+# See the swapspace(8) manpage for more info.
+SWAPSPACE_OPTS="-q"
