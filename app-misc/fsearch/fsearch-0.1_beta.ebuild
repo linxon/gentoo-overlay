@@ -5,13 +5,20 @@ EAPI=6
 
 inherit autotools gnome2-utils xdg-utils
 
-MY_PV="0.1beta2"
-MY_P="${PN}-${MY_PV}"
-
 DESCRIPTION="A fast file search utility for Unix-like systems based on GTK+3"
 HOMEPAGE="http://www.fsearch.org/"
-SRC_URI="https://github.com/cboxdoerfer/fsearch/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
-KEYWORDS="~amd64 ~x86"
+
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/cboxdoerfer/fsearch"
+else
+	MY_PV="0.1beta2"
+	MY_P="${PN}-${MY_PV}"
+	SRC_URI="https://github.com/cboxdoerfer/fsearch/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+	S="${WORKDIR}/${MY_P}"
+fi
+
 LICENSE="GPL-2+"
 SLOT="0"
 IUSE="debug"
@@ -24,8 +31,6 @@ DEPEND="${CDEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}"
-
-S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	eapply_user
@@ -42,11 +47,6 @@ src_configure() {
 
 pkg_preinst() {
 	gnome2_icon_savelist
-}
-
-pkg_postrm() {
-	xdg_desktop_database_update
-	gnome2_icon_cache_update
 }
 
 pkg_postinst() {
