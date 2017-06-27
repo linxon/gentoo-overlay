@@ -23,6 +23,7 @@ SLOT="0"
 
 src_prepare() {
 	default
+	epatch "${FILESDIR}"/fix_varpref_and_etcpref.patch
 	eautoreconf
 }
 
