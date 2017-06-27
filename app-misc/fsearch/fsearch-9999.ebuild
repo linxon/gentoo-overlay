@@ -33,7 +33,7 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}"
 
 src_prepare() {
-	eapply_user
+	default
 	eautoreconf
 }
 
