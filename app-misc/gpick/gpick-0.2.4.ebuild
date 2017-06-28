@@ -29,6 +29,7 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
+	default
 	epatch "${FILESDIR}"/${PN}_fix_ver.patch
 }
 src_compile() {
