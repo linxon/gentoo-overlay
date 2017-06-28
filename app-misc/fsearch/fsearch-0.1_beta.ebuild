@@ -21,7 +21,7 @@ fi
 
 LICENSE="GPL-2+"
 SLOT="0"
-IUSE="debug"
+IUSE="nls debug"
 
 CDEPEND="
 	>=x11-libs/gtk+-3.12:3
@@ -39,6 +39,7 @@ src_prepare() {
 
 src_configure() {
 	local myeconfargs=(
+		$(use_enable nls) \
 		$(use_enable debug)
 	)
 
