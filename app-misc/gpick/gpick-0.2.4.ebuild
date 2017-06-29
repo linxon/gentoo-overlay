@@ -8,7 +8,7 @@ inherit eutils
 MY_P="${PN}-${PN}-${PV}"
 
 DESCRIPTION="Advanced color picker written in C++ using GTK+ toolkit"
-HOMEPAGE="https://github.com/thezbyg/gpick"
+HOMEPAGE="http://www.gpick.org/"
 SRC_URI="https://github.com/thezbyg/gpick/archive/gpick-${PV}.tar.gz"
 
 LICENSE="BSD"
