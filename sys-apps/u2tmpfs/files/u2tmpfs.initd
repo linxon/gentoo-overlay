@@ -1,0 +1,33 @@
+#!/sbin/openrc-run
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+DAEMON="/usr/sbin/${RC_SVCNAME}"
+DAEMON_ARGS=()
+
+depend() {
+	need localmount
+}
+
+checkconfig() {
+	if [ ! -d ${PID_DIR} ]; then
+		checkpath -q -d -o ${USER}:${GROUP} -m 0755 ${PID_DIR} || return 1
+	fi
+
+	[ -z "${USERS}" ] || DAEMON_ARGS+=("-u ${USERS}")
+	[ -z "${USER_DATA_DIR}" ] || DAEMON_ARGS+=("-d ${USER_DATA_DIR}")
+	[ -z "${TMPFS_SIZE}" ] || DAEMON_ARGS+=("-s ${TMPFS_SIZE}")
+}
+
+start() {
+	checkconfig || return 1
+	ebegin "Starting ${RC_SVCNAME}"
+	${DAEMON} ${DAEMON_ARGS[@]}
+	eend ${?}
+}
+
+update() {
+	ebegin "Updating user files ${RC_SVCNAME}"
+	${DAEMON} -U ${DAEMON_ARGS[@]}
+	eend ${?}
+}

@@ -1,0 +1,13 @@
+# /etc/conf.d/u2tmpfs: config file for /etc/init.d/u2tmpfs
+
+# put users name (separated by commas)
+USERS="linxon,test"
+
+# path to user archives dir
+USER_DATA_DIR="/var/lib/u2tmpfs/"
+
+# current size for tmpfs mount opts (M — megabyte, G — gigabyte)
+TMPFS_SIZE="1G"
+
+# Use the specified mount options for tmpfs (separated by commas)
+MOUNT_OPTS=""
