@@ -25,6 +25,14 @@ checkconfig() {
 	[ -z "${TMPFS_SIZE}" ] || DAEMON_ARGS+=("-s ${TMPFS_SIZE}")
 }
 
+update() {
+	checkconfig || return 1
+	ebegin "Updating user files"
+	DAEMON_ARGS+=("-U")
+	${DAEMON} ${DAEMON_ARGS[@]}
+	eend ${?}
+}
+
 start() {
 	checkconfig || return 1
 	ebegin "Starting ${RC_SVCNAME}"
@@ -32,10 +40,8 @@ start() {
 	eend ${?}
 }
 
-update() {
-	checkconfig || return 1
-	ebegin "Updating user files"
-	DAEMON_ARGS+=("-U")
-	${DAEMON} ${DAEMON_ARGS[@]}
+stop() {
+	ebegin "Stopping ${RC_SVCNAME}"
+	update
 	eend ${?}
 }
