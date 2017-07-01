@@ -21,8 +21,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND=""
-RDEPEND="app-shells/bash
-	virtual/awk"
+RDEPEND="app-shells/bash"
 
 src_install() {
 	keepdir /var/lib/${PN}
