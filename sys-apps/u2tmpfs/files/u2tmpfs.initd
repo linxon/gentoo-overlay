@@ -33,6 +33,7 @@ start() {
 }
 
 update() {
+	checkconfig || return 1
 	ebegin "Updating user files"
 	DAEMON_ARGS+=("-U")
 	${DAEMON} ${DAEMON_ARGS[@]}
