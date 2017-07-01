@@ -3,7 +3,9 @@
 
 EAPI=6
 
-DESCRIPTION="Simple daemon for extract user files to home directory when a system boot"
+inherit eutils
+
+DESCRIPTION="Simple script daemon for automount home dir to tmpfs when your system is booting and extract all user data there"
 HOMEPAGE="https://github.com/linxon/u2tmpfs"
 
 if [[ ${PV} == 9999 ]]; then
@@ -23,5 +25,11 @@ RDEPEND="app-shells/bash
 	virtual/awk"
 
 src_install() {
+	keepdir /var/lib/${PN}
+	fperms 740 /var/lib/${PN}
+
+	newinitd "${FILESDIR}"/u2tmpfs.initd ${PN}
+	newconfd "${FILESDIR}"/u2tmpfs.confd ${PN}
+
 	dosbin ${PN}
 }
