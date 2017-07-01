@@ -1,7 +1,7 @@
 # /etc/conf.d/u2tmpfs: config file for /etc/init.d/u2tmpfs
 
-# put users name (separated by commas)
-USERS="linxon,test"
+# put users name (separated by commas. Example: user1,user2)
+USERS=""
 
 # path to user archives dir
 USER_DATA_DIR="/var/lib/u2tmpfs/"
