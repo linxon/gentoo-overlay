@@ -5,6 +5,8 @@
 DAEMON="/usr/sbin/${RC_SVCNAME}"
 DAEMON_ARGS=()
 
+extra_started_commands="update"
+
 depend() {
 	need localmount
 }
@@ -14,7 +16,11 @@ checkconfig() {
 		checkpath -q -d -o ${USER}:${GROUP} -m 0755 ${PID_DIR} || return 1
 	fi
 
-	[ -z "${USERS}" ] || DAEMON_ARGS+=("-u ${USERS}")
+	[ -z "${USERS}" ] && {
+		eerror "Please, see configuration file: /etc/conf.d/${RC_SVCNAME}"
+		return 1
+	} || DAEMON_ARGS+=("-u ${USERS}")
+	
 	[ -z "${USER_DATA_DIR}" ] || DAEMON_ARGS+=("-d ${USER_DATA_DIR}")
 	[ -z "${TMPFS_SIZE}" ] || DAEMON_ARGS+=("-s ${TMPFS_SIZE}")
 }
