@@ -33,7 +33,8 @@ start() {
 }
 
 update() {
-	ebegin "Updating user files ${RC_SVCNAME}"
-	${DAEMON} -U ${DAEMON_ARGS[@]}
+	ebegin "Updating user files"
+	DAEMON_ARGS+=("-U")
+	${DAEMON} ${DAEMON_ARGS[@]}
 	eend ${?}
 }
