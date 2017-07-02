@@ -45,3 +45,5 @@ stop() {
 	update
 	eend ${?}
 }
+
+# vim: set ft=gentoo-init-d ts=4 :

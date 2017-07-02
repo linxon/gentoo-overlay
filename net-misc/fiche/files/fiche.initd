@@ -65,3 +65,5 @@ stop() {
 	start-stop-daemon --stop --quiet --pidfile "${PID_FILE}" --user "${USER}"
 	eend ${?}
 }
+
+# vim: set ft=gentoo-init-d ts=4 :
