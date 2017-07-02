@@ -36,7 +36,7 @@ update() {
 	checkconfig || return 1
 	ebegin "Updating user files"
 	DAEMON_ARGS+=("-U")
-	start
+	${DAEMON} ${DAEMON_ARGS[@]}
 	eend ${?}
 }
 
