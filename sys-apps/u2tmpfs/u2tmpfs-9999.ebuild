@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit eutils
+inherit eutils linux-info
 
 DESCRIPTION="Simple script daemon for automount home dir to tmpfs when your system is booting and extract all user data there"
 HOMEPAGE="https://github.com/linxon/u2tmpfs"
@@ -22,6 +22,12 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="app-shells/bash"
+
+pkg_setup() {
+	local CONFIG_CHECK="~TMPFS"
+	local WARNING_TMPFS="CONFIG_TMPFS is required for u2tmpfs support."
+	check_extra_config
+}
 
 src_install() {
 	keepdir /var/lib/${PN}
