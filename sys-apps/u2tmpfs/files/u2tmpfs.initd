@@ -5,7 +5,8 @@
 DAEMON="/usr/sbin/${RC_SVCNAME}"
 DAEMON_ARGS=()
 
-extra_started_commands="update"
+extra_commands="checkconfig"
+extra_commands="update"
 
 depend() {
 	need localmount
