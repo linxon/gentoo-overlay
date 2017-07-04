@@ -38,3 +38,10 @@ src_install() {
 
 	dosbin ${PN}
 }
+
+pkg_postinst() {
+	ewarn "NOTE: Please, see configuration file: /etc/conf.d/${PN}"
+	ewarn ""
+	ewarn "You need add USERS and run command:"
+	ewarn "rc-update add ${PN} boot && rc-service ${PN} {update,start}"
+}
