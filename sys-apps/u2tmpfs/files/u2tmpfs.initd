@@ -9,7 +9,8 @@ extra_commands="checkconfig"
 extra_commands="update"
 
 depend() {
-	need localmount
+	after localmount
+	need localmount procfs
 }
 
 checkconfig() {
