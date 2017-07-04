@@ -25,17 +25,22 @@ checkconfig() {
 	[ -z "${TMPFS_SIZE}" ] || DAEMON_ARGS+=("-s ${TMPFS_SIZE}")
 }
 
-start() {
-	checkconfig || return 1
-	ebegin "Starting ${RC_SVCNAME}"
-	${DAEMON} ${DAEMON_ARGS[@]}
-	eend ${?}
-}
-
 update() {
 	checkconfig || return 1
 	ebegin "Updating user files"
 	DAEMON_ARGS+=("-U")
+	${DAEMON} ${DAEMON_ARGS[@]}
+	eend ${?}
+}
+
+start() {
+	checkconfig || return 1
+	if ! [ -n "`find "${USER_DATA_DIR}" -type f -iname "*.tar.xz"`" ]; then
+		eerror "You need update user data"
+		eerror "Please, run command: rc-service ${RC_SVCNAME} update"
+		return 1
+	fi
+	ebegin "Starting ${RC_SVCNAME}"
 	${DAEMON} ${DAEMON_ARGS[@]}
 	eend ${?}
 }
