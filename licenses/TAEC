@@ -62,21 +62,3 @@ LibXml2 ver. 2.8.0  is licensed under the MIT License (MIT)
 DroidSansFallback Font ver. 3.0 is licensed under Apache License Version 2.0.
 6. A custom Linux based on standard Linux kernel v4.4.
 The custom Linux is licensed under licenses for Linux.
-----------------------------------------------------------------------------------------------------------------------------------
-License for Libarchive
-Copyright (c) 2003-2010 Tim Kientzle
-Copyright (c) 2007-2009 Joerg Sonnenberger
-Copyright (c) 2009-2012 Michihiro NAKAJIMA
-Copyright (c) 2011-2012 libarchive Project
-Copyright (c) 2001 The NetBSD Foundation, Inc.
-Copyright (c) 2002 Thomas Moestl tmm@FreeBSD.org
-Copyright (c) 2011 Andres Mejia
-Copyright (c) 2008 Anselm Strauss
-Copyright (c) 2010 Nokia Corporation and/or its subsidiary(-ies).
-Copyright (c) 2006 Rudolf Marek SYSGO s.r.o.
-Copyright (c) 2007 Kai Wang
-Copyright (c) 2012 Ondrej Holy
-Copyright (c) 2003-2007 Kees Zeelenberg
-Copyright (c) 2009 Andreas Henriksson andreas@fatal.se
-Copyright (c) 2003-2008 Miklos Vajna
-All rights reserved.
