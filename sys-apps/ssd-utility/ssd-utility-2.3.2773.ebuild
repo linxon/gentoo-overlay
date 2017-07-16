@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit eutils gnome2-utils
+inherit eutils gnome2-utils xdg-utils
 
 MY_P="SSDUtility"
 
@@ -34,7 +34,10 @@ src_install() {
 	doins "${FILESDIR}"/org.ocz.pkexec.ssdutility.policy
 	dobin "${FILESDIR}"/ssd-utility
 
-	make_desktop_entry "/usr/bin/${PN}" "OCZ SSD Utility" gnome-disks "System" "StartupNotify=true"
+	insinto /usr/share/pixmaps/
+	newins "${FILESDIR}"/ssd-utility.png ${PN}.png
+
+	make_desktop_entry "/usr/bin/${PN}" "OCZ SSD Utility" "${PN}" "System" "StartupNotify=true"
 }
 
 pkg_preinst() {
@@ -42,5 +45,6 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
+	xdg_desktop_database_update
 	gnome2_icon_cache_update
 }
