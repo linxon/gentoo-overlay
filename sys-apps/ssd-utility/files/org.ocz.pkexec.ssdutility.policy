@@ -12,7 +12,7 @@
     <description xml:lang="ru">Запустить OCZ SSD Utility от суперпользователя</description>
     <message>Authentication is required to run the OCZ SSD Utility</message>
     <message xml:lang="ru">Требуется аутентификация для запуска OCZ SSD Utility от суперпользователя</message>
-    <icon_name>gnome-disks</icon_name>
+    <icon_name>ssd-utility</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
       <allow_inactive>auth_admin</allow_inactive>
