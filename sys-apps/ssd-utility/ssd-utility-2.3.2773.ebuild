@@ -11,7 +11,7 @@ DESCRIPTION="SSD Utility is complementary management software designed to help y
 HOMEPAGE="https://ocz.com/us/download/ssd-utility"
 SRC_URI="https://ocz.com/download/software/ssd-utility/${PV}/SSDUtility_${PV}.tar.gz"
 KEYWORDS="~amd64 ~x86"
-LICENSE="TAEC"
+LICENSE="EULA"
 SLOT="0"
 IUSE=""
 
