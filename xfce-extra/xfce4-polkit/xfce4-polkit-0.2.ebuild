@@ -23,7 +23,7 @@ SLOT="0"
 IUSE=""
 
 CDEPEND="
-	>=xfce-base/libxfce4ui-3.12:3
+	>xfce-base/libxfce4ui-4.13.0
 	>=dev-libs/glib-2.36:2
 	sys-auth/polkit"
 DEPEND="${CDEPEND}"
