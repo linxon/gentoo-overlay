@@ -1,0 +1,46 @@
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=6
+
+inherit eutils gnome2-utils xdg-utils
+
+DESCRIPTION="A advanced launcher for Minecraft"
+HOMEPAGE="https://tlauncher.org"
+SRC_URI="https://tlauncher.org/download/3049 -> ${P}.jar"
+KEYWORDS="~amd64 ~x86"
+LICENSE="MIT"
+SLOT="0"
+
+DEPEND="dev-java/oracle-jdk-bin"
+RDEPEND="${DEPEND}"
+
+src_unpack() {
+	mkdir "${WORKDIR}"/"${P}" || die
+	cp "${DISTDIR}"/"${P}.jar" "${WORKDIR}"/"${P}"/"${P}.jar" || die
+
+	return
+}
+
+src_install() {
+	local inst_dir="/opt/${PN}"
+
+	insinto "${inst_dir}"
+	newins "${DISTDIR}"/"${P}.jar" "${PN}.jar"
+
+	insinto /usr/share/pixmaps/
+	newins "${FILESDIR}"/minecraft.png ${PN}.png
+
+	dobin "${FILESDIR}"/tlauncher
+
+	make_desktop_entry "/usr/bin/${PN}" "TLauncher" "${PN}" "Game" "StartupNotify=false"
+}
+
+pkg_preinst() {
+	gnome2_icon_savelist
+}
+
+pkg_postinst() {
+	xdg_desktop_database_update
+	gnome2_icon_cache_update
+}
