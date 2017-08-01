@@ -28,7 +28,7 @@ checkconfig() {
 
 update() {
 	checkconfig || return 1
-	ebegin "Updating user files. Please wait..."
+	ebegin "Updating user files. Please wait"
 	DAEMON_ARGS+=("-U")
 	${DAEMON} ${DAEMON_ARGS[@]}
 	eend ${?}
