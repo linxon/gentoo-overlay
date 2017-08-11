@@ -15,8 +15,8 @@ TUX_COM_V="2017.36"
 DESCRIPTION="ARCAD C1 is a 2D/3D architectural CAD for GNU/Linux"
 HOMEPAGE="http://cad.arcad.de/products_architecture_arcad.php"
 SRC_URI="amd64?	( http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_LIB_N}/${TUX_LIB_N}_${TUX_LIB_V}_amd64.deb
-				  http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_COM_N}/${TUX_COM_N}_${TUX_COM_V}_amd64.deb
-				  http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/a/${PN}/${PN}_${PV}_amd64.deb )"
+                  http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_COM_N}/${TUX_COM_N}_${TUX_COM_V}_amd64.deb
+                  http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/a/${PN}/${PN}_${PV}_amd64.deb )"
 
 LICENSE="all-rights-reserved"
 SLOT="0"
