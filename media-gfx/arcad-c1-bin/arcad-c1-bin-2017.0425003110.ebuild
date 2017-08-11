@@ -43,7 +43,7 @@ RDEPEND="!app-office/lxfibu-c1-bin
 	>=media-libs/freetype-2.2.1
 	>=dev-libs/libxml2-2.6.27
 	>=dev-db/mariadb-5.5.57
-	>=x11-libs/motif-2.2.3-r12:2.2
+	>=x11-libs/motif-2.3.5:0
 	media-libs/libpng:1.2
 	media-libs/mesa
 	virtual/glu
