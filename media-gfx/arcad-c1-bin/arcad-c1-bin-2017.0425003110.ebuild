@@ -21,7 +21,7 @@ SRC_URI="amd64?	( http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/
 LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+povray"
+IUSE="povray"
 RESTRICT="mirror strip"
 S="${WORKDIR}"
 
