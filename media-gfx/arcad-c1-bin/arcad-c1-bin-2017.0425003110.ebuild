@@ -21,7 +21,7 @@ SRC_URI="amd64?	( http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/
 LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
+IUSE="+povray"
 RESTRICT="mirror strip"
 S="${WORKDIR}"
 
@@ -42,7 +42,8 @@ RDEPEND="!app-office/lxfibu-c1-bin
 	x11-libs/libXmu
 	x11-libs/libXp
 	x11-libs/libXrender
-	x11-libs/libXt"
+	x11-libs/libXt
+	povray? ( >=media-gfx/povray-3.7.0.0 )"
 
 src_install() {
 	local app=${PN%%-bin}
