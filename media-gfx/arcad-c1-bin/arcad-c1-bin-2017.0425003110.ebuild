@@ -7,21 +7,32 @@ EAPI=6
 
 inherit unpacker gnome2-utils xdg-utils
 
+# Depends
 TUX_LIB_N="tux-library"
 TUX_LIB_V="${PV}"
 TUX_COM_N="tux-common"
 TUX_COM_V="2017.36"
 
+# Samples
+TUX_TINY_N="tuxcad-tiny"
+TUX_TINY_V="2017.03"
+TUX_SMALL_N="tuxcad-small"
+TUX_SMALL_V="${TUX_TINY_V}"
+
 DESCRIPTION="ARCAD C1 is a 2D/3D architectural CAD for GNU/Linux"
 HOMEPAGE="http://cad.arcad.de/products_architecture_arcad.php"
 SRC_URI="amd64?	( http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_LIB_N}/${TUX_LIB_N}_${TUX_LIB_V}_amd64.deb
                   http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_COM_N}/${TUX_COM_N}_${TUX_COM_V}_amd64.deb
-                  http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/a/${PN}/${PN}_${PV}_amd64.deb )"
+                  http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/a/${PN}/${PN}_${PV}_amd64.deb
+
+                  samples? ( http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_TINY_N}/${TUX_TINY_N}_${TUX_TINY_V}_amd64.deb 
+                             http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_SMALL_N}/${TUX_SMALL_N}_${TUX_SMALL_V}_amd64.deb ) 
+                )"
 
 LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="povray"
+IUSE="povray samples"
 RESTRICT="mirror strip"
 S="${WORKDIR}"
 
@@ -32,6 +43,7 @@ RDEPEND="!app-office/lxfibu-c1-bin
 	>=media-libs/freetype-2.2.1
 	>=dev-libs/libxml2-2.6.27
 	>=dev-db/mariadb-5.5.57
+	>=x11-libs/motif-2.3.5:0
 	media-libs/libpng:1.2
 	media-libs/mesa
 	virtual/glu
@@ -56,6 +68,10 @@ src_install() {
 	dosym /opt/tuxbase/projects/${app}/start /usr/bin/${app} || die
 
 	dosym /usr/lib64/libjpeg.so /opt/tuxbase/lib/libjpeg.so.62 || die
+
+	# Ensure that the shipped libXm.so.4.0.3 is used rather than the system-wide libXm.so.4.0.4 or we get:
+	# symbol lookup error: /opt/tuxbase/lib/libtxtbl.so.2010.02: undefined symbol: _XmXftSetClipRectangles
+	dosym /usr/lib64/libXm.so.4.0.4 /opt/tuxbase/lib/libXm.so.4 || die
 }
 
 pkg_postinst() {
