@@ -71,7 +71,7 @@ src_install() {
 
 	# Ensure that the shipped libXm.so.4.0.3 is used rather than the system-wide libXm.so.4.0.4 or we get:
 	# symbol lookup error: /opt/tuxbase/lib/libtxtbl.so.2010.02: undefined symbol: _XmXftSetClipRectangles
-	dosym /usr/lib64/libXm.so.4.0.4 /opt/tuxbase/lib/libXm.so.4 || die
+	dosym /usr/lib64/libXm.so.4.0.3 /opt/tuxbase/lib/libXm.so.4 || die
 }
 
 pkg_postinst() {
