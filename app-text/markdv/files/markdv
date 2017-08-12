@@ -1,0 +1,7 @@
+#!/bin/sh
+EXEC_F="/usr/bin/Markdown.pl"
+if [ -x /usr/bin/html2text ]; then
+	/usr/bin/perl "${EXEC_F}" ${@} | /usr/bin/html2text
+else
+	/usr/bin/perl "${EXEC_F}" ${@}
+fi 
