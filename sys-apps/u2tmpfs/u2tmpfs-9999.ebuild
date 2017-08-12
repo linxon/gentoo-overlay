@@ -23,6 +23,11 @@ IUSE=""
 DEPEND=""
 RDEPEND="app-shells/bash"
 
+src_prepare() {
+	default
+	epatch "${FILESDIR}"/fix-skipping-while-updating.patch
+}
+
 pkg_setup() {
 	local CONFIG_CHECK="~TMPFS"
 	local WARNING_TMPFS="CONFIG_TMPFS is required for u2tmpfs support."
