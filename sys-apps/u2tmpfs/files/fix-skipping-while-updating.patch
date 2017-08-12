@@ -1,0 +1,10 @@
+--- a/u2tmpfs	2017-08-12 19:02:49.601421000 +0300
++++ b/u2tmpfs	2017-08-12 19:05:17.281638242 +0300
+@@ -291,7 +291,6 @@
+ 	else
+ 		if is_login "${user_name}"; then
+ 			echo "Please, send logout command for: \"${user_name}\""
+-			continue
+ 		fi
+ 	fi
+ 
