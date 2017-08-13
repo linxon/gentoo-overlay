@@ -39,7 +39,7 @@ S="${WORKDIR}"
 DEPEND=""
 RDEPEND="!app-office/lxfibu-c1-bin
 	|| ( >=dev-db/mariadb-5.5.57 >=dev-db/mysql-5.5.57 )
-	|| ( >=x11-libs/motif-2.3.3 >=x11-libs/motif-bin-2.3.3 )
+	|| ( =x11-libs/motif-2.3.3 =x11-libs/motif-bin-2.3.3 )
 	>=sys-libs/glibc-2.14
 	>=media-libs/fontconfig-2.8.0
 	>=media-libs/freetype-2.2.1
