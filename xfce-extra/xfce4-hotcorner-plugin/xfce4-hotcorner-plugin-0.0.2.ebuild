@@ -18,6 +18,7 @@ fi
 
 LICENSE="GPL-2+"
 SLOT="0"
+IUSE="remove-icon"
 
 CDEPEND="
 	>=x11-libs/libwnck-3.14.0
@@ -25,3 +26,8 @@ CDEPEND="
 "
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
+
+src_prepare() {
+	use remove-icon && eapply "${FILESDIR}"
+	eapply_user
+}

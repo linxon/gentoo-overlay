@@ -13,11 +13,12 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/brianhsu/xfce4-hotcorner-plugin"
 else
 	SRC_URI="https://github.com/brianhsu/xfce4-hotcorner-plugin/archive/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="amd64 x86"
+	KEYWORDS="~amd64 ~x86"
 fi
 
 LICENSE="GPL-2+"
 SLOT="0"
+IUSE="remove-icon"
 
 CDEPEND="
 	>=x11-libs/libwnck-3.14.0
@@ -25,3 +26,8 @@ CDEPEND="
 "
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
+
+src_prepare() {
+	use remove-icon && eapply "${FILESDIR}"
+	eapply_user
+}
