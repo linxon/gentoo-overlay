@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>email@linxon.ru</email>
+    <name>Yury Martynov</name>
+  </maintainer>
+  <use>
+    <flag name="povray">Use media-gfx/povray package</flag>
+    <flag name="samples">Install samples pack</flag>
+  </use>
+</pkgmetadata>
