@@ -1,0 +1,10 @@
+--- a/hotcorner.desktop	2015-06-30 08:53:21.000000000 +0300
++++ b/hotcorner.desktop	2017-08-14 20:51:32.587207172 +0300
+@@ -5,7 +5,6 @@
+ Name[zh_TW]=螢幕熱點
+ Comment=HotCorner
+ Comment[zh_TW]=螢幕熱點
+-Icon=xfce4-display
+ X-XFCE-Internal=FALSE
+ X-XFCE-Module=hotcorner
+ X-XFCE-Unique=true
