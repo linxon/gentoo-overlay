@@ -1,0 +1,12 @@
+diff -ur a/src/hotcorner.h b/src/hotcorner.h
+--- a/src/hotcorner.h	2015-06-30 10:29:39.000000000 +0300
++++ b/src/hotcorner.h	2017-08-14 21:59:03.637914786 +0300
+@@ -23,7 +23,7 @@
+ #include <libxfce4ui/libxfce4ui.h>
+ #include <libwnck/libwnck.h>
+ 
+-#define UPDATE_TIMEOUT 50
++#define UPDATE_TIMEOUT 10
+ 
+ typedef struct HotCorner HotCorner;
+ typedef void (* ActionCallback)(int spot, HotCorner * hotCorner);
