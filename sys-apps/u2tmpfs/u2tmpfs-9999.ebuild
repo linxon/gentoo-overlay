@@ -24,8 +24,8 @@ DEPEND=""
 RDEPEND="app-shells/bash"
 
 src_prepare() {
-	default
 	epatch "${FILESDIR}"/fix-skipping-while-updating.patch
+	eapply_user
 }
 
 pkg_setup() {
