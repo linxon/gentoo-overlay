@@ -16,14 +16,15 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="amd64 ~x86"
 RESTRICT="mirror strip"
-IUSE="+gtk2 gtk3 doc"
+IUSE="-gtk2 +gtk3 doc"
+REQUIRED_USE="gtk3? ( !gtk2 )"
 S="${WORKDIR}"
 
 DEPEND=""
 RDEPEND="
-	!gtk3? ( gtk2? ( >=x11-libs/gtk+-2.24.31-r1:2 ) )
+	gtk2? ( >=x11-libs/gtk+-2.24.31-r1:2 )
 	gtk3? ( >=x11-libs/gtk+-3.12:3 )
-	>=dev-libs/glib-2.36:2
+	dev-libs/glib
 	media-libs/mesa
 	gnome-extra/zenity
 	virtual/jpeg
@@ -31,8 +32,8 @@ RDEPEND="
 
 src_prepare() {
 	epatch "${FILESDIR}"/update-env.patch
-	if use gtk3; then
-		epatch "${FILESDIR}"/enable-gtk3.patch
+	if use gtk2; then
+		epatch "${FILESDIR}"/enable-gtk2.patch
 	fi
 	eapply_user
 }
