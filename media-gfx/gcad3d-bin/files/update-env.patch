@@ -1,0 +1,44 @@
+--- a/usr/bin/gcad3d	2017-04-20 09:34:04.000000000 +0300
++++ b/usr/bin/gcad3d	2017-08-19 12:03:42.213364214 +0300
+@@ -3,22 +3,23 @@
+ # Startproc for gCAD3D.
+ # You can modify several directories; default is ${HOME}/gCAD3D/..
+ 
+-osVer=`getconf LONG_BIT`
++#osVer=`getconf LONG_BIT`
+ # 32|64
+ 
+ #export LD_LIBRARY_PATH=`dirname $0`
+ 
+ # <gcad_dir_bin>                   executable, dll's     ReadOnly
+ # <gcad_dir_bin>plugins/           dll's                 ReadOnly
+-export gcad_dir_bin=/usr/lib/gCAD3D/binLinux${osVer}/
++export gcad_dir_bin=/opt/gCAD3D-2.35/lib/
+ 
+ # <gcad_dir_bas>examples.gz        local-setup           RO
+ # <gcad_dir_bas>icons/             icons                 RO
+-#export gcad_dir_bas=/usr/share/gcad3d/
++export gcad_dir_bas=/opt/gCAD3D-2.35/
++export gcad_dir_ico=/opt/gCAD3D-2.35/icons
+ 
+ # <gcad_dir_doc>html/              helpfiles .htm        ReadOnly
+ # <gcad_dir_doc>msg/               helpfiles .txt        ReadOnly
+-#export gcad_dir_doc=/usr/share/doc/gcad3d/
++export gcad_dir_doc=/usr/share/doc/gcad3d-bin-2.35/
+ 
+ # <gcad_dir_local>gCAD3D/tmp/      temp-files            ReadWrite
+ # <gcad_dir_local>gCAD3D/cfg/      local setup-files     ReadWrite
+@@ -31,13 +32,6 @@
+ # <gcad_dir_dev>gCAD3D/plugins/    objects executables   ReadWriteExe
+ #export gcad_dir_dev=${HOME}/
+ 
+-
+-# if menu is unvisible: (ubuntu 11):
+-if [ -n "$UBUNTU_MENUPROXY" ]; then
+-  echo "disactivate ubuntu-global-menu"
+-  export UBUNTU_MENUPROXY=
+-fi
+-
+ # start it ..
+ #dirname $0`/gCAD3Dx32
+ export LD_LIBRARY_PATH=${gcad_dir_bin}
