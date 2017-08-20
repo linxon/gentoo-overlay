@@ -13,4 +13,10 @@ S="${WORKDIR}"/${PN}
 DEPEND=""
 RDEPEND="${DEPEND}
 	media-libs/libpng:1.2
+	sys-libs/zlib
 "
+
+src_install() {
+	dodoc LICENSE README
+	dobin {icns2png,icontainer2icns}
+}
