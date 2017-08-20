@@ -4,7 +4,7 @@
 EAPI=6
 
 DESCRIPTION="A utility to convert Mac icons to PNG images"
-HOMEPAGE="https://github.com/Tookmund/Swapspace"
+HOMEPAGE="http://www.eisbox.net/dev/icns2png"
 SRC_URI="http://www.eisbox.net/software/icns2png-${PV}.src.tgz -> ${P}.tar.gz"
 KEYWORDS="amd64 x86"
 LICENSE="GPL"
