@@ -69,5 +69,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-   gnome2_schemas_update
+	gnome2_schemas_update
 }
