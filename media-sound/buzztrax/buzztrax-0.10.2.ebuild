@@ -29,7 +29,7 @@ CDEPEND="
 	gnome-extra/libgsf
 	dev-libs/libxml2
 	media-libs/clutter-gtk
-	x11-libs/gtk+:2
+	x11-libs/gtk+:3
 	doc? ( dev-util/gtk-doc )"
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
