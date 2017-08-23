@@ -19,7 +19,7 @@ fi
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-IUSE="orc coverage nls debug doc"
+IUSE="orc coverage nls debug doc -static-libs"
 
 CDEPEND="
 	>=media-libs/gstreamer-1.2:1.0
@@ -29,7 +29,7 @@ CDEPEND="
 	gnome-extra/libgsf
 	dev-libs/libxml2
 	media-libs/clutter-gtk
-	x11-libs/gtk+
+	x11-libs/gtk+:2
 	doc? ( dev-util/gtk-doc )"
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
@@ -40,27 +40,34 @@ src_prepare() {
 }
 
 src_configure() {
-	local myeconfargs=(
-		--enable-man
-		--disable-update-mime
-		--disable-update-desktop
-		--disable-update-icon-cache
-		$(use_enable doc gtk-doc)
+	local econfargs=(
+		--enable-man \
+		--disable-update-mime \
+		--disable-update-desktop \
+		--disable-update-icon-cache \
+		$(use_enable doc gtk-doc) \
 		$(use_enable orc) \
 		$(use_enable nls) \
 		$(use_enable debug) \
+		$(use_enable static-libs static) \
 		$(use_enable coverage)
 	)
 
 	addpredict /dev/snd/seq
-	econf "${myeconfargs[@]}" || die
+	econf "${econfargs[@]}" || die
 }
 
 pkg_preinst() {
+	gnome2_schemas_savelist 
 	gnome2_icon_savelist
 }
 
 pkg_postinst() {
-	xdg_desktop_database_update
+	gnome2_schemas_update
 	gnome2_icon_cache_update
+	xdg_desktop_database_update
+}
+
+pkg_postrm() {
+   gnome2_schemas_update
 }
