@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-# На данный момент этот сканер не поддерживать gentoo based дистрибутивы (установка этого пакета бессмысленна)
+# На данный момент этот сканер не поддерживает gentoo based дистрибутивы (установка этого пакета бессмысленна)
 # в будущем, возможно от разрабочиков мы получим версию, которая умеет gentoo based
 
 EAPI=6
