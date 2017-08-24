@@ -40,7 +40,8 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig"
 
 src_prepare() {
-	./autogen.sh || die "autogen failed" 
+	./autogen.sh || die "autogen failed"
+	epatch "${FILESDIR}"/0001-Fix-broken-dbus-includes-libs_no_autotools.patch
 	eapply_user
 }
 
