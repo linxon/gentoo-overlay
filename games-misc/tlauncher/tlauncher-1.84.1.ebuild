@@ -9,31 +9,32 @@ DESCRIPTION="A advanced launcher for Minecraft"
 HOMEPAGE="https://tlauncher.org"
 SRC_URI="http://tlauncherrepo.com/legacy/bootstrap/04c4d5d12fdfb3a9e4b0c4623f756b92613abbb8c6d4eff701c963ab73df9cd4.jar -> ${P}.jar"
 KEYWORDS="amd64 x86"
-LICENSE="MIT"
+LICENSE="all-rights-reserved"
 SLOT="0"
 
-DEPEND="dev-java/oracle-jdk-bin"
-RDEPEND="${DEPEND}"
+DEPEND=""
+RDEPEND="${DEPEND}
+	dev-java/oracle-jdk-bin
+"
 
 src_unpack() {
 	mkdir "${WORKDIR}"/"${P}" || die
 	cp "${DISTDIR}"/"${P}.jar" "${WORKDIR}"/"${P}"/"${P}.jar" || die
-
-	return
+	tar -x -f "${FILESDIR}"/icon.tar.gz -C "${WORKDIR}"/"${P}" || die
 }
 
 src_install() {
-	local inst_dir="/opt/${PN}"
+	local inst_dir="/opt/${P}"
+	local ex_file="${PN}.jar"
 
 	insinto "${inst_dir}"
-	newins "${DISTDIR}"/"${P}.jar" "${PN}.jar"
+	newins "${DISTDIR}"/"${P}.jar" "${ex_file}"
 
 	insinto /usr/share/pixmaps/
-	newins "${FILESDIR}"/minecraft.png ${PN}.png
+	newins minecraft.png ${PN}.png
 
-	dobin "${FILESDIR}"/tlauncher
-
-	make_desktop_entry "/usr/bin/${PN}" "TLauncher" "${PN}" "Game" "StartupNotify=false"
+	make_wrapper "${PN}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
+	make_desktop_entry "/usr/bin/${PN}" "TLauncher ${PV}" "${PN}" "Game" "StartupNotify=false"
 }
 
 pkg_preinst() {
