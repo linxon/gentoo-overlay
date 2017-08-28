@@ -18,9 +18,11 @@ RDEPEND="${DEPEND}
 "
 
 src_unpack() {
-	mkdir "${WORKDIR}"/"${P}" || die
-	cp "${DISTDIR}"/"${P}.jar" "${WORKDIR}"/"${P}"/"${P}.jar" || die
-	tar -x -f "${FILESDIR}"/icon.tar.gz -C "${WORKDIR}"/"${P}" || die
+	local w_path="${WORKDIR}"/"${P}"
+
+	mkdir "${w_path}" || die
+	cp "${DISTDIR}"/"${P}.jar" "${w_path}"/"${P}.jar" || die
+	tar -x -f "${FILESDIR}"/icon.tar.gz -C "${w_path}" || die
 }
 
 src_install() {
@@ -29,12 +31,11 @@ src_install() {
 
 	insinto "${inst_dir}"
 	newins "${DISTDIR}"/"${P}.jar" "${ex_file}"
-
 	insinto /usr/share/pixmaps/
-	newins minecraft.png ${PN}.png
+	newins minecraft.png ${PN}-${SLOT}.png
 
 	make_wrapper "${PN}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
-	make_desktop_entry "/usr/bin/${PN}" "TLauncher ${PV}" "${PN}" "Game" "StartupNotify=false"
+	make_desktop_entry "/usr/bin/${PN}" "TLauncher ${PV}" "${PN}-${SLOT}" "Game" "StartupNotify=false"
 }
 
 pkg_preinst() {
