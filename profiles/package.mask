@@ -1,2 +1,14 @@
-# See author comment: https://github.com/solusipse/fiche/issues/55#issuecomment-325218078
+# The use of this application can be unsafe for you
+#
+# ** I'd rather this project be euthanized than patched. The project is dead, looking for a new maintainer, and 
+# ** entirely unsafe in its implementation. If I were to send any PR, it'd be to add this warning to the README.
+# **
+# ** As mentioned in the OP, this was handled privately, via encrypted email, and remained unaddressed for three weeks 
+# ** before I posted this publicly. Now, at least, people can know what they're getting into and 
+# ** the new maintainer has a list of items to tackle first.
+# ** Seriously though, my recommendation stands. People should stop using fiche on their public servers
+# ** until it's been entirely reworked into something safer.
+# ** To prevent issues like this in other projects, C is clearly not the ideal tool for the job.
+#
+# See comment: https://github.com/solusipse/fiche/issues/55#issuecomment-325218078
 net-misc/fiche
