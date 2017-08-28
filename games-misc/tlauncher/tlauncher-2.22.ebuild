@@ -34,7 +34,7 @@ src_install() {
 	insinto /usr/share/pixmaps/
 	newins minecraft.png ${PN}-${SLOT}.png
 
-	make_wrapper "${PN}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
+	make_wrapper "${PN}${SLOT}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
 	make_desktop_entry "/usr/bin/${PN}" "TLauncher ${PV}" "${PN}-${SLOT}" "Game" "StartupNotify=false"
 }
 
