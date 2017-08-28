@@ -10,7 +10,7 @@ HOMEPAGE="https://tlauncher.org"
 SRC_URI="http://tlauncherrepo.com/legacy/bootstrap/04c4d5d12fdfb3a9e4b0c4623f756b92613abbb8c6d4eff701c963ab73df9cd4.jar -> ${P}.jar"
 KEYWORDS="amd64 x86"
 LICENSE="all-rights-reserved"
-SLOT="0"
+SLOT="1"
 
 DEPEND=""
 RDEPEND="${DEPEND}

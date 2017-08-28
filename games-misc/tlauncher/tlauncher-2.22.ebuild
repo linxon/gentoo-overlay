@@ -10,7 +10,7 @@ HOMEPAGE="https://tlauncher.org"
 SRC_URI="https://tlauncher.org/download/3049 -> ${P}.jar"
 KEYWORDS="~amd64 ~x86"
 LICENSE="all-rights-reserved"
-SLOT="0"
+SLOT="2"
 
 DEPEND=""
 RDEPEND="${DEPEND}
