@@ -5,46 +5,53 @@ EAPI=6
 
 inherit user readme.gentoo-r1 gnome2-utils systemd xdg-utils
 
+DESCRIPTION="Anonymous torrent client Transmission-I2P based on 2.82 version"
+HOMEPAGE="https://github.com/l-n-s/transmission-i2p"
+
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/l-n-s/transmission-i2p"
 fi
 
-DESCRIPTION="Anonymous torrent client Transmission-I2P based on 2.82 version"
-HOMEPAGE="https://github.com/l-n-s/transmission-i2p"
-
 LICENSE="|| ( GPL-2 GPL-3 Transmission-OpenSSL-exception ) GPL-2 MIT"
 SLOT="0"
-IUSE="gtk lightweight ayatana systemd nls xfs"
+IUSE="ayatana gtk lightweight systemd nls xfs"
 
-RDEPEND=">=dev-libs/libevent-2.0.10:=
-		dev-libs/openssl:0=
-		net-libs/libnatpmp:=
-		>=net-libs/miniupnpc-1.6.20120509:=
-		>=net-misc/curl-7.16.3:=[ssl]
-		sys-libs/zlib:=
-		>=net-vpn/i2pd-2.11.0:=
-		gtk? (
-			>=dev-libs/dbus-glib-0.100:=
-			>=dev-libs/glib-2.32:2=
-			>=x11-libs/gtk+-3.4:3=
-			ayatana? ( >=dev-libs/libappindicator-0.4.90:3= )
-		)
-		systemd? ( sys-apps/systemd )"
+RDEPEND="
+	!net-p2p/transmission
+	>=dev-libs/libevent-2.0.10:=
+	dev-libs/openssl:0=
+	net-libs/libnatpmp:=
+	>=net-libs/miniupnpc-1.6.20120509:=
+	>=net-misc/curl-7.16.3:=[ssl]
+	sys-libs/zlib:=
+	>=net-vpn/i2pd-2.11.0:=
+	gtk? (
+		>=dev-libs/dbus-glib-0.100:=
+		>=dev-libs/glib-2.32:2=
+		>=x11-libs/gtk+-3.4:3=
+		ayatana? ( >=dev-libs/libappindicator-0.4.90:3= )
+	)
+	systemd? ( sys-apps/systemd )
+"
 DEPEND="${RDEPEND}
-		dev-libs/glib:2
-		dev-util/intltool
-		sys-devel/gettext
-		virtual/os-headers
-		virtual/pkgconfig
-		xfs? ( sys-fs/xfsprogs )"
+	dev-libs/glib:2
+	dev-util/intltool
+	sys-devel/gettext
+	virtual/os-headers
+	virtual/pkgconfig
+	xfs? ( sys-fs/xfsprogs )
+"
 
 REQUIRED_USE="ayatana? ( gtk )"
 
-src_unpack() {
-	if [[ ${PV} == 9999 ]]; then
-		git-r3_src_unpack
-	fi
+src_prepare() {
+	# Prevent m4_copy error when running aclocal
+	# m4_copy: won't overwrite defined macro: glib_DEFUN
+	rm m4/glib-gettext.m4 || die
+
+	eautoreconf
+	eapply_user
 }
 
 src_configure() {
