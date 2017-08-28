@@ -1,0 +1,2 @@
+# See author comment: https://github.com/solusipse/fiche/issues/55#issuecomment-325218078
+net-misc/fiche
