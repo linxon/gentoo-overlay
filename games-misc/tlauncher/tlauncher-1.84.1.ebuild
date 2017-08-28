@@ -35,7 +35,7 @@ src_install() {
 	newins minecraft.png ${PN}-${SLOT}.png
 
 	make_wrapper "${PN}${SLOT}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
-	make_desktop_entry "/usr/bin/${PN}" "TLauncher ${PV}" "${PN}-${SLOT}" "Game" "StartupNotify=false"
+	make_desktop_entry "/usr/bin/${PN}${SLOT}" "TLauncher ${PV}" "${PN}-${SLOT}" "Game" "StartupNotify=false"
 }
 
 pkg_preinst() {
