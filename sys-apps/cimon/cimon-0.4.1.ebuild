@@ -30,3 +30,7 @@ RDEPEND="${DEPEND}
 src_compile() {
 	cmake -D DEBUG_MODE:BOOL=OFF -D REFRESH_GRAPH_INTERVAL:STRING="600" -D PORT:STRING="8080" .
 }
+
+src_install() {
+	emake install
+}
