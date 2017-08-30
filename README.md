@@ -5,12 +5,12 @@ Rescue tools for gentoo linux
 
 -----------------
 
-#### Install layman ####
+#### Make sure that layman and git are installed ####
 ```
 emerge --sync && emerge app-portage/layman git
 ```
 
-#### Add this repository ####
+#### Add this overlay ####
 
 ```
 layman -o https://raw.github.com/linxon/gentoo-overlay/master/repo.xml -f -a linxon
