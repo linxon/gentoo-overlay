@@ -5,6 +5,11 @@ Rescue tools for gentoo linux
 
 -----------------
 
+#### Install layman ####
+```
+emerge app-portage/layman git
+```
+
 #### Add this repository ####
 
 ```
