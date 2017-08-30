@@ -1,7 +1,7 @@
 gentoo-overlay
 ==============
 
-Rescue tools for gentoo linux
+Useful tools for gentoo linux
 
 -----------------
 
