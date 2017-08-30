@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
 <repositories xmlns="" version="1.0">
-    <repo quality="experimental" status="unofficial">
-        <name><![CDATA[linxon]]></name>
-        <description><![CDATA[Another tools for gentoo linux]]></description>
-        <homepage>https://github.com/linxon/gentoo-overlay</homepage>
-        <owner type="person">
-            <email>email@linxon.ru</email>
-            <name>linxon</name>
-        </owner>
-        <source type="git">git://github.com/linxon/gentoo-overlay.git</source>
-        <feed>https://github.com/linxon/gentoo-overlay/commits/master.atom</feed>
-    </repo>
+	<repo quality="experimental" status="unofficial">
+		<name><![CDATA[linxon]]></name>
+		<description><![CDATA[Useful tools for gentoo linux]]></description>
+		<description lang="ru"><![CDATA[Полезные утилиты для gentoo linux]]></description>
+		<homepage>https://github.com/linxon/gentoo-overlay</homepage>
+		<owner type="person">
+			<name>linxon</name>
+			<email>email@linxon.ru</email>
+		</owner>
+		<source type="git">git://github.com/linxon/gentoo-overlay.git</source>
+		<feed>https://github.com/linxon/gentoo-overlay/commits/master.atom</feed>
+	</repo>
 </repositories>
