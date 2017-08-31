@@ -32,7 +32,7 @@ python_install() {
 	distutils-r1_python_install
 	distutils-r1_python_install_all
 	
-	make_desktop_entry "/opt/bin/${PN}" "Youtube-dl GUI" "youtube-dl-gui" "Network;GTK;" "StartupNotify=true"
+	make_desktop_entry "${PN}" "Youtube-dl GUI" "youtube-dl-gui" "Network;GTK;" "StartupNotify=true"
 }
 
 pkg_preinst() {
