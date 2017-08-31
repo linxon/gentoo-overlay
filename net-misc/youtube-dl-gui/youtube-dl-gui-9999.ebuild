@@ -20,9 +20,10 @@ fi
 
 IUSE="+ffmpeg"
 SLOT="0"
-DEPEND=""
+DEPEND="sys-devel/gettext"
 RDEPEND="${PYTHON_DEPS}
 	net-misc/youtube-dl
 	dev-python/wxpython:3.0[${PYTHON_USEDEP}]
+	dev-python/twodict
 	ffmpeg? ( media-video/ffmpeg )
 "
