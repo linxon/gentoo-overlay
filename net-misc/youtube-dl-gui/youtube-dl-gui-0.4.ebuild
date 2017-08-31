@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python2_7 )
 inherit distutils-r1 gnome2-utils xdg-utils
 
 DESCRIPTION="A cross platform front-end GUI of the popular youtube-dl written in wxPython"
-HOMEPAGE="https://github.com/MrS0m30n3/youtube-dl-gui"
+HOMEPAGE="https://mrs0m30n3.github.io/youtube-dl-gui/"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -22,9 +22,9 @@ IUSE="+ffmpeg"
 SLOT="0"
 DEPEND="sys-devel/gettext"
 RDEPEND="
-	net-misc/youtube-dl
 	dev-python/wxpython:3.0[${PYTHON_USEDEP}]
 	dev-python/twodict
+	net-misc/youtube-dl
 	ffmpeg? ( media-video/ffmpeg )
 "
 
@@ -32,7 +32,7 @@ python_install() {
 	distutils-r1_python_install
 	distutils-r1_python_install_all
 	
-	make_desktop_entry "${PN}" "Youtube-dl GUI" "youtube-dl-gui" "Network;GTK;" "StartupNotify=true"
+	make_desktop_entry "${PN}" "Youtube-dl (GTK+)" "youtube-dl-gui" "Network;GTK;" "StartupNotify=true"
 }
 
 pkg_preinst() {
