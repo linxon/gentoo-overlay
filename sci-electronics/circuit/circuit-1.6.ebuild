@@ -44,7 +44,7 @@ pkg_postinst() {
 	if use examples; then
 		ewarn
 		ewarn "You can find examples on: /opt/${P}/circuits/*"
-		ewarn "See documentation: ${HOMEPAGE}/e-index.html"
+		ewarn "See documentation: ${HOMEPAGE}e-index.html"
 		ewarn
 	fi
 
