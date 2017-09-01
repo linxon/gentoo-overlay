@@ -12,11 +12,16 @@ KEYWORDS="amd64 x86"
 LICENSE="GPL"
 S="${WORKDIR}"
 SLOT="0"
-IUSE="+examples"
+IUSE="+examples source"
 DEPEND=""
 RDEPEND="${DEPEND}
 	dev-java/oracle-jdk-bin
 "
+
+src_unpack() {
+	unpack "${A}"
+	unpack "${FILESDIR}"/circuit.png.tar.gz
+}
 
 src_install() {
 	local inst_dir="/opt/${P}"
@@ -24,11 +29,10 @@ src_install() {
 
 	insinto "${inst_dir}"
 	doins ${ex_file}
-	if use examples; then
-		doins -r circuits
-	fi
+	doins setuplist.txt
+	use source && doins src.zip
+	use examples && doins -r circuits
 
-	unpack "${FILESDIR}"/circuit.png.tar.gz
 	insinto /usr/share/pixmaps/
 	doins ${PN}.png
 
