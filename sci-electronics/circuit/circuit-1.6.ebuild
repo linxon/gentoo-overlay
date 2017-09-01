@@ -29,9 +29,11 @@ src_install() {
 
 	insinto "${inst_dir}"
 	doins ${ex_file}
-	doins setuplist.txt
 	use source && doins src.zip
-	use examples && doins -r circuits
+	use examples && {
+		doins -r circuits
+		doins setuplist.txt
+	} 
 
 	insinto /usr/share/pixmaps/
 	doins ${PN}.png
