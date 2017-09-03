@@ -3,18 +3,15 @@
 
 EAPI=6
 
-inherit eutils cmake-utils gnome2-utils xdg-utils
+inherit cmake-utils gnome2-utils xdg-utils
 
 DESCRIPTION="Simple medical records manager"
 HOMEPAGE="https://launchpad.net/clinica-project"
-SRC_URI="https://launchpad.net/clinica-project/stable/${PV}/+download/${P}.tar.bz2"
 LICENSE="GPL-3"
-SLOT="0"
+SRC_URI="https://launchpad.net/clinica-project/stable/${PV}/+download/${P}.tar.bz2"
+RESTRICT="mirror test userpriv"
 KEYWORDS="amd64 ~x86"
-
-DEPEND="
-	>=dev-lang/vala-0.16.0
-	dev-util/intltool"
+SLOT="0"
 
 RDEPEND="
 	>=dev-libs/libgee-0.6.0
@@ -26,20 +23,34 @@ RDEPEND="
 	>=net-libs/libsoup-2.4
 	x11-libs/wxGTK:3.0"
 
+DEPEND="${RDEPEND}
+	dev-lang/vala:0.34
+	dev-util/intltool"
+
+src_prepare() {
+	eapply "${FILESDIR}"
+	eapply_user
+}
+
 src_configure() {
-	cmake ${S} -DCMAKE_INSTALL_PREFIX=/usr
+	cmake ${S} -DCMAKE_INSTALL_PREFIX=/usr \
+               -DGSETTINGS_COMPILE=OFF \
+               -DGSETTINGS_COMPILE_IN_PLACE=OFF \
+               -DCMAKE_SKIP_RPATH=ON \
+               -DCMAKE_BUILD_TYPE=Release || die
 }
 
-src_compile() {
-	emake
-}
-
-src_install() {
-	make_desktop_entry "${PN}" "Clinica" "${PN}" "Utility;Office;"
-	dobin ${PN}
+pkg_preinst() {
+	gnome2_schemas_savelist 
+	gnome2_icon_savelist
 }
 
 pkg_postinst() {
-	xdg_desktop_database_update
+	gnome2_schemas_update
 	gnome2_icon_cache_update
+	xdg_desktop_database_update
+}
+
+pkg_postrm() {
+	gnome2_schemas_update
 }
