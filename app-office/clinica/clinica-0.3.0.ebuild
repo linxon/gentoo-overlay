@@ -50,6 +50,10 @@ src_compile() {
 	emake DESTDIR="${D}" || die "compile error"
 }
 
+src_install() {
+	emake DESTDIR="${D}" install || die "install error"
+}
+
 pkg_preinst() {
 	gnome2_schemas_savelist 
 	gnome2_icon_savelist
