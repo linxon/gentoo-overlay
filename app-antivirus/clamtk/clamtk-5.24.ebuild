@@ -15,7 +15,7 @@ LICENSE="|| ( Artistic GPL-1+ )"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 LANGS="af ar ast az bg bs ca cs da de el_GR en_AU en_CA en_GB es eu fi fo fr ga gl he hr hu id it ja km ko lo lt lv mr ms nb nl_BE nl nn pa pl pt_BR pt ro ru sk sl sr@latin sv ta te th tr ug uk uz zh_CN zh_TW"
-IUSE=""
+IUSE="thunar"
 for i in ${LANGS}; do
 	IUSE="${IUSE} linguas_${i}"
 done
@@ -33,7 +33,7 @@ RDEPEND="
 	virtual/perl-Digest-SHA
 	virtual/perl-MIME-Base64
 	virtual/perl-Time-Piece
-"
+	thunar? ( xfce-extra/thunar-sendto-clamtk )"
 
 src_unpack() {
 	unpack ${A}
