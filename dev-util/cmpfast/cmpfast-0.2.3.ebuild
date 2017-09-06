@@ -19,6 +19,9 @@ fi
 
 RESTRICT="mirror test"
 SLOT="0"
+DEPEND=""
+RDEPEND="${DEPEND}
+	sys-libs/glibc"
 
 src_compile() {
 	make -j1
