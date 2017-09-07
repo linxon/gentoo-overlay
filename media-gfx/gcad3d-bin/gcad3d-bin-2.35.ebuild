@@ -46,6 +46,9 @@ src_install() {
 	insinto "${inst_path}"/lib
 	doins -r usr/lib/gCAD3D/binLinux*/*
 
+	exeinto "${inst_path}"/lib
+	doexe usr/lib/gCAD3D/binLinux*/gCAD3D
+
 	dodoc -r usr/share/doc/${app_name}/{msg,copyright,changelog.gz}
 	if use doc; then
 		dodoc -r usr/share/doc/${app_name}/html
