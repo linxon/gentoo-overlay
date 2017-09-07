@@ -7,34 +7,34 @@ inherit autotools gnome2-utils xdg-utils
 
 DESCRIPTION="A fast file search utility for Unix-like systems based on GTK+3"
 HOMEPAGE="http://www.fsearch.org/"
+LICENSE="GPL-2+"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/cboxdoerfer/fsearch"
 else
-	MY_PV="0.1beta2"
-	MY_P="${PN}-${MY_PV}"
-	SRC_URI="https://github.com/cboxdoerfer/fsearch/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+	MY_PV="${PV%%_*}beta2"
+	SRC_URI="https://github.com/cboxdoerfer/fsearch/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
-	S="${WORKDIR}/${MY_P}"
+	S="${WORKDIR}"/${PN}-${MY_PV}
 fi
 
-LICENSE="GPL-2+"
+RESTRICT="mirror"
 SLOT="0"
 IUSE="nls debug"
 
-CDEPEND="
+RDEPEND="
 	>=x11-libs/gtk+-3.12:3
 	>=dev-libs/glib-2.36:2
 	dev-libs/libpcre"
-DEPEND="${CDEPEND}
+
+DEPEND="${RDEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig"
-RDEPEND="${CDEPEND}"
 
 src_prepare() {
-	default
 	eautoreconf
+	eapply_user
 }
 
 src_configure() {
