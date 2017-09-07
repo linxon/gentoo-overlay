@@ -5,19 +5,22 @@ EAPI=6
 
 inherit unpacker gnome2-utils xdg-utils
 
-MY_P="gCAD3D-${PV}-bin"
 DESCRIPTION="3D CAD-CAM application for GNU/Linux"
 HOMEPAGE="http://www.gcad3d.org"
+LICENSE="GPL-3"
+
+MY_P="gCAD3D-${PV}-bin"
 SRC_URI="
         amd64? ( http://www.gcad3d.org/download/${MY_P}-amd64.deb )
         x86? ( http://www.gcad3d.org/download/${MY_P}-i386.deb )
 "
-LICENSE="GPL-3"
-SLOT="0"
+
 KEYWORDS="amd64 ~x86"
-RESTRICT="mirror strip"
+RESTRICT="mirror"
 IUSE="-gtk2 +gtk3 doc"
+SLOT="0"
 REQUIRED_USE="gtk3? ( !gtk2 )"
+
 S="${WORKDIR}"
 
 DEPEND=""
@@ -27,8 +30,7 @@ RDEPEND="
 	dev-libs/glib
 	media-libs/mesa
 	gnome-extra/zenity
-	virtual/jpeg
-"
+	virtual/jpeg"
 
 src_prepare() {
 	epatch "${FILESDIR}"/update-env.patch
@@ -39,17 +41,14 @@ src_prepare() {
 }
 
 src_install() {
-	local arch_c=$(getconf LONG_BIT)
 	local inst_path="/opt/${MY_P%%-bin}"
 	local app_name="${PN%%-bin}"
 
-	mkdir -p "${D}"/"${inst_path}"/lib
-	if [[ "${arch_c}" == "32" ]] || [[ "${arch_c}" == "64" ]]; then
-		cp -R usr/lib/gCAD3D/binLinux${arch_c}/* "${D}"/"${inst_path}"/lib
-		cp -R usr/share/gcad3d/* "${D}"/"${inst_path}"
-	else
-		die "This machine is not support!"
-	fi
+	insinto "${inst_path}"
+	doins -r usr/lib/gCAD3D/binLinux*/*
+
+	insinto /usr/share/gcad3d
+	doins -r usr/share/gcad3d/*
 
 	dodoc -r usr/share/doc/${app_name}/{msg,copyright,changelog.gz}
 	if use doc; then
