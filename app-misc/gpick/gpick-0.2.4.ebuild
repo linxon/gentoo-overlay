@@ -3,35 +3,42 @@
 
 EAPI=6
 
-inherit eutils
-
-MY_P="${PN}-${PN}-${PV}"
+inherit eutils gnome2-utils xdg-utils
 
 DESCRIPTION="Advanced color picker written in C++ using GTK+ toolkit"
 HOMEPAGE="http://www.gpick.org/"
-SRC_URI="https://github.com/thezbyg/gpick/archive/gpick-${PV}.tar.gz"
-
 LICENSE="BSD"
-SLOT="0"
-KEYWORDS="~x86 ~amd64"
-IUSE="debug unique dbus"
 
-RDEPEND=">=x11-libs/gtk+-2.12.0
+if [[ ${PV} == *9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/thezbyg/gpick"
+else
+	MY_P="${PN}-${PN}-${PV}"
+	SRC_URI="https://github.com/thezbyg/gpick/archive/gpick-${PV}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+	S="${WORKDIR}"/${MY_P}
+fi
+
+RESTRICT="mirror"
+SLOT="0"
+IUSE="dbus debug unique"
+
+RDEPEND="
 	>=dev-lang/lua-5.1
+	>=x11-libs/gtk+-2.12.0
+	dev-util/lemon
 	dev-libs/boost
 	dbus? ( >=dev-libs/dbus-glib-0.76 )
-	unique? ( >=dev-libs/libunique-1.0.8 )
-	dev-util/lemon"
+	unique? ( >=dev-libs/libunique-1.0.8 )"
 
 DEPEND="${RDEPEND}
 	>=dev-util/scons-1.0.0"
 
-S="${WORKDIR}/${MY_P}"
-
 src_prepare() {
-	default
-	epatch "${FILESDIR}"/${PN}_fix_ver.patch
+	epatch "${FILESDIR}"/${P}-fix_revision.patch
+	eapply_user
 }
+
 src_compile() {
 	use unique && WITH_UNIQUE=yes
 	use dbus && WITH_DBUSGLIB=yes
@@ -42,7 +49,17 @@ src_compile() {
 }
 
 src_install() {
-	scons DESTDIR="${D}/usr" install || die "scons install failed"
+	scons DESTDIR="${D}/usr" install \
+		|| die "scons install failed"
 
 	dosym /usr/share/icons/hicolor/48x48/apps/gpick.png /usr/share/pixmaps/gpick.png
+}
+
+pkg_preinst() {
+	gnome2_icon_savelist
+}
+
+pkg_postinst() {
+	xdg_desktop_database_update
+	gnome2_icon_cache_update
 }
