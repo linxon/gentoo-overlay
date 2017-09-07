@@ -1,6 +1,5 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=6
 
@@ -8,13 +7,18 @@ inherit eutils cmake-utils gnome2-utils xdg-utils
 
 DESCRIPTION="A cross-platform color picker"
 HOMEPAGE="https://github.com/nielssp/colorgrab"
-SRC_URI="https://github.com/nielssp/colorgrab/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-
 LICENSE="MIT"
-SLOT="0"
-KEYWORDS="~x86 ~amd64"
-IUSE=""
 
+if [[ ${PV} == *9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/nielssp/colorgrab"
+else
+	SRC_URI="https://github.com/nielssp/colorgrab/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+fi
+
+RESTRICT="mirror"
+SLOT="0"
 RDEPEND="x11-libs/wxGTK:3.0"
 DEPEND="${RDEPEND}"
 
@@ -27,8 +31,6 @@ src_compile() {
 }
 
 src_install() {
-	make_desktop_entry "${PN}" "ColorGrab" "${PN}" "Utility;Graphics;" "${PN}.desktop"
-
 	insinto /usr/share/icons/hicolor/scalable/apps/
 	newins img/scalable.svg ${PN}.svg
 
@@ -38,6 +40,13 @@ src_install() {
 	done
 
 	dobin ${PN}
+	dodoc LICENSE README.md
+
+	make_desktop_entry "${PN}" "ColorGrab" "${PN}" "Utility;Graphics;"
+}
+
+pkg_preinst() {
+	gnome2_icon_savelist
 }
 
 pkg_postinst() {
