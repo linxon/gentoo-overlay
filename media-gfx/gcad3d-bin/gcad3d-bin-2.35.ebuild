@@ -12,10 +12,9 @@ LICENSE="GPL-3"
 MY_P="gCAD3D-${PV}-bin"
 SRC_URI="
         amd64? ( http://www.gcad3d.org/download/${MY_P}-amd64.deb )
-        x86? ( http://www.gcad3d.org/download/${MY_P}-i386.deb )
-"
+        x86? ( http://www.gcad3d.org/download/${MY_P}-i386.deb )"
 
-KEYWORDS="amd64 ~x86"
+KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 IUSE="-gtk2 +gtk3 doc"
 SLOT="0"
@@ -44,16 +43,16 @@ src_install() {
 	local inst_path="/opt/${MY_P%%-bin}"
 	local app_name="${PN%%-bin}"
 
-	insinto "${inst_path}"
+	insinto "${inst_path}"/lib
 	doins -r usr/lib/gCAD3D/binLinux*/*
-
-	insinto /usr/share/gcad3d
-	doins -r usr/share/gcad3d/*
 
 	dodoc -r usr/share/doc/${app_name}/{msg,copyright,changelog.gz}
 	if use doc; then
 		dodoc -r usr/share/doc/${app_name}/html
 	fi
+
+	insinto /usr/share/gcad3d
+	doins -r usr/share/gcad3d/*
 
 	insinto /usr/share/pixmaps
 	newins usr/share/pixmaps/gCAD3D.xpm gCAD3D.xpm
