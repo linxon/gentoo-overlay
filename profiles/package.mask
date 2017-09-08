@@ -19,3 +19,7 @@ sys-apps/cimon
 # Мне так и не удалось его скомпилировать. Ошибка возникает во вермя запуска:
 # emake DESTDIR="${D}" || die "compile error"
 app-office/clinica
+
+# Gentoo based temporary is not supported
+# See documentation: https://github.com/videns/vulners-scanner/blob/master/README.md
+gentoo-overlay/app-antivirus
