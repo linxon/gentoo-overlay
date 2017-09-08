@@ -5,6 +5,7 @@ EAPI=6
 
 DESCRIPTION="A Tunnel which turns UDP Traffic into Encrypted FakeTCP/UDP/ICMP Traffic by using Raw Socket,helps you Bypass UDP FireWalls(or Unstable UDP Environment)"
 HOMEPAGE="https://github.com/wangyu-/udp2raw-tunnel"
+LICENSE="MIT"
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
@@ -14,7 +15,7 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-LICENSE="MIT"
+RESTRICT="mirror"
 SLOT="0"
 
 DEPEND=""
@@ -24,6 +25,7 @@ src_install() {
 	local ex_name="${PN%%-tunnel}"
 	dobin ${ex_name}
 	dodoc LICENSE.md README.md
+	dodoc -r doc/*
 }
 
 pkg_postinst() {
