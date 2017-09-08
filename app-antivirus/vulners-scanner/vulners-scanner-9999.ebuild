@@ -12,6 +12,7 @@ inherit distutils-r1
 
 DESCRIPTION="Vulnerability scanner based on vulners.com audit API"
 HOMEPAGE="https://vulners.com/"
+LICENSE="MIT"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -21,13 +22,11 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-LICENSE="MIT"
 SLOT="0"
-RESTRICT="nomirror"
+RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}
-	dev-python/urllib3
-"
+	dev-python/urllib3"
 
 src_compile() {
 	# skip
