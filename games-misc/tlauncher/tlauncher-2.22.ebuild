@@ -7,15 +7,17 @@ inherit eutils gnome2-utils xdg-utils
 
 DESCRIPTION="A advanced launcher for Minecraft"
 HOMEPAGE="https://tlauncher.org"
-SRC_URI="https://tlauncher.org/download/3049 -> ${P}.jar"
-KEYWORDS="~amd64 ~x86"
 LICENSE="all-rights-reserved"
+
+SRC_URI="https://tlauncher.org/download/3049 -> ${P}.jar"
+
+RESTRICT="mirror"
+KEYWORDS="~amd64 ~x86"
 SLOT="2"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	dev-java/oracle-jdk-bin
-"
+	dev-java/oracle-jdk-bin"
 
 src_unpack() {
 	local w_path="${WORKDIR}"/"${P}"
