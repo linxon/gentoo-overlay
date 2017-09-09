@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>email@linxon.ru</email>
+    <name>linxon (Yury Martynov)</name>
+  </maintainer>
+  <use>
+    <flag name="mp4v2">Used to read tags from ALAC (Apple Lossles) files</flag>
+    <flag name="mac">Used to decompress APE (Monkeys Audio) files</flag>
+    <flag name="shorten">Used to decompress Shorten files</flag>
+    <flag name="ttaenc">Used to decompress TTA (True Audio) files</flag>
+    <flag name="trash-cli">Used to send input files to trash</flag>
+    <flag name="wav">used to decompress WavPack files</flag>
+  </use>
+</pkgmetadata>
