@@ -36,8 +36,13 @@ src_install() {
 	insinto /usr/share/pixmaps/
 	newins minecraft.png ${PN}-${SLOT}.png
 
+	# Fix error message — "Error in custom provider, java.lang.NoClassDefFoundError..."
+	fowners -R root:games "${inst_dir}"
+	fperms 775 "${inst_dir}"
+	fperms 664 "${inst_dir}"/${ex_file}
+
 	make_wrapper "${PN}${SLOT}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
-	make_desktop_entry "/usr/bin/${PN}${SLOT}" "TLauncher ${PV}" "${PN}-${SLOT}" "Game" "StartupNotify=false"
+	make_desktop_entry "/usr/bin/${PN}${SLOT}" "TLauncher ${PV}" "${PN}-${SLOT}" "Game" "Path=${inst_dir}"
 }
 
 pkg_preinst() {
@@ -45,6 +50,12 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
+	ewarn
+	ewarn "You need put a command:"
+	ewarn "usermod -G video,games <username>"
+	ewarn
+
 	xdg_desktop_database_update
 	gnome2_icon_cache_update
 }
+
