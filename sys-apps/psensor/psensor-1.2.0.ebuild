@@ -7,18 +7,20 @@ inherit gnome2-utils xdg-utils
 
 DESCRIPTION="A graphical hardware temperature monitor for GNU/Linux"
 HOMEPAGE="http://wpitchoune.net/psensor"
-SRC_URI="http://wpitchoune.net/${PN}/files/${PN}-${PV}.tar.gz"
-KEYWORDS="amd64 ~x86"
 LICENSE="GPL-2"
+
+SRC_URI="http://wpitchoune.net/${PN}/files/${PN}-${PV}.tar.gz"
+
+KEYWORDS="amd64 ~x86"
 SLOT="0"
 IUSE="+gtop nls X"
+
 DEPEND="sys-apps/help2man"
 RDEPEND="${DEPEND}
+	>=x11-libs/gtk+-3.4:3
 	gnome-base/dconf
 	sys-fs/udisks:2
-	>=x11-libs/gtk+-3.4:3
-	gtop? ( gnome-base/libgtop )
-"
+	gtop? ( gnome-base/libgtop )"
 
 src_configure() {
 	local econfargs=(
