@@ -11,6 +11,7 @@ LICENSE="GPL-2"
 
 SRC_URI="http://wpitchoune.net/${PN}/files/${PN}-${PV}.tar.gz"
 
+RESTRICT="mirror"
 KEYWORDS="amd64 ~x86"
 SLOT="0"
 IUSE="+gtop nls X"
