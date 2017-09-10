@@ -21,13 +21,13 @@ RESTRICT="mirror"
 SLOT="0"
 
 DEPEND=""
-RDEPEND=""
+RDEPEND="${DEPEND}"
 
 src_install() {
 	local ex_name="${PN%%-tunnel}"
+
 	dobin ${ex_name}
-	dodoc LICENSE.md README.md
-	dodoc -r doc/*
+	dodoc -r LICENSE.md example.conf README.md doc/*
 }
 
 pkg_postinst() {
