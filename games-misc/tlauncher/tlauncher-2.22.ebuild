@@ -51,8 +51,9 @@ pkg_preinst() {
 
 pkg_postinst() {
 	ewarn
-	ewarn "You need put a command:"
-	ewarn "usermod -G video,games <username>"
+	ewarn "You need put a commands:"
+	ewarn "gpasswd -a <username> video"
+	ewarn "gpasswd -a <username> games"
 	ewarn
 
 	xdg_desktop_database_update
