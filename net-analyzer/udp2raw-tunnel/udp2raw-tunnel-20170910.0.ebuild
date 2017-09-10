@@ -27,7 +27,7 @@ src_install() {
 	local ex_name="${PN%%-tunnel}"
 
 	dobin ${ex_name}
-	dodoc -r LICENSE.md README.md doc/*
+	dodoc -r LICENSE.md example.conf README.md doc/*
 }
 
 pkg_postinst() {
