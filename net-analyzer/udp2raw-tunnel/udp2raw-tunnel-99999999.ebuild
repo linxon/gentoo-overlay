@@ -14,20 +14,20 @@ EGIT_REPO_URI="https://github.com/wangyu-/udp2raw-tunnel"
 
 if [[ ${PV} != *9999 ]]; then
 	EGIT_COMMIT="${PV}"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="~amd64 ~x86 ~mips ~arm"
 fi
 
 RESTRICT="mirror"
 SLOT="0"
 
 DEPEND=""
-RDEPEND=""
+RDEPEND="${DEPEND}"
 
 src_install() {
 	local ex_name="${PN%%-tunnel}"
+
 	dobin ${ex_name}
-	dodoc LICENSE.md README.md
-	dodoc -r doc/*
+	dodoc -r LICENSE.md example.conf README.md doc/*
 }
 
 pkg_postinst() {
