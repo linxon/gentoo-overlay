@@ -9,6 +9,7 @@ inherit distutils-r1 gnome2-utils xdg-utils
 
 DESCRIPTION="A cross platform front-end GUI of the popular youtube-dl written in wxPython"
 HOMEPAGE="https://mrs0m30n3.github.io/youtube-dl-gui/"
+LICENSE="Unlicense"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -25,8 +26,7 @@ RDEPEND="
 	dev-python/wxpython:3.0[${PYTHON_USEDEP}]
 	dev-python/twodict
 	net-misc/youtube-dl
-	ffmpeg? ( media-video/ffmpeg )
-"
+	ffmpeg? ( media-video/ffmpeg )"
 
 python_install() {
 	distutils-r1_python_install
