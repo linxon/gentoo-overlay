@@ -21,5 +21,5 @@ src_install() {
 	doins -r *.wav
 
 	dobin ${PN}
-	dodoc ChangeLog COPYING NOTES README TODO prog_example.txt
+	dodoc ChangeLog NOTES README TODO prog_example.txt
 }
