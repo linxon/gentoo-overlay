@@ -9,8 +9,9 @@ inherit distutils-r1
 
 DESCRIPTION="gymail is a simple python mail notification script"
 HOMEPAGE="https://github.com/eayin2/gymail"
+LICENSE="GPL"
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/eayin2/gymail"
 else
@@ -18,6 +19,5 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-LICENSE="GPL"
 SLOT="0"
-RESTRICT="nomirror"
+RESTRICT="mirror"
