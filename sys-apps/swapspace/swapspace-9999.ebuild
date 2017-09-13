@@ -7,8 +7,9 @@ inherit eutils autotools systemd
 
 DESCRIPTION="A fork of Jeroen T. Vermeulen's excellent dynamic swap space manager"
 HOMEPAGE="https://github.com/Tookmund/Swapspace"
+LICENSE="GPL-2"
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/Tookmund/Swapspace"
 else
@@ -18,7 +19,6 @@ else
 	S="${WORKDIR}/${MY_P}"
 fi
 
-LICENSE="GPL"
 SLOT="0"
 
 src_prepare() {
