@@ -9,18 +9,20 @@ inherit eutils perl-module gnome2-utils xdg-utils
 
 DESCRIPTION="A frontend for ClamAV using Gtk2-perl"
 HOMEPAGE="https://dave-theunsub.github.io/clamtk/"
-SRC_URI="https://bitbucket.org/davem_/clamtk/downloads/${P}.tar.gz"
-RESTRICT="mirror userpriv"
 LICENSE="|| ( Artistic GPL-1+ )"
+
+SRC_URI="https://bitbucket.org/davem_/clamtk/downloads/${P}.tar.gz"
+
+RESTRICT="mirror userpriv"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-LANGS="af ar ast az bg bs ca cs da de el_GR en_AU en_CA en_GB es eu fi fo fr ga gl he hr hu id it ja km ko lo lt lv mr ms nb nl_BE nl nn pa pl pt_BR pt ro ru sk sl sr@latin sv ta te th tr ug uk uz zh_CN zh_TW"
 IUSE="thunar"
+
+LANGS="af ar ast az bg bs ca cs da de el_GR en_AU en_CA en_GB es eu fi fo fr ga gl he hr hu id it ja km ko lo lt lv mr ms nb nl_BE nl nn pa pl pt_BR pt ro ru sk sl sr@latin sv ta te th tr ug uk uz zh_CN zh_TW"
 for i in ${LANGS}; do
 	IUSE="${IUSE} linguas_${i}"
 done
 
-DEPEND=""
 RDEPEND="
 	>=app-antivirus/clamav-0.95
 	dev-perl/JSON
@@ -34,6 +36,8 @@ RDEPEND="
 	virtual/perl-MIME-Base64
 	virtual/perl-Time-Piece
 	thunar? ( xfce-extra/thunar-sendto-clamtk )"
+
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
