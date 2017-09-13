@@ -4,9 +4,13 @@
 EAPI=6
 
 DESCRIPTION="Make a short links for thunar"
+HOMEPAGE="https://xfce.org/"
+LICENSE="Unlicense"
+
 KEYWORDS="amd64 x86"
 SLOT="0"
 RDEPEND="xfce-base/thunar"
+
 S="${WORKDIR}"
 
 src_install() {
