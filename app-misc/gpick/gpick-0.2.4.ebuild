@@ -24,12 +24,12 @@ SLOT="0"
 IUSE="dbus debug unique"
 
 RDEPEND="
-	>=dev-lang/lua-5.1
-	>=x11-libs/gtk+-2.12.0
+	>=dev-lang/lua-5.1:0
+	>=x11-libs/gtk+-2.12.0:2
 	dev-util/lemon
 	dev-libs/boost
 	dbus? ( >=dev-libs/dbus-glib-0.76 )
-	unique? ( >=dev-libs/libunique-1.0.8 )"
+	unique? ( >=dev-libs/libunique-1.0.8:1 )"
 
 DEPEND="${RDEPEND}
 	>=dev-util/scons-1.0.0"
