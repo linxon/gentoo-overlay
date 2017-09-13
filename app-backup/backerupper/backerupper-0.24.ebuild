@@ -9,9 +9,8 @@ DESCRIPTION="Backerupper is a simple program for backing up selected directories
 HOMEPAGE="http://sourceforge.net/projects/backerupper/"
 LICENSE="GPL"
 
-SRC_URI="
-		amd64? ( http://downloads.sourceforge.net/backerupper/${P}-64.tar.gz )
-		x86? ( http://downloads.sourceforge.net/backerupper/${P}-32.tar.gz )"
+SRC_URI="amd64? ( http://downloads.sourceforge.net/backerupper/${P}-64.tar.gz )
+         x86? ( http://downloads.sourceforge.net/backerupper/${P}-32.tar.gz )"
 
 RESTRICT="mirror test"
 KEYWORDS="amd64 x86"
@@ -21,7 +20,7 @@ RDEPEND="x11-libs/gtk+:2"
 DEPEND="${RDEPEND}"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	mv "${WORKDIR}"/${P}-* "${WORKDIR}"/${P} || die
 }
 
@@ -37,7 +36,7 @@ src_install() {
 
 	make_desktop_entry "/opt/bin/backer" "Backerupper" "document-save" "GNOME;GTK;Utility;" "StartupNotify=true"
 
-	dodoc CHANGELOG LICENSE README
+	dodoc CHANGELOG README
 }
 
 pkg_preinst() {
