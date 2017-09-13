@@ -9,7 +9,7 @@ inherit distutils-r1
 
 DESCRIPTION="gymail is a simple python mail notification script"
 HOMEPAGE="https://github.com/eayin2/gymail"
-LICENSE="GPL"
+LICENSE="GPL-2"
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
