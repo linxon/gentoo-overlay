@@ -7,7 +7,7 @@ inherit gnome2-utils xdg-utils
 
 DESCRIPTION="Backerupper is a simple program for backing up selected directories over a local network"
 HOMEPAGE="http://sourceforge.net/projects/backerupper/"
-LICENSE="GPL"
+LICENSE="GPL-2"
 
 SRC_URI="amd64? ( http://downloads.sourceforge.net/backerupper/${P}-64.tar.gz )
          x86? ( http://downloads.sourceforge.net/backerupper/${P}-32.tar.gz )"
