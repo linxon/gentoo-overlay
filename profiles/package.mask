@@ -13,13 +13,13 @@
 # See comment: https://github.com/solusipse/fiche/issues/55#issuecomment-325218078
 net-misc/fiche
 
-# Is not support
-sys-apps/cimon
-
-# Мне так и не удалось его скомпилировать. Ошибка возникает во вермя запуска:
+# I did not manage to compile it. The error occurs during startup:
 # emake DESTDIR="${D}" || die "compile error"
 app-office/clinica
 
 # Gentoo based temporary is not supported
 # See documentation: https://github.com/videns/vulners-scanner/blob/master/README.md
 app-antivirus/vulners-scanner
+
+# Is not support — will be removed
+net-news/brss
