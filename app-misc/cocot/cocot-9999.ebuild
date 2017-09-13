@@ -25,5 +25,5 @@ RDEPEND="${DEPEND}
 
 src_install() {
 	dobin ${PN}
-	dodoc README NEWS INSTALL COPYING ChangeLog AUTHORS
+	dodoc README NEWS INSTALL ChangeLog AUTHORS
 }
