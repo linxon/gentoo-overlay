@@ -3,24 +3,28 @@
 
 EAPI=6
 
+inherit eutils
+
 DESCRIPTION="A simple multithreaded sshd password bruteforcer using a wordlist"
 HOMEPAGE="http://www.edge-security.com"
-SRC_URI="${HOMEPAGE}/soft/${P}.tar"
+LICENSE="GPL-2"
+
+SRC_URI="http://www.edge-security.com/soft/${P}.tar"
+
 KEYWORDS="~amd64 ~x86"
-LICENSE="GPL"
+RESTRICT="mirror"
 SLOT="0"
-RDEPEND="
+DEPEND=""
+RDEPEND="${DEPEND}
 	dev-python/pycrypto
-	dev-python/paramiko
-"
+	dev-python/paramiko"
+
 S="${WORKDIR}"/${PN}
 
 src_install() {
-	exeinto /usr/share/${PN}/
-	doexe brutessh.py ${PN}.py
-	doexe terminal.py terminal.py
+	insinto /usr/share/${PN}
+	doins brutessh.py terminal.py
 
-	dobin "${FILESDIR}"/${PN}
-
-	dodoc README LICENSE
+	make_wrapper "${PN}" "python2 /usr/share/${PN}/brutessh.py"
+	dodoc README
 }
