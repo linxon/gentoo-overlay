@@ -7,19 +7,22 @@ inherit eutils gnome2-utils xdg-utils
 
 DESCRIPTION="Electronic circuit simulator written in Java by falstad.com"
 HOMEPAGE="http://www.falstad.com/circuit-java/"
+LICENSE="GPL-2"
+
 SRC_URI="http://www.falstad.com/circuit-java/${PN}.zip -> ${P}.zip"
+
 KEYWORDS="amd64 x86"
-LICENSE="GPL"
-S="${WORKDIR}"
 SLOT="0"
 IUSE="+examples source"
+
 DEPEND=""
 RDEPEND="${DEPEND}
-	dev-java/oracle-jdk-bin
-"
+	dev-java/oracle-jdk-bin"
+
+S="${WORKDIR}"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	unpack "${FILESDIR}"/circuit.png.tar.gz
 }
 
@@ -30,10 +33,7 @@ src_install() {
 	insinto "${inst_dir}"
 	doins ${ex_file}
 	use source && doins src.zip
-	use examples && {
-		doins -r circuits
-		doins setuplist.txt
-	} 
+	use examples && doins -r circuits setuplist.txt
 
 	insinto /usr/share/pixmaps/
 	doins ${PN}.png
