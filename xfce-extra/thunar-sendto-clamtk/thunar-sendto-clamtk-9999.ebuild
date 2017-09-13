@@ -19,8 +19,7 @@ RESTRICT="mirror"
 SLOT="0"
 DEPEND=""
 RDEPEND="${DEPEND}
-	xfce-base/thunar
-	app-antivirus/clamtk"
+	xfce-base/thunar"
 
 src_prepare() {
 	default
