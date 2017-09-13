@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit eutils cmake-utils gnome2-utils xdg-utils
+inherit eutils cmake-utils gnome2-utils xdg-utils wxwidgets
 
 DESCRIPTION="A cross-platform color picker"
 HOMEPAGE="https://github.com/nielssp/colorgrab"
