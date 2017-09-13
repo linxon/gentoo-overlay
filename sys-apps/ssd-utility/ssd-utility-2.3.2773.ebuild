@@ -5,20 +5,18 @@ EAPI=6
 
 inherit eutils gnome2-utils xdg-utils
 
-MY_P="SSDUtility"
-
 DESCRIPTION="SSD Utility is complementary management software designed to help you maintain, monitor and tune your OCZ SSD"
 HOMEPAGE="https://ocz.com/us/download/ssd-utility"
+LICENSE="all-rights-reserved"
+
+MY_P="SSDUtility"
 SRC_URI="https://ocz.com/download/software/ssd-utility/${PV}/SSDUtility_${PV}.tar.gz"
+
+RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86"
-LICENSE="EULA"
 SLOT="0"
-IUSE=""
 
-DEPEND=""
-RDEPEND=""
-
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}"/${MY_P}
 
 src_install() {
 	local inst_dir="/opt/${PN}"
@@ -32,11 +30,11 @@ src_install() {
 
 	insinto /usr/share/polkit-1/actions/
 	doins "${FILESDIR}"/org.ocz.pkexec.ssdutility.policy
-	dobin "${FILESDIR}"/ssd-utility
 
 	insinto /usr/share/pixmaps/
 	newins "${FILESDIR}"/ssd-utility.png ${PN}.png
 
+	make_wrapper "${PN}" "pkexec \"/opt/ssd-utility/SSDUtility\""
 	make_desktop_entry "/usr/bin/${PN}" "OCZ SSD Utility" "${PN}" "System" "StartupNotify=true"
 }
 
