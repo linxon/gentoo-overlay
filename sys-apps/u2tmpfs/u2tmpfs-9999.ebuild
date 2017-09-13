@@ -7,21 +7,23 @@ inherit eutils linux-info
 
 DESCRIPTION="Simple script daemon for automount home dir to tmpfs when your system is booting and extract all user data there"
 HOMEPAGE="https://github.com/linxon/u2tmpfs"
+LICENSE="GPL-3"
 
-if [[ ${PV} == 9999 ]]; then
-	EGIT_REPO_URI="https://github.com/linxon/u2tmpfs"
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
+	EGIT_REPO_URI="https://github.com/linxon/u2tmpfs"
 else
 	SRC_URI="https://github.com/linxon/u2tmpfs/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
-LICENSE="GPL"
+RESTRICT="mirror"
 SLOT="0"
 IUSE=""
 
 DEPEND=""
-RDEPEND="app-shells/bash"
+RDEPEND="${DEPEND}
+	app-shells/bash"
 
 src_prepare() {
 	epatch "${FILESDIR}"/fix-skipping-while-updating.patch
@@ -45,8 +47,10 @@ src_install() {
 }
 
 pkg_postinst() {
+	ewarn
 	ewarn "NOTE: Please, see configuration file: /etc/conf.d/${PN}"
 	ewarn ""
 	ewarn "You need add USERS and run command:"
 	ewarn "rc-update add ${PN} boot && rc-service ${PN} {update,start}"
+	ewarn
 }
