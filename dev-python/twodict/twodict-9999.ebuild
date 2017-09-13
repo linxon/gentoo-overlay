@@ -9,6 +9,7 @@ inherit distutils-r1
 
 DESCRIPTION="Simple two way ordered dictionary for Python"
 HOMEPAGE="https://github.com/MrS0m30n3/twodict"
+LICENSE="Unlicense"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
