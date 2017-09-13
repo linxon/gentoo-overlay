@@ -5,9 +5,9 @@ EAPI=6
 
 DESCRIPTION="A simple plugin to allow a right-click, context menu scan of files or folders in Thunar"
 HOMEPAGE="https://github.com/dave-theunsub/thunar-sendto-clamtk"
-LICENSE="GPL"
+LICENSE="GPL-1"
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/dave-theunsub/thunar-sendto-clamtk"
 else
@@ -15,10 +15,12 @@ else
 	KEYWORDS="amd64 x86"
 fi
 
-RESTRICT="mirror test userpriv"
+RESTRICT="mirror"
 SLOT="0"
-RDEPEND="xfce-base/thunar"
 DEPEND=""
+RDEPEND="${DEPEND}
+	xfce-base/thunar
+	app-antivirus/clamtk"
 
 src_prepare() {
 	default
