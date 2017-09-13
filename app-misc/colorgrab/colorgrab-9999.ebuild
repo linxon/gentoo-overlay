@@ -23,7 +23,7 @@ RDEPEND="x11-libs/wxGTK:3.0"
 DEPEND="${RDEPEND}"
 
 src_configure() {
-	cmake ${S} -DCMAKE_INSTALL_PREFIX=/usr
+	cmake "${S}" -DCMAKE_INSTALL_PREFIX=/usr
 }
 
 src_compile() {
@@ -40,7 +40,7 @@ src_install() {
 	done
 
 	dobin ${PN}
-	dodoc LICENSE README.md
+	dodoc README.md
 
 	make_desktop_entry "${PN}" "ColorGrab" "${PN}" "Utility;Graphics;"
 }
