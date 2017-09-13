@@ -29,6 +29,6 @@ src_prepare() {
 src_install() {
 	insinto /usr/share/Thunar/sendto/
 	doins thunar-sendto-clamtk.desktop
-	dodoc CHANGES DISCLAIMER LICENSE README
+	dodoc CHANGES DISCLAIMER README
 	doman thunar-sendto-clamtk.1
 }
