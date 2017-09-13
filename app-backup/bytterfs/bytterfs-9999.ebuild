@@ -9,8 +9,9 @@ inherit distutils-r1
 
 DESCRIPTION="Backup script using btrfs send/receive features to incrementally backup via SSH to a remote server"
 HOMEPAGE="https://github.com/eayin2/bytterfs"
+LICENSE="GPL-3"
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/eayin2/bytterfs"
 else
@@ -18,10 +19,9 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-LICENSE="GPL-3"
 SLOT="0"
-RESTRICT="nomirror"
-RDEPEND="
+RESTRICT="mirror"
+DEPEND=""
+RDEPEND="${DEPEND}
 	sys-fs/btrfs-progs
-	net-misc/gymail
-"
+	net-misc/gymail"
