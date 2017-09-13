@@ -1,32 +1,34 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+
+EAPI=6
 
 inherit toolchain-funcs eutils
 
 DESCRIPTION="A LALR(1) parser generator."
 HOMEPAGE="http://www.hwaci.com/sw/lemon/"
-SRC_URI="http://www.sqlite.org/sqlite-${PV}.tar.gz"
 LICENSE="public-domain"
-SLOT="0"
+
+SRC_URI="http://www.sqlite.org/sqlite-${PV}.tar.gz"
+
 KEYWORDS="~x86 ~amd64"
-IUSE=""
+SLOT="0"
 
-S=${WORKDIR}/sqlite-${PV}
+S="${WORKDIR}"/sqlite-${PV}
 
-src_unpack() {
-	unpack ${A}
-	cd ${S}/tool/
-	epatch "$FILESDIR/lemon.patch"
+src_prepare() {
+	cd "${S}"/tool/
+	epatch "${FILESDIR}"/lemon.patch
+	eapply_user
 }
 
 src_compile() {
-	cd ${S}/tool/
+	cd "${S}"/tool/
 	"$(tc-getCC)" -o lemon lemon.c || die
 }
 
 src_install() {
-	cd ${S}/tool/
+	cd "${S}"/tool/
 	dodir /usr/share/lemon/
 	insinto /usr/share/lemon/
 	doins lempar.c
