@@ -5,7 +5,7 @@ EAPI=6
 
 DESCRIPTION="COde COnverter on Tty"
 HOMEPAGE="http://vmi.jp/software/cygwin/cocot.html"
-LICENSE="BSD-3"
+LICENSE="BSD"
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
