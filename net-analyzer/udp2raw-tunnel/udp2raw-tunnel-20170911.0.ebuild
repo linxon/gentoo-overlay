@@ -27,11 +27,11 @@ src_install() {
 	local ex_name="${PN%%-tunnel}"
 
 	dobin ${ex_name}
-	dodoc -r LICENSE.md example.conf README.md doc/*
+	dodoc -r example.conf README.md doc/*
 }
 
 pkg_postinst() {
-	ewarn
-	ewarn "See documentation: https://github.com/wangyu-/udp2raw-tunnel#udp2raw-tunnel"
-	ewarn
+	elog
+	elog "See documentation: https://github.com/wangyu-/udp2raw-tunnel#udp2raw-tunnel"
+	elog
 }
