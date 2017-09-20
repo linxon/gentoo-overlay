@@ -10,20 +10,20 @@ inherit eutils
 ABBREV="doublecmd"
 DESCRIPTION="Cross Platform file manager."
 HOMEPAGE="http://${ABBREV}.sourceforge.net/"
+LICENSE="GPL-2"
 
 SRC_URI="x86?   ( gtk2? ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.gtk2.i386.tar.xz )
                   qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.i386.tar.xz ) )
          amd64? ( gtk2? ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.gtk2.x86_64.tar.xz )
                   qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.x86_64.tar.xz ) )"
+
 RESTRICT="mirror"
-S="${WORKDIR}/${ABBREV}"
-LICENSE="GPL-2"
-SLOT="0"
 KEYWORDS="amd64 ~x86"
 IUSE="+gtk2 qt4"
 REQUIRED_USE="^^ ( gtk2 qt4 )"
 QA_PREBUILT="*/doublecmd
              */libQt4Pas.so.5"
+SLOT="0"
 
 RDEPEND="sys-apps/dbus
 	dev-libs/glib
@@ -31,6 +31,8 @@ RDEPEND="sys-apps/dbus
 	x11-libs/libX11
 	gtk2? ( x11-libs/gtk+:2 )
 	qt4? ( dev-qt/qtgui:4 )"
+
+S="${WORKDIR}"/${ABBREV}
 
 src_prepare(){
         # no save configs in Program Dir
