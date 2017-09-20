@@ -21,24 +21,55 @@ TUX_SMALL_V="${TUX_TINY_V}"
 
 DESCRIPTION="ARCAD C1 is a 2D/3D architectural CAD for GNU/Linux"
 HOMEPAGE="http://cad.arcad.de/products_architecture_arcad.php"
-SRC_URI="amd64?	( http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_LIB_N}/${TUX_LIB_N}_${TUX_LIB_V}_amd64.deb
-                  http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_COM_N}/${TUX_COM_N}_${TUX_COM_V}_amd64.deb
-                  http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/a/${PN}/${PN}_${PV}_amd64.deb
-
-                  samples? ( http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_TINY_N}/${TUX_TINY_N}_${TUX_TINY_V}_amd64.deb 
-                             http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_SMALL_N}/${TUX_SMALL_N}_${TUX_SMALL_V}_amd64.deb ) 
-                )"
-
 LICENSE="all-rights-reserved"
-SLOT="0"
+
+SRC_URI="
+	amd64?  (   http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_LIB_N}/${TUX_LIB_N}_${TUX_LIB_V}_amd64.deb
+				http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_COM_N}/${TUX_COM_N}_${TUX_COM_V}_amd64.deb
+				http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/a/${PN}/${PN}_${PV}_amd64.deb
+
+				samples?  ( http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_TINY_N}/${TUX_TINY_N}_${TUX_TINY_V}_amd64.deb
+							http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_SMALL_N}/${TUX_SMALL_N}_${TUX_SMALL_V}_amd64.deb )
+			)"
+
 KEYWORDS="~amd64"
+RESTRICT="mirror"
 IUSE="povray samples"
-RESTRICT="mirror strip"
-S="${WORKDIR}"
+SLOT="0"
+
+QA_PRESTRIPPED="
+	/opt/tuxbase/projects/arcad-c1/bin_Linux_x86_64_4.10.0/arcad-c1
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxxpm.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxpbm.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxogl.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxjpeg62.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxiii.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxhid.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxgui.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxdxf.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxdwg.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxdoc.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxdbf.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxcnv.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxcad.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxrdr.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxtbl.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxstubsrdr.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxstubsani.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxsqlnull.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxsqlembed.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxsqldbase.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxsqlclient.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxsql.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxppro.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxpng12.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxplot.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxcgd.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxbse.so
+	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxani.so"
 
 DEPEND=""
 RDEPEND="!app-office/lxfibu-c1-bin
-	|| ( >=dev-db/mariadb-5.5.57 >=dev-db/mysql-5.5.57 )
 	|| ( =x11-libs/motif-2.3.3 =x11-libs/motif-bin-2.3.3 )
 	>=sys-libs/glibc-2.14
 	>=media-libs/fontconfig-2.8.0
@@ -57,6 +88,8 @@ RDEPEND="!app-office/lxfibu-c1-bin
 	x11-libs/libXt
 	povray? ( >=media-gfx/povray-3.7.0.0 )"
 
+S="${WORKDIR}"
+
 src_install() {
 	local app=${PN%%-bin}
 	local target=_Linux_x86_64_4.10.0
@@ -72,6 +105,10 @@ src_install() {
 	# Ensure that the shipped libXm.so.4.0.3 is used rather than the system-wide libXm.so.4.0.4 or we get:
 	# symbol lookup error: /opt/tuxbase/lib/libtxtbl.so.2010.02: undefined symbol: _XmXftSetClipRectangles
 	dosym /usr/lib64/libXm.so.4.0.3 /opt/tuxbase/lib/libXm.so.4 || die
+}
+
+pkg_preinst() {
+	gnome2_icon_savelist
 }
 
 pkg_postinst() {
