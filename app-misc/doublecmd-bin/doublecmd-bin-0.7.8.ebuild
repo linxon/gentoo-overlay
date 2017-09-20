@@ -38,8 +38,8 @@ RDEPEND="sys-apps/dbus
 S="${WORKDIR}"/${ABBREV}
 
 src_prepare(){
-        # no save configs in Program Dir
-        sed -e '/<UseConfigInProgramDir>/s/True/False/' -i doublecmd.xml
+	# no save configs in Program Dir
+	sed -e '/<UseConfigInProgramDir>/s/True/False/' -i doublecmd.xml
 }
 
 src_install(){
@@ -55,7 +55,7 @@ src_install(){
 
 	make_desktop_entry ${ABBREV} "Double Commander" "${ABBREV}" "Utility;" || die "Failed making desktop entry!"
 
-        if use qt4; then
-                newlib.so libQt4Pas.so.5 libQt4Pas.so.5
-        fi
+	if use qt4; then
+		newlib.so libQt4Pas.so.5 libQt4Pas.so.5
+	fi
 }
