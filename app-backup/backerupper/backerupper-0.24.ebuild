@@ -9,8 +9,9 @@ DESCRIPTION="Backerupper is a simple program for backing up selected directories
 HOMEPAGE="http://sourceforge.net/projects/backerupper/"
 LICENSE="GPL-2"
 
-SRC_URI="amd64? ( http://downloads.sourceforge.net/backerupper/${P}-64.tar.gz )
-         x86? ( http://downloads.sourceforge.net/backerupper/${P}-32.tar.gz )"
+SRC_URI="
+		amd64? ( http://downloads.sourceforge.net/backerupper/${P}-64.tar.gz )
+		x86? ( http://downloads.sourceforge.net/backerupper/${P}-32.tar.gz )"
 
 RESTRICT="mirror test"
 KEYWORDS="amd64 x86"
