@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>email@linxon.ru</email>
+    <name>Yury Martynov</name>
+  </maintainer>
+  <use>
+    <flag name="unique">Use libunique instead of pure DBus</flag>
+    <flag name="dbus">Compile with DBus support</flag>
+    <flag name="debug">Compile with debug information</flag>
+  </use>
+</pkgmetadata>
