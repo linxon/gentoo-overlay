@@ -38,7 +38,7 @@ src_install() {
 	doins -r Workfiles
 
 	insinto /usr/share/pixmaps/
-	doins ${WORKDIR}/icon.png
+	doins "${WORKDIR}"/icon.png
 
 	make_wrapper "${PN}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
 	make_desktop_entry "/usr/bin/${PN}" "${MY_PN}" "${PN}" "Graphics;Network;" "Path=${inst_dir}"
