@@ -12,18 +12,21 @@ DESCRIPTION="Cross Platform file manager."
 HOMEPAGE="http://${ABBREV}.sourceforge.net/"
 LICENSE="GPL-2"
 
-SRC_URI="x86?   ( gtk2? ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.gtk2.i386.tar.xz )
-                  qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.i386.tar.xz ) )
-         amd64? ( gtk2? ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.gtk2.x86_64.tar.xz )
-                  qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.x86_64.tar.xz ) )"
+SRC_URI="
+	x86?      ( gtk2? ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.gtk2.i386.tar.xz )
+				qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.i386.tar.xz ) )
+	amd64?    ( gtk2? ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.gtk2.x86_64.tar.xz )
+				qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.x86_64.tar.xz ) )"
 
 RESTRICT="mirror"
 KEYWORDS="amd64 ~x86"
 IUSE="+gtk2 qt4"
 REQUIRED_USE="^^ ( gtk2 qt4 )"
-QA_PREBUILT="*/doublecmd
-             */libQt4Pas.so.5"
 SLOT="0"
+
+QA_PREBUILT="
+	*/doublecmd
+	*/libQt4Pas.so.5"
 
 RDEPEND="sys-apps/dbus
 	dev-libs/glib
