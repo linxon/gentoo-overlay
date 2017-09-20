@@ -17,14 +17,14 @@ KEYWORDS="amd64 x86"
 RESTRICT="mirror"
 SLOT="0"
 
-S="${WORKDIR}"/${MY_PN}
-
 DEPEND=""
 RDEPEND="${DEPEND}
 	dev-java/oracle-jdk-bin:1.8"
 
+S="${WORKDIR}"/${MY_PN}
+
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	unpack "${FILESDIR}"/icon.png.tar.gz
 	mv "${WORKDIR}"/${MY_PN}* "${WORKDIR}"/${MY_PN} || die
 }
