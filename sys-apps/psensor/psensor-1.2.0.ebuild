@@ -16,7 +16,7 @@ KEYWORDS="amd64 ~x86"
 SLOT="0"
 IUSE="+gtop nls X"
 
-DEPEND="sys-apps/help2man"
+DEPEND=""
 RDEPEND="${DEPEND}
 	>=x11-libs/gtk+-3.4:3
 	gnome-base/dconf
@@ -34,7 +34,7 @@ src_configure() {
 }
 
 pkg_preinst() {
-	gnome2_schemas_savelist 
+	gnome2_schemas_savelist
 	gnome2_icon_savelist
 }
 
