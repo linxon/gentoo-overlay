@@ -30,7 +30,8 @@ RDEPEND="
 	media-libs/gst-plugins-good:1.0
 	media-libs/clutter-gtk[gtk]
 	x11-libs/gtk+:3
-	doc? ( app-text/scrollkeeper )"
+	doc? ( app-text/scrollkeeper )
+	introspection? ( dev-libs/gobject-introspection )"
 
 DEPEND="${RDEPEND}
 	sys-devel/libtool
