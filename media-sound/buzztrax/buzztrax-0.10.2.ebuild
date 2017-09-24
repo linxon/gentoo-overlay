@@ -3,40 +3,42 @@
 
 EAPI=6
 
-inherit autotools gnome2-utils xdg-utils
+inherit autotools gnome2-utils xdg-utils versionator
 
-DESCRIPTION="Buzztrax is a modular music composer for Linux."
+DESCRIPTION="Buzztrax is a modular music composer for Linux"
 HOMEPAGE="http://buzztrax.org/"
+LICENSE="LGPL-2.1"
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/Buzztrax/buzztrax"
 else
-	MY_PV="RELEASE_0_10_2"
-	SRC_URI="https://github.com/Buzztrax/buzztrax/releases/download/${MY_PV}/${PN}-${PV}.tar.gz"
+	SRC_URI="https://github.com/Buzztrax/buzztrax/releases/download/RELEASE_$(replace_all_version_separators "_")/${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
-LICENSE="LGPL-2.1"
+RESTRICT="mirror"
 SLOT="0"
-IUSE="orc coverage nls debug doc -static-libs"
+IUSE="coverage debug doc nls orc +introspection static-libs"
 
-CDEPEND="
+RDEPEND="
+	>=dev-libs/glib-2.36:2
 	>=media-libs/gstreamer-1.2:1.0
+	dev-libs/libxml2
+	gnome-extra/libgsf
 	media-libs/gst-plugins-base:1.0
 	media-libs/gst-plugins-good:1.0
-	>=dev-libs/glib-2.36:2
-	gnome-extra/libgsf
-	dev-libs/libxml2
-	media-libs/clutter-gtk
+	media-libs/clutter-gtk[gtk]
 	x11-libs/gtk+:3
+	doc? ( app-text/scrollkeeper )"
+
+DEPEND="${RDEPEND}
+	sys-devel/libtool
 	doc? ( dev-util/gtk-doc )"
-DEPEND="${CDEPEND}"
-RDEPEND="${CDEPEND}"
 
 src_prepare() {
+	default
 	eautoreconf
-	eapply_user
 }
 
 src_configure() {
@@ -45,20 +47,21 @@ src_configure() {
 		--disable-update-mime \
 		--disable-update-desktop \
 		--disable-update-icon-cache \
-		$(use_enable doc gtk-doc) \
+		$(use_enable doc gtk-doc gtk-doc-html) \
 		$(use_enable orc) \
 		$(use_enable nls) \
 		$(use_enable debug) \
+		$(use_enable introspection) \
 		$(use_enable static-libs static) \
 		$(use_enable coverage)
 	)
 
 	addpredict /dev/snd/seq
-	econf "${econfargs[@]}" || die
+	econf "${econfargs[@]}" || die "econf failed!"
 }
 
 pkg_preinst() {
-	gnome2_schemas_savelist 
+	gnome2_schemas_savelist
 	gnome2_icon_savelist
 }
 
