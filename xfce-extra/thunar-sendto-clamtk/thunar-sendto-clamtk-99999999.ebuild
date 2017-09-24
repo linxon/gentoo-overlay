@@ -3,15 +3,16 @@
 
 EAPI=6
 
+inherit git-r3
+
 DESCRIPTION="A simple plugin to allow a right-click, context menu scan of files or folders in Thunar"
 HOMEPAGE="https://github.com/dave-theunsub/thunar-sendto-clamtk"
 LICENSE="GPL-1"
 
-if [[ ${PV} == *9999 ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/dave-theunsub/thunar-sendto-clamtk"
-else
-	SRC_URI="https://github.com/dave-theunsub/thunar-sendto-clamtk/archive/${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI=""
+EGIT_REPO_URI="https://github.com/dave-theunsub/thunar-sendto-clamtk"
+if [[ ${PV} != *9999 ]]; then
+	EGIT_COMMIT="bde230697ce015cd7b7509ec723a5a21f68ecffd"
 	KEYWORDS="amd64 x86"
 fi
 
