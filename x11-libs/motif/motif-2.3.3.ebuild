@@ -1,18 +1,20 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
 inherit autotools eutils flag-o-matic multilib multilib-minimal rpm
 
-MY_P="openmotif-${PV}"
 DESCRIPTION="Legacy Open Motif libraries for old binaries"
 HOMEPAGE="http://motif.ics.com/"
+
+MY_P="openmotif-${PV}"
 SRC_URI="http://vault.centos.org/6.9/os/Source/SPackages/${MY_P}-9.el6.src.rpm"
 
+RESTRICT="mirror"
+KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 LICENSE="LGPL-2.1+ MIT"
 SLOT="0"
-KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="jpeg png static-libs unicode"
 
 RDEPEND=">=x11-libs/libX11-1.6.2[${MULTILIB_USEDEP}]
@@ -28,14 +30,14 @@ DEPEND="${RDEPEND}
 	x11-libs/libXaw
 	x11-misc/xbitmaps"
 
-S="${WORKDIR}"/"${MY_P}"
+S="${WORKDIR}"/${MY_P}
 
 src_unpack() {
-    rpm_src_unpack ${A}
+	rpm_src_unpack ${A}
 }
 
 src_prepare() {
-	eapply ${WORKDIR}
+	eapply "${WORKDIR}"
 	eapply_user
 
 	# Build only the libraries
@@ -76,5 +78,5 @@ multilib_src_install_all() {
 	rm -rf "${ED}"/usr/bin
 	rm -f "${ED}"/usr/lib*/*.{so,la,a}
 
-	dodoc ${S}/README ${S}/RELEASE ${S}/RELNOTES ${S}/BUGREPORT ${S}/TODO
+	dodoc "${S}"/README "${S}"/RELEASE "${S}"/RELNOTES "${S}"/BUGREPORT "${S}"/TODO
 }
