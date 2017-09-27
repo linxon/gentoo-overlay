@@ -5,11 +5,13 @@ EAPI=6
 
 inherit gnome2-utils xdg-utils
 
-MY_P="${P}-2016-11-21"
-
 DESCRIPTION="Free open source DAW, MIDI sequencer, software synthesizers"
 HOMEPAGE="http://www.frinika.com"
+
+MY_P="${P}-2016-11-21"
 SRC_URI="https://kent.dl.sourceforge.net/project/frinika/frinika/${P}/${MY_P}.zip"
+
+RESTRICT="mirror"
 KEYWORDS="amd64 x86"
 LICENSE="GPL-2"
 SLOT="0"
@@ -21,7 +23,7 @@ RDEPEND="${DEPEND}
 	dev-java/oracle-jdk-bin:1.8"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	unpack "${FILESDIR}"/${PN}.png.tar.gz
 }
 
@@ -32,14 +34,13 @@ src_install() {
 	insinto "${inst_dir}"
 	doins ${ex_file}
 	doins -r lib
+	dodoc README.TXT
 
 	insinto /usr/share/pixmaps/
-	doins ${WORKDIR}/${PN}.png
+	doins "${WORKDIR}"/${PN}.png
 
 	make_wrapper "${PN}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
 	make_desktop_entry "/usr/bin/${PN}" "Frinika" "${PN}" "AudioVideo;Audio" "Path=${inst_dir}"
-
-	dodoc LICENSE.md README.TXT
 }
 
 pkg_preinst() {
