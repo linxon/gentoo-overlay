@@ -7,8 +7,9 @@ inherit autotools
 
 DESCRIPTION="A simple PolicyKit authentication agent for XFCE "
 HOMEPAGE="https://github.com/ncopa/xfce-polkit"
+LICENSE="GPL-2+"
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/ncopa/xfce-polkit"
 else
@@ -18,9 +19,8 @@ else
 	S="${WORKDIR}/${MY_P}"
 fi
 
-LICENSE="GPL-2+"
+RESTRICT="mirror"
 SLOT="0"
-IUSE=""
 
 CDEPEND="
 	>=xfce-base/libxfce4ui-4.13.0
@@ -36,6 +36,5 @@ src_prepare() {
 
 src_configure() {
 	local args=("--libexecdir=/usr/libexec")
-	
 	econf ${args[@]}
 }
