@@ -3,12 +3,13 @@
 
 EAPI=5
 
-inherit xfconf autotools eutils
+inherit xfconf eutils
 
 DESCRIPTION="A volume control application and panel plug-in for Xfce"
 HOMEPAGE="https://git.xfce.org/apps/xfce4-mixer/"
+LICENSE="GPL-2"
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/xfce-mirror/${PN}"
 else
@@ -17,7 +18,7 @@ else
 	S="${WORKDIR}"/${PN}-${P}
 fi
 
-LICENSE="GPL-2"
+RESTRICT="mirror"
 SLOT="0"
 IUSE="alsa debug +keybinder oss"
 
