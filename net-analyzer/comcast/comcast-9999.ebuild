@@ -36,7 +36,7 @@ src_install() {
 	golang-build_src_install
 
 	dobin bin/${PN}
-	dodoc README.md LICENSE
+	dodoc README.md
 }
 
 pkg_postinst() {
