@@ -25,6 +25,7 @@ SLOT="0"
 
 DEPEND=""
 RDEPEND="${DEPEND}
+	dev-lang/python:2.7
 	dev-python/traceback2
 	dev-python/pyasn1
 	dev-python/memorpy
