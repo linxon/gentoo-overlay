@@ -22,13 +22,13 @@ src_install() {
 	dobin bin/bouncer
 	dobin bin/bouncer-global
 
-	dodoc VERSION README.md LICENCE.md
+	dodoc VERSION README.md
 	doman doc/bouncer.1
 }
 
 pkg_postinst() {
 	ewarn "NOTE: When leaving X and returning to the console"
-	ewarn "most window managers will forcefully destroy all windows still open" 
+	ewarn "most window managers will forcefully destroy all windows still open"
 	ewarn "giving you no chance to gracefully close some applications."
 	ewarn ""
 	ewarn "Usage: bouncer -t 30 -p \"firefox\" && shutdown -h"
