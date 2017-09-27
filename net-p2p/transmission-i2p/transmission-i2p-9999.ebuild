@@ -7,13 +7,14 @@ inherit user readme.gentoo-r1 gnome2-utils systemd xdg-utils
 
 DESCRIPTION="Anonymous torrent client Transmission-I2P based on 2.82 version"
 HOMEPAGE="https://github.com/l-n-s/transmission-i2p"
+LICENSE="|| ( GPL-2 GPL-3 Transmission-OpenSSL-exception ) GPL-2 MIT"
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/l-n-s/transmission-i2p"
 fi
 
-LICENSE="|| ( GPL-2 GPL-3 Transmission-OpenSSL-exception ) GPL-2 MIT"
+RESTRICT="mirror"
 SLOT="0"
 IUSE="ayatana gtk lightweight systemd nls xfs"
 
@@ -32,16 +33,15 @@ RDEPEND="
 		>=x11-libs/gtk+-3.4:3=
 		ayatana? ( >=dev-libs/libappindicator-0.4.90:3= )
 	)
-	systemd? ( sys-apps/systemd )
-"
+	systemd? ( sys-apps/systemd )"
+
 DEPEND="${RDEPEND}
 	dev-libs/glib:2
 	dev-util/intltool
 	sys-devel/gettext
 	virtual/os-headers
 	virtual/pkgconfig
-	xfs? ( sys-fs/xfsprogs )
-"
+	xfs? ( sys-fs/xfsprogs )"
 
 REQUIRED_USE="ayatana? ( gtk )"
 
