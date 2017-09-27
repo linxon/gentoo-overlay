@@ -31,7 +31,7 @@ RDEPEND="
 python_install() {
 	distutils-r1_python_install
 	distutils-r1_python_install_all
-	
+
 	make_desktop_entry "${PN}" "Youtube-dl (GTK+)" "youtube-dl-gui" "Network;GTK;" "StartupNotify=true"
 }
 
