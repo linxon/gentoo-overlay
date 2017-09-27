@@ -33,7 +33,7 @@ src_unpack() {
 
 src_install() {
 	dobin ${PN}
-	dodoc "${FILESDIR}"/LICENSE.txt "${FILESDIR}"/README.md
+	dodoc "${FILESDIR}"/README.md
 }
 
 pkg_postinst() {

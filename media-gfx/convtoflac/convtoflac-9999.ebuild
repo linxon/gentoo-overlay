@@ -33,7 +33,7 @@ src_prepare() {
 
 src_install() {
 	dobin ${PN}
-	dodoc LICENSE.txt README.md
+	dodoc README.md
 }
 
 pkg_postinst() {
