@@ -31,7 +31,7 @@ RDEPEND="${CDEPEND}"
 
 src_prepare() {
 	default
-	autoreconf --install
+	eautoreconf --install
 }
 
 src_configure() {
