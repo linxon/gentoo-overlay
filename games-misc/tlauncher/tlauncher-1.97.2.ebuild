@@ -42,7 +42,12 @@ src_install() {
 	fperms 664 "${inst_dir}"/${ex_file}
 
 	make_wrapper "${PN}${SLOT}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
-	make_desktop_entry "/usr/bin/${PN}${SLOT}" "TLauncher ${PV}" "${PN}-${SLOT}" "Game" "StartupNotify=false"
+	make_desktop_entry \
+		"/usr/bin/${PN}${SLOT}" \
+		"TLauncher Legacy" \
+		"${PN}-${SLOT}" \
+		"Game" \
+		"StartupNotify=false"
 }
 
 pkg_preinst() {
