@@ -28,7 +28,7 @@ src_install() {
 
 pkg_postinst() {
 	elog
-	elog "Author comment: watcherp will watch for port binding changes (ports started or stopped binding on a network addresss)" 
+	elog "Author comment: watcherp will watch for port binding changes (ports started or stopped binding on a network addresss)"
 	elog "and will execute specified commands or shell scripts (-a, -d) depending on the event."
 	elog "Once all events have happened during one round (-i), a trigger command can be executed (-t)."
 	elog "Note, the trigger command will only be execute when at least one add or delete command has succeeded with exit code 0."
