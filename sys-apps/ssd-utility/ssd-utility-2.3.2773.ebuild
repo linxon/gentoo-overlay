@@ -9,33 +9,35 @@ DESCRIPTION="SSD Utility is complementary management software designed to help y
 HOMEPAGE="https://ocz.com/us/download/ssd-utility"
 LICENSE="all-rights-reserved"
 
-MY_P="SSDUtility"
+MY_PN="SSDUtility"
+MY_P="${MY_PN}_${PV}"
 SRC_URI="https://ocz.com/download/software/ssd-utility/${PV}/SSDUtility_${PV}.tar.gz"
 
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
+QA_PRESTRIPPED="/opt/ssd-utility/SSDUtility"
 
-S="${WORKDIR}"/${MY_P}
+S="${WORKDIR}"/${MY_PN}
 
 src_install() {
 	local inst_dir="/opt/${PN}"
 
 	exeinto "${inst_dir}"
-	if [[ "${ARCH}" == "amd64" ]]; then
-		doexe "${S}"/linux64/${MY_P}
-	elif [[ "${ARCH}" == "x86" ]]; then
-		doexe "${S}"/linux32/${MY_P}
-	fi
+	use amd64 && doexe "${S}"/linux64/${MY_PN}
+	use x86 && doexe "${S}"/linux32/${MY_PN}
 
 	insinto /usr/share/polkit-1/actions/
 	doins "${FILESDIR}"/org.ocz.pkexec.ssdutility.policy
 
 	insinto /usr/share/pixmaps/
-	newins "${FILESDIR}"/ssd-utility.png ${PN}.png
+	doins "${FILESDIR}"/ssd-utility.png
 
 	make_wrapper "${PN}" "pkexec \"/opt/ssd-utility/SSDUtility\""
-	make_desktop_entry "/usr/bin/${PN}" "OCZ SSD Utility" "${PN}" "System" "StartupNotify=true"
+	make_desktop_entry \
+		"/usr/bin/${PN}" \
+		"OCZ SSD Utility" \
+		"${PN}"
 }
 
 pkg_preinst() {
