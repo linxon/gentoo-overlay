@@ -7,5 +7,8 @@
   </maintainer>
   <use>
     <flag name="gtop">Enable support of gtop2</flag>
+    <flag name="hddtemp">Enable support of hddtemp daemon</flag>
+    <flag name="udisks">Enable support of udisks2</flag>
+    <flag name="server">Enable support of libmicrohttpd</flag>
   </use>
 </pkgmetadata>
