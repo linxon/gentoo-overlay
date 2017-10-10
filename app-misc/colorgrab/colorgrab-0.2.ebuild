@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
+CMAKE_MIN_VERSION="2.8.11"
+BUILD_DIR="${S}"
 
 inherit eutils cmake-utils gnome2-utils xdg-utils wxwidgets
 
@@ -22,15 +24,9 @@ SLOT="0"
 RDEPEND="x11-libs/wxGTK:3.0"
 DEPEND="${RDEPEND}"
 
-src_configure() {
-	cmake "${S}" -DCMAKE_INSTALL_PREFIX=/usr
-}
-
-src_compile() {
-	emake
-}
-
 src_install() {
+	local size
+
 	insinto /usr/share/icons/hicolor/scalable/apps/
 	newins img/scalable.svg ${PN}.svg
 
@@ -42,7 +38,11 @@ src_install() {
 	dobin ${PN}
 	dodoc README.md
 
-	make_desktop_entry "${PN}" "ColorGrab" "${PN}" "Utility;Graphics;"
+	make_desktop_entry \
+		"${PN}" \
+		"ColorGrab" \
+		"${PN}" \
+		"Utility;Graphics;"
 }
 
 pkg_preinst() {
