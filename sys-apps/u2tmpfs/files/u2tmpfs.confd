@@ -3,11 +3,11 @@
 # Enter users (separated by commas. Example: user1,user2)
 USERS=""
 
-# Path to user archives dir
+# Path to user archives
 USER_DATA_DIR="/var/lib/u2tmpfs/"
 
-# Current size for tmpfs mount opts (M — megabyte, G — gigabyte)
+# Current size for tmpfs mount opts (M — megabyte, G — gigabyte. Default: using half RAM)
 TMPFS_SIZE="1G"
 
-# Use the specified mount options for tmpfs (separated by commas)
+# Use the specified mount options for tmpfs (separated by commas. Default: mode=755,noatime)
 MOUNT_OPTS=""
