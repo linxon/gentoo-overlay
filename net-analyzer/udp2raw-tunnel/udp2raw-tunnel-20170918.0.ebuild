@@ -32,7 +32,8 @@ src_prepare() {
 
 	if use debug && use support_aes; then
 		# Enable debug with a 'support_aes' flag
-		sed -i -e 's/-lrt -static/-lrt -static -ggdb/' \
+		sed -i \
+			-e 's/-lrt -static/-lrt -static -ggdb/' \
 			-e '/debug2: git_version/,+2 d' makefile || die "sed failed!"
 	fi
 
