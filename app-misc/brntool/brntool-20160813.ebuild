@@ -22,9 +22,9 @@ RESTRICT="mirror"
 LICENSE="GPL-3"
 SLOT="0"
 
-RDEPEND="
-	${PYTHON_DEPS}
+RDEPEND="${PYTHON_DEPS}
 	dev-python/pyserial"
+
 DEPEND="${RDEPEND}"
 
 src_install() {
