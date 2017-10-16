@@ -5,17 +5,18 @@ EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1
+inherit git-r3 distutils-r1
 
 DESCRIPTION="gymail is a simple python mail notification script"
 HOMEPAGE="https://github.com/eayin2/gymail"
 LICENSE="GPL-2"
 
-if [[ ${PV} == *9999 ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/eayin2/gymail"
-else
-	SRC_URI="https://github.com/eayin2/gymail/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI=""
+EGIT_REPO_URI="https://github.com/eayin2/gymail"
+
+if [[ ${PV} != *9999 ]]; then
+	#EGIT_COMMIT="${PV}"
+	EGIT_COMMIT="cb73f4db334ee044063b9921fb882483a7c8e1c3"
 	KEYWORDS="~amd64 ~x86"
 fi
 
