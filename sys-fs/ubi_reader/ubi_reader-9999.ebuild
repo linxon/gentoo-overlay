@@ -15,8 +15,9 @@ if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/jrspruitt/ubi_reader"
 else
-	MY_P="${PN}-${PV}-master"
-	SRC_URI="https://github.com/jrspruitt/ubi_reader/archive/v${PV}-master.tar.gz -> ${P}.tar.gz"
+	MY_PV="${PV}-master"
+	MY_P="${PN}-${MY_PV}"
+	SRC_URI="https://github.com/jrspruitt/ubi_reader/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 	S="${WORKDIR}"/${MY_P}
 fi
