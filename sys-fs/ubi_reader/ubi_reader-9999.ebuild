@@ -11,17 +11,20 @@ DESCRIPTION="Collection of Python scripts for reading information about and extr
 HOMEPAGE="https://github.com/jrspruitt/ubi_reader"
 LICENSE="GPL-3"
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/jrspruitt/ubi_reader"
 else
-	MY_PV="${PV%%.0}"
-	MY_P="${PN}-${MY_PV}_ui"
-	SRC_URI="https://github.com/jrspruitt/ubi_reader/archive/v${MY_PV}_ui.tar.gz -> ${P}.tar.gz"
+	MY_P="${PN}-${PV}-master"
+	SRC_URI="https://github.com/jrspruitt/ubi_reader/archive/v${PV}-master.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 	S="${WORKDIR}"/${MY_P}
 fi
 
 SLOT="0"
 RESTRICT="mirror"
-RDEPEND="dev-python/python-lzo[${PYTHON_USEDEP}]"
+
+RDEPEND="${PYTHON_DEPS}
+	dev-python/python-lzo[${PYTHON_USEDEP}]"
+
+DEPEND="${RDEPEND}"
