@@ -2,14 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
+PYTHON_COMPAT=( python2_7 )
 
-inherit eutils
+inherit eutils python-r1
 
 DESCRIPTION="Credentials recovery project"
 HOMEPAGE="https://github.com/AlessandroZ/LaZagne"
 LICENSE="LGPL-3"
 
-if [[ ${PV} == *9999* ]]; then
+if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/AlessandroZ/LaZagne"
 else
@@ -23,20 +24,23 @@ fi
 RESTRICT="mirror"
 SLOT="0"
 
-DEPEND=""
-RDEPEND="${DEPEND}
-	dev-lang/python:2.7
-	dev-python/traceback2
+RDEPEND="${PYTHON_DEPS}
+	dev-python/traceback2[${PYTHON_USEDEP}]
 	dev-python/pyasn1
 	dev-python/memorpy
 	dev-python/configparser"
 
+DEPEND="${RDEPEND}"
+
 src_install() {
-	insinto /usr/share/${PN}
-	doins -r Linux/lazagne Linux/laZagne.py
 	dodoc README.md CHANGELOG
 
-	make_wrapper "${PN}" "python2 /usr/share/${PN}/laZagne.py"
+	python_foreach_impl python_domodule Linux/lazagne
+	python_foreach_impl python_doscript Linux/laZagne.py
+
+	make_wrapper \
+		"${PN}" \
+		"python2 /usr/bin/laZagne.py"
 }
 
 pkg_postinst() {
