@@ -1,0 +1,57 @@
+v0.5.6
+   - fixed compile-time warning in dsp.c:
+	dsp.c:51:2: warning: too many arguments for format [-Wformat-extra-args]
+   - minor documentation improvements
+
+v0.5.5
+   - Documentation update: running ctronome with pulseaudio (modern Ubuntu distributions etc)
+     and some minor documentation touch-ups.
+     NO change to the ctronome code, so no need to recompile and reinstall.
+
+v0.5.4
+   - fixed amd64 platform bug that caused ctronome to produce no sound on amd64 platform
+     due to incorrect width of integers used in bitwise operations, thanks to Dmitry Kazarov
+     http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/170207
+
+v0.5.3
+   - added #include <stdlib.h> to routines.c also. Silly me, forgot to
+     do that. Again, thanks to Martin for letting me know.
+
+v0.5.2
+   - included WAV samples digitally remastered by Martin Tarenskeen
+     to be more pronounced and precise.
+   - added #include <stdlib.h> to ctronome.c to eliminate compile-time
+     warnings with newer (>4) GCC versions
+
+v0.5.1
+   - new parameter processing bug introduced in v0.5 fixed
+   - some old bugs are fixed around parameter and program processing
+
+v0.5
+   - WAV format is detected, and DSP is set up accordingly
+   - included 2 channel (stereo) wav format for those sound
+     systems that do not support mono mode (see NOTES/README)
+   - bugfix in parameter processing that caused bpm base note
+     to be ignored
+
+v0.4
+   - dsp.c code cleanup, according to OSS Programmers Guide.
+   - implemented some debug messages, mainly for DSP procedures
+
+v0.3
+   - fixed dsp pattern length setup that
+     caused silence at certain bpm rates
+
+v0.2
+   - fixed possible segfault bug in argument processing 
+
+   + it is now programmable
+   + more configurable bpm and bpt parameters
+      allowing to specify the base note for BPM and beat per tact
+   + number of repetition can be specified via command-line
+
+v0.1 first version. supports:
+     30 < beat per minute < 250
+     1 < beat per tact < 50 
+     44100Hz 16bit mono WAV sound via /dev/dsp
+
