@@ -1,0 +1,40 @@
+2016-09-06  Valentin Hilbig  <tino@giganto.03.softkill.net>
+
+	* cmpfast.c (try_open_read, main): options -a and -d
+	(main): use of posix_fadvise
+
+2010-05-10  Valentin Hilbig  <tino@zoo.03.softkill.net>
+
+	* cmpfast.c (main): typo (alinged)
+	(main): safetynet added to protect against impossible case that there are still alignment errors.
+
+2010-03-30  Valentin Hilbig  <tino@zoo.03.softkill.net>
+
+	* cmpfast.c (main): Bugfix: When reading less than a page,
+	sometimes the diff wasn't reported correctly.
+
+2008-10-20  Valentin Hilbig  <tino@zoo.03.softkill.net>
+
+	* cmpfast.c (try_open_read): added for FS lacking O_DIRECT
+
+2008-10-20  Valentin Hilbig  <tino@firebird.03.softkill.net>
+
+	* Makefile.tino (INSTALLPATH): now installs into /usr/local/bin
+
+2008-10-20  Valentin Hilbig  <tino@zoo.03.softkill.net>
+
+	* test/test.sh: Corrected to the new buffer alignment
+	requirements.
+
+	* cmpfast.c (main): buffer size alignment and O_DIRECT added, also
+	some error tags corrected.
+
+2008-07-01  Valentin Hilbig  <tino@zoo.03.softkill.net>
+
+	* cmpfast.c (main): Usage corrected
+
+2007-09-26    <tino@firebird.03.softkill.net>
+
+	* cmpfast.c (main): code review revealed, that I alloced too much
+	memory in case small-buffer was different to big-buffer.
+
