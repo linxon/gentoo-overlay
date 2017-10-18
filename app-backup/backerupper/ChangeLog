@@ -1,0 +1,31 @@
+Version 0.1
+-----------
+First public release
+
+Version 0.2
+-----------
+- Added online help
+- Added restore function
+- Small cosmetic changes (icons on buttons)
+
+Version 0.21
+------------
+- When restoring to an alternative location, only the directory and contents specified in the profile are restored, not the entire path from the top level.
+- The restore location which is displayed is now the parent directory into which the archive will be restored.
+
+Version 0.22
+------------
+- When backing up or restoring, backerupper now checks that the target directory is writeable, and displays a message if it's not.
+
+Version 0.23
+------------
+- Fixed bugs which caused access violations when clicking on various controls when no profiles were defined.
+- Fixed bug which caused backups to fail with directories containing spaces in the name.
+- Possibly fixed unconfirmed bug whereby clicking on a directory button in the New Profile dialog gave an Invalid Floating Point error.
+
+Version 0.24
+------------
+- Tray icon context menu now remains visible after right-clicking the icon.
+- The bugfix in version 0.23 for directories with spaces in the name fixed one problem but created another. This bug is now fixed properly (I hope!).
+- When first run, this version checks all the profile pathnames and removes any quotes or escape characters added by previous versions.
+- When editing or creating a profile, it is now not possible to type quotes or escape characters into the pathname, as this would conflict with the bugfix for spaces in directory names.
