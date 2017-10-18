@@ -1,0 +1,56 @@
+2011-08-26  Oohara Yuuma  <oohara@libra.interq.or.jp>
+
+	* version 0.5
+	* configure.ac: use AC_DEFINE after AC_ARG_WITH, not in it
+	* configure.ac, Makefile.am, libtenm/Makefile.am, spqr/Makefile.am:
+	  add the return value of sdl-config --libs (which usually
+	  contains a -l flag) to LIBS, not AM_LDFLAGS
+	* record/Makefile.am, spqr/image/Makefile.am: fixed comment
+	  so that Makefile doesn't say "process this file with automake"
+	* record/record_lexical.h, record/record_lexical.l,
+	  record/record_parser.y, record/record_io.c: use
+	  %option yylineno instead of counting the line number manually
+	* record/record_lexical.h: added yylex_destroy declaration
+	* record/record_lexical.l: added %option no* to fix the
+	  -Wunused-function warning
+	* spqr/fragment.c: removed size_fragment from count[]
+	* spqr/net-can-howl.c: a_x, a_y, b_x, b_y in
+	  net_can_howl_core_draw() are double, not int
+	* spqr/afterdeath.c, spqr/cat-tail-grep.c, spqr/cat-tail.c,
+	  spqr/empty-wind.c, spqr/gosanpachi.c, spqr/hugin.c,
+	  spqr/insane-hand.c, spqr/p-can.c, spqr/plan-19.c,
+	  spqr/seiron-fake.c, spqr/seiron.c, spqr/stage-title.c,
+	  spqr/tenmado.c, spqr/theorem-weapon.c, spqr/w-ko.c,
+	  spqr/wall-0.c, spqr/wall-4.c, spqr/wall-13.c:
+	  fixed -Wunused-but-set-variable warnings
+	* Makefile.am, libtenm/Makefile.am, record/Makefile.am,
+	  spqr/Makefile.am: removed -Wconversion because it is too noisy
+	* Makefile.am, configure.ac: use the tar-ustar option of automake
+	  instead of setting AMTAR
+
+2009-11-11  Oohara Yuuma  <oohara@libra.interq.or.jp>
+
+	* version 0.4
+	* libtenm/tenm_timer.c: uses an empty loop for maximum accuracy
+	* README, README-ja-utf8, dangen.6, loop.c, main.c: the "slow"
+	  cheating key is changed from CAPS to s (CAPS doesn't work well
+	  with my new keyboard)
+	* slow.c, slow.h: new files, supports the new slow key (the s key)
+
+2005-08-14  Oohara Yuuma  <oohara@libra.interq.or.jp>
+
+	* version 0.3
+	* spqr/image/font-mikachan.png: removed because it is derived from
+	  the mikachan font, which is not free
+	* Makefile.am: added a note about the version of automake
+
+2005-07-22  Oohara Yuuma  <oohara@libra.interq.or.jp>
+
+	* version 0.2
+	* record/record_data.c: when you beat the high total score,
+	  clears old stage score data before updating the play record
+
+2005-07-14  Oohara Yuuma  <oohara@libra.interq.or.jp>
+
+	* version 0.1
+	* initial release
