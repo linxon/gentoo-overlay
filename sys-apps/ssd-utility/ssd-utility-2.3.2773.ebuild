@@ -18,6 +18,23 @@ KEYWORDS="~amd64 ~x86"
 SLOT="0"
 QA_PRESTRIPPED="/opt/ssd-utility/SSDUtility"
 
+DEPEND=""
+RDEPEND="
+	app-arch/bzip2
+	>=dev-libs/libbsd-0.8.6
+	sys-libs/glibc:2.2
+	sys-libs/zlib
+	media-libs/fontconfig
+	media-libs/freetype
+	media-libs/libpng
+	>=x11-libs/libX11-1.6.5
+	>=x11-libs/libxcb-1.11
+	x11-libs/libXrender
+	x11-libs/libXext
+	x11-libs/libXau
+	x11-libs/libXdmcp
+	dev-libs/expat"
+
 S="${WORKDIR}"/${MY_PN}
 
 src_install() {
