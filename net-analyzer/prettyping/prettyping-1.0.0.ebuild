@@ -6,14 +6,15 @@ EAPI=6
 DESCRIPTION="Wrapper around the standard ping tool"
 HOMEPAGE="http://denilson.sa.nom.br/prettyping/"
 
-if [[ ${PV} == 9999 ]]; then
-	EGIT_REPO_URI="git://github.com/denilsonsa/prettyping"
+if [[ ${PV} == *9999 ]]; then
+	EGIT_REPO_URI="https://github.com/denilsonsa/prettyping"
 	inherit git-r3
 else
 	SRC_URI="https://github.com/denilsonsa/prettyping/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="amd64 x86"
 fi
 
+RESTRICT="mirror"
 LICENSE="MIT"
 SLOT="0"
 IUSE=""
@@ -24,6 +25,8 @@ RDEPEND="net-misc/iputils
 	virtual/awk"
 
 src_install() {
+	dodoc README.md
+
 	dobin ${PN}
 	dosym /usr/bin/${PN} /usr/bin/pping
 }
