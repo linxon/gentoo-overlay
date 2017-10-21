@@ -30,8 +30,7 @@ RDEPEND="
 	net-misc/youtube-dl
 	ffmpeg? ( media-video/ffmpeg )"
 
-python_install() {
-	distutils-r1_python_install
+python_install_all() {
 	distutils-r1_python_install_all
 
 	make_desktop_entry \
