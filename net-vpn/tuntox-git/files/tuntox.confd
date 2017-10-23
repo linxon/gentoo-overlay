@@ -1,0 +1,3 @@
+# /etc/conf.d/tuntox: config file for /etc/init.d/tuntox
+
+TUNTOX_ARGS="-d -S"
