@@ -24,11 +24,13 @@ IUSE="systemd static"
 
 RDEPEND="
 	dev-libs/libevent[threads]
-	dev-libs/libsodium
+	>=dev-libs/libsodium-0.5.0
 	net-libs/tox
 	sys-libs/glibc:2.2"
 
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	dev-python/jinja
+	dev-python/requests"
 
 pkg_setup() {
 	enewgroup ${MY_PN}
