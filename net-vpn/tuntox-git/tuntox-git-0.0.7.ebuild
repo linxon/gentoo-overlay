@@ -3,6 +3,7 @@
 
 EAPI=6
 MY_PN="${PN%%-git}"
+DAEMON_NAME="${MY_PN}d"
 
 inherit eutils git-r3 user systemd
 
@@ -24,8 +25,8 @@ IUSE="systemd static"
 RDEPEND="
 	dev-libs/libevent[threads]
 	dev-libs/libsodium
-	sys-libs/glibc:2.2
-	net-libs/tox"
+	net-libs/tox
+	sys-libs/glibc:2.2"
 
 DEPEND="${RDEPEND}"
 
@@ -37,7 +38,7 @@ pkg_setup() {
 src_prepare() {
 	# Do not rename binary files
 	sed -i \
-		-e "s/\$(CC) -o \$@/\$(CC) -o ${MY_PN}/" Makefile || die "sed failed!"
+		-e "s/\$(CC) -o \$@/\$(CC) -o ${DAEMON_NAME}/" Makefile || die "sed failed!"
 
 	use systemd && ( 
 		sed -i \
@@ -45,12 +46,12 @@ src_prepare() {
 			-e "s/#Group=proxy/Group=${MY_PN}/" scripts/tuntox.service || die "sed failed!" 
 	)
 
-	epatch "${FILESDIR}"/${P}_update_env.diff
+	eapply "${FILESDIR}"
 	eapply_user
 }
 
 src_compile() {
-	local make_opts=( 
+	local make_opts=(
 		tox_bootstrap.h \
 		gitversion.h \
 		$(use static \
@@ -72,17 +73,17 @@ src_install() {
 	done
 
 	insinto /var/lib/${MY_PN}
-	doins "${FILESDIR}"/tuntox.conf
-	fowners ${MY_PN}:${MY_PN} "/var/lib/${MY_PN}"/tuntox.conf
+	doins "${FILESDIR}"/tuntox.conf "${FILESDIR}"/rules.example
+	fowners ${MY_PN}:${MY_PN} "/var/lib/${MY_PN}"/{tuntox.conf,rules.example}
 
 	insinto /etc/logrotate.d/
 	newins "${FILESDIR}"/tuntox.logrotated ${MY_PN}
 
-	newinitd "${FILESDIR}"/tuntox.initd ${MY_PN}
-	newconfd "${FILESDIR}"/tuntox.confd ${MY_PN}
+	newinitd "${FILESDIR}"/tuntox.initd ${DAEMON_NAME}
+	newconfd "${FILESDIR}"/tuntox.confd ${DAEMON_NAME}
 	use systemd && systemd_dounit scripts/tuntox.service
 
-	dobin ${MY_PN}
+	dosbin ${DAEMON_NAME} && dosym /usr/sbin/${DAEMON_NAME} /usr/bin/${MY_PN}
 	dobin scripts/tokssh
 
 	dodoc README.md VPN.md BUILD.md
