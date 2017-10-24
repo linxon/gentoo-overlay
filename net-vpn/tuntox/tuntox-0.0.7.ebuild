@@ -2,8 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-MY_PN="${PN%%-git}"
-DAEMON_NAME="${MY_PN}d"
+DAEMON_NAME="${PN}d"
 
 inherit eutils git-r3 user systemd
 
@@ -33,8 +32,8 @@ DEPEND="${RDEPEND}
 	dev-python/requests"
 
 pkg_setup() {
-	enewgroup ${MY_PN}
-	enewuser ${MY_PN} -1 -1 /var/lib/${MY_PN} ${MY_PN}
+	enewgroup ${PN}
+	enewuser ${PN} -1 -1 /var/lib/${PN} ${PN}
 }
 
 src_prepare() {
@@ -42,10 +41,10 @@ src_prepare() {
 	sed -i \
 		-e "s/\$(CC) -o \$@/\$(CC) -o ${DAEMON_NAME}/" Makefile || die "sed failed!"
 
-	use systemd && ( 
+	use systemd && (
 		sed -i \
-			-e "s/#User=proxy/User=${MY_PN}/" \
-			-e "s/#Group=proxy/Group=${MY_PN}/" scripts/tuntox.service || die "sed failed!" 
+			-e "s/#User=proxy/User=${PN}/" \
+			-e "s/#Group=proxy/Group=${PN}/" scripts/tuntox.service || die "sed failed!"
 	)
 
 	eapply "${FILESDIR}"
@@ -69,23 +68,23 @@ src_install() {
 	local req_var_dirs="lib log"
 
 	for _dir in ${req_var_dirs}; do
-		keepdir "/var/${_dir}/${MY_PN}"
-		fowners ${MY_PN}:${MY_PN} "/var/${_dir}/${MY_PN}"
-		fperms 740 "/var/${_dir}/${MY_PN}"
+		keepdir "/var/${_dir}/${PN}"
+		fowners ${PN}:${PN} "/var/${_dir}/${PN}"
+		fperms 740 "/var/${_dir}/${PN}"
 	done
 
-	insinto /var/lib/${MY_PN}
+	insinto /var/lib/${PN}
 	doins "${FILESDIR}"/tuntox.conf "${FILESDIR}"/rules.example
-	fowners ${MY_PN}:${MY_PN} "/var/lib/${MY_PN}"/{tuntox.conf,rules.example}
+	fowners ${PN}:${PN} "/var/lib/${PN}"/{tuntox.conf,rules.example}
 
 	insinto /etc/logrotate.d/
-	newins "${FILESDIR}"/tuntox.logrotated ${MY_PN}
+	newins "${FILESDIR}"/tuntox.logrotated ${PN}
 
 	newinitd "${FILESDIR}"/tuntox.initd ${DAEMON_NAME}
 	newconfd "${FILESDIR}"/tuntox.confd ${DAEMON_NAME}
 	use systemd && systemd_dounit scripts/tuntox.service
 
-	dosbin ${DAEMON_NAME} && dosym /usr/sbin/${DAEMON_NAME} /usr/bin/${MY_PN}
+	dosbin ${DAEMON_NAME} && dosym /usr/sbin/${DAEMON_NAME} /usr/bin/${PN}
 	dobin scripts/tokssh
 
 	dodoc README.md VPN.md BUILD.md
@@ -93,7 +92,7 @@ src_install() {
 
 pkg_postinst() {
 	ewarn
-	ewarn "Please, add yourself to the \"${MY_PN}\" group. This security measure ensures"
+	ewarn "Please, add yourself to the \"${PN}\" group. This security measure ensures"
 	ewarn "that only trusted users can use tuntox."
 	ewarn
 	elog "See documentation: https://github.com/gjedeer/tuntox#introduction"
