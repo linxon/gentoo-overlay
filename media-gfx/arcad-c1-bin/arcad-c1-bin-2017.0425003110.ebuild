@@ -70,7 +70,7 @@ QA_PRESTRIPPED="
 
 DEPEND=""
 RDEPEND="!app-office/lxfibu-c1-bin
-	|| ( =x11-libs/motif-2.3.3 =x11-libs/motif-bin-2.3.3 )
+	=x11-libs/motif-2.3.3
 	>=sys-libs/glibc-2.14
 	>=media-libs/fontconfig-2.8.0
 	>=media-libs/freetype-2.2.1
@@ -100,11 +100,11 @@ src_install() {
 	dosym bin${target} /opt/tuxbase/projects/${app}/bin || die
 	dosym /opt/tuxbase/projects/${app}/start /usr/bin/${app} || die
 
-	dosym /usr/lib64/libjpeg.so /opt/tuxbase/lib/libjpeg.so.62 || die
+	dosym ../../../usr/lib64/libjpeg.so /opt/tuxbase/lib/libjpeg.so.62 || die
 
 	# Ensure that the shipped libXm.so.4.0.3 is used rather than the system-wide libXm.so.4.0.4 or we get:
 	# symbol lookup error: /opt/tuxbase/lib/libtxtbl.so.2010.02: undefined symbol: _XmXftSetClipRectangles
-	dosym /usr/lib64/libXm.so.4.0.3 /opt/tuxbase/lib/libXm.so.4 || die
+	dosym ../../../usr/lib64/libXm.so.4.0.3 /opt/tuxbase/lib/libXm.so.4 || die
 }
 
 pkg_preinst() {
