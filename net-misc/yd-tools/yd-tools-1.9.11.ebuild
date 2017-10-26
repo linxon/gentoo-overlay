@@ -70,7 +70,9 @@ src_install() {
 	domenu Yandex.Disk-indicator.desktop
 	doman man/yd-tools.1
 
-	make_wrapper "${MY_PN}" "python3 /usr/share/yd-tools/yandex-disk-indicator.py"
+	make_wrapper \
+		"${MY_PN}" \
+		"python3 /usr/share/yd-tools/yandex-disk-indicator.py"
 }
 
 pkg_preinst() {
