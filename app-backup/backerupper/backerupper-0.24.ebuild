@@ -20,6 +20,8 @@ SLOT="0"
 RDEPEND="x11-libs/gtk+:2"
 DEPEND="${RDEPEND}"
 
+QA_PRESTRIPPED="/opt/backerupper-0.24/backer"
+
 src_unpack() {
 	unpack ${A}
 	mv "${WORKDIR}"/${P}-* "${WORKDIR}"/${P} || die
@@ -28,6 +30,8 @@ src_unpack() {
 src_install() {
 	local inst_path="/opt/${P}"
 
+	dodoc CHANGELOG README
+
 	insinto "${inst_path}"
 	doins -r doc
 
@@ -35,9 +39,12 @@ src_install() {
 	doexe backer
 	dosym "${inst_path}"/backer /opt/bin/backer
 
-	make_desktop_entry "/opt/bin/backer" "Backerupper" "document-save" "GNOME;GTK;Utility;" "StartupNotify=true"
-
-	dodoc CHANGELOG README
+	make_desktop_entry \
+		"/opt/bin/backer" \
+		"Backerupper" \
+		"document-save" \
+		"GNOME;GTK;Utility;" \
+		"StartupNotify=true"
 }
 
 pkg_preinst() {
