@@ -2,7 +2,7 @@
 	nocreate
 	compress
 	daily
-	rotate 3
+	rotate 7
 	notifempty
 	missingok
 }
