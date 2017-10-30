@@ -14,6 +14,15 @@ depend() {
 	use netmount
 }
 
+_init_req_file() {
+	local filepath="${1}"
+
+	if ! [ -f "${filepath}" ]; then
+		touch "${filepath}" > /dev/null && chown ${USER}:${GROUP} "${filepath}" || \
+				( eerror "Cannot create: ${filepath}" && return 1 )
+	fi
+}
+
 checkconfig() {
 	if [ ! -d ${PID_DIR} ]; then
 		checkpath -q -d -o ${USER}:${GROUP} -m 0755 ${PID_DIR} || return 1
@@ -26,30 +35,25 @@ checkconfig() {
 		eerror "Please, see configuration file: /etc/conf.d/${RC_SVCNAME}"
 		return 1
 	}
+	[[ "${https}" == "true" ]] && DAEMON_ARGS+=("-S")
 	[ -z "${port}" ] || DAEMON_ARGS+=("-p ${port}")
 	[ -z "${while_list}" ] || {
-		[ -f "${while_list}" ] || {
-			touch "${while_list}" > /dev/null && chown ${USER}:${GROUP} "${while_list}" || \
-				( eerror "Cannot create: ${while_list}" && return 1 )
-		}
+		_init_req_file "${while_list}" || return 1
+		ewarn "${while_list} — not implemented yet"
 		DAEMON_ARGS+=("-w ${while_list}")
 	}
 	[ -z "${ban_list}" ] || {
-		[ -f "${ban_list}" ] || {
-			touch "${ban_list}" > /dev/null && chown ${USER}:${GROUP} "${ban_list}" || \
-				( eerror "Cannot create: ${ban_list}" && return 1 )
-		}
+		_init_req_file "${ban_list}" || return 1
+		ewarn "${ban_list} — not implemented yet"
 		DAEMON_ARGS+=("-b ${ban_list}")
 	}
 	[ -z "${slug_size}" ] || DAEMON_ARGS+=("-s ${slug_size}")
 	[ -z "${buffer_size}" ] || DAEMON_ARGS+=("-B ${buffer_size}")
 	[ -z "${logfile}" ] || {
-		[ -f "${logfile}" ] || {
-			touch "${logfile}" > /dev/null && chown ${USER}:${GROUP} "${logfile}" || \
-				( eerror "Cannot create: ${logfile}" && return 1 )
-		}
+		_init_req_file "${logfile}" || return 1
 		DAEMON_ARGS+=("-l ${logfile}")
 	}
+	[ -z "${fiche_args}" ] || DAEMON_ARGS+=("${fiche_args}")
 }
 
 start() {
