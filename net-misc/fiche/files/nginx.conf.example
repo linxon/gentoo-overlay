@@ -1,0 +1,10 @@
+server {
+    listen 80;
+    server_name mysite.com www.mysite.com;
+    charset utf-8;
+
+    location / {
+            root /var/www/fiche/;
+            index index.txt index.html;
+    }
+}
