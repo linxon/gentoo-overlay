@@ -1,15 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-################################################################################
 # /etc/conf.d/fiche: config file for /etc/init.d/fiche
-# Thanks for: 
-#		solusipse (root@solusipse.net)
-#		linxon (email@linxon.ru)
-#
-# Most important is providing DOMAIN and BASEDIR
-# many information: https://github.com/solusipse/fiche/blob/0.9/README.md
-################################################################################
+
+## Most important is providing DOMAIN and BASEDIR
+## many information: https://github.com/solusipse/fiche#server-side-usage
 
 ## Should be absolute path to directory where you would like to store text files
 #basedir="/path/to/your/web-server/directory"
@@ -19,13 +11,19 @@
 ## Example: pastebin.example.com
 #domain="pastebin.yourdomain.com"
 
+## If set, fiche returns url with https prefix instead of http
+## Output url with this parameter: https://localhost/xxxx, where x is a randomized character
+#https=true
+
 ## Default port: 9999
 port=9999
 
-## White list (uncomment a line for enable; needs to be absolute path)
+## White list (uncomment a line for enable; needs to be absolute path; 
+## format of the file: this file should contain only addresses, one per line)
 #while_list="/var/lib/fiche/whilelist.txt"
 
-## Path to file where you provided all banned IP adresses (uncomment a line for enable; needs to be absolute path)
+## Path to file where you provided all banned IP adresses (uncomment a line for enable; needs to be absolute path;
+## format of the file: this file should contain only addresses, one per line)
 #ban_list="/var/lib/fiche/banlist.txt"
 
 ## This will force fiche to create random slugs with given length
@@ -36,3 +34,6 @@ buffer_size=32768
 
 ## Path to file where all logs will be stored (uncomment a line for enable; needs to be absolute path)
 logfile="/var/log/fiche.log"
+
+# See more: fiche -h
+fiche_args=""
