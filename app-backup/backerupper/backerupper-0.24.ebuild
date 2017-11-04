@@ -6,7 +6,7 @@ EAPI=6
 inherit gnome2-utils xdg-utils
 
 DESCRIPTION="Backerupper is a simple program for backing up selected directories over a local network"
-HOMEPAGE="http://sourceforge.net/projects/backerupper/"
+HOMEPAGE="https://sourceforge.net/projects/backerupper/"
 LICENSE="GPL-2"
 
 SRC_URI="
