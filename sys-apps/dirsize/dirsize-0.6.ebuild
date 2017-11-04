@@ -8,7 +8,7 @@ HOMEPAGE="http://plasmasturm.org/code/dirsize/"
 SRC_URI="http://plasmasturm.org/code/dirsize/${P}.tar.bz2"
 KEYWORDS="amd64 x86"
 RESTRICT="mirror"
-LICENSE="GPL"
+LICENSE="all-rights-reserved"
 SLOT="0"
 QA_PRESTRIPPED="/usr/bin/dirsize"
 
