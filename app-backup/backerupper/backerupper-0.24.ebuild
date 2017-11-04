@@ -10,11 +10,11 @@ HOMEPAGE="http://sourceforge.net/projects/backerupper/"
 LICENSE="GPL-2"
 
 SRC_URI="
-		amd64? ( http://downloads.sourceforge.net/backerupper/${P}-64.tar.gz )
-		x86? ( http://downloads.sourceforge.net/backerupper/${P}-32.tar.gz )"
+		amd64? ( https://downloads.sourceforge.net/backerupper/${P}-64.tar.gz )
+		x86? ( https://downloads.sourceforge.net/backerupper/${P}-32.tar.gz )"
 
 RESTRICT="mirror test"
-KEYWORDS="amd64 x86"
+KEYWORDS="amd64 x86 -*"
 SLOT="0"
 
 RDEPEND="x11-libs/gtk+:2"
