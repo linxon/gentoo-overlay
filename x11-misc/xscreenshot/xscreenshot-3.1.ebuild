@@ -3,33 +3,38 @@
 
 EAPI=6
 
-inherit unpacker gnome2-utils xdg-utils
+inherit unpacker gnome2-utils xdg-utils multilib
 
 DESCRIPTION="A tool for capture, edit, share and exchange screenshots between people via the internet"
 HOMEPAGE="http://xscreenshot.com"
 SRC_URI="http://xscreenshot.com/downloads/${PN}-linux-i386.tar.gz -> ${P}.tar.gz"
 LICENSE="all-rights-reserved"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror"
+KEYWORDS="~amd64 ~x86 -*"
+RESTRICT="mirror strip"
 
-DEPEND=""
 RDEPEND="
-	app-arch/bzip2[abi_x86_32]
-	dev-libs/expat[abi_x86_32]
-	media-libs/libpng[abi_x86_32]
-	media-libs/fontconfig[abi_x86_32]
-	media-libs/freetype[abi_x86_32]
-	sys-libs/zlib[abi_x86_32]
+	app-arch/bzip2[abi_x86_32(-)]
+	dev-libs/expat[abi_x86_32(-)]
+	media-libs/libpng:0[abi_x86_32(-)]
+	media-libs/fontconfig[abi_x86_32(-)]
+	media-libs/freetype[abi_x86_32(-)]
+	sys-libs/zlib[abi_x86_32(-)]
 	sys-libs/glibc
-	x11-libs/libXrender[abi_x86_32]
-	x11-libs/libxcb[abi_x86_32]
-	x11-libs/libXau[abi_x86_32]
-	x11-libs/libXdmcp[abi_x86_32]
-	x11-libs/libXext[abi_x86_32]
-	x11-libs/libX11[abi_x86_32]"
+	x11-libs/libXrender[abi_x86_32(-)]
+	x11-libs/libxcb[abi_x86_32(-)]
+	x11-libs/libXau[abi_x86_32(-)]
+	x11-libs/libXdmcp[abi_x86_32(-)]
+	x11-libs/libXext[abi_x86_32(-)]
+	x11-libs/libX11[abi_x86_32(-)]"
+
+DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"
+
+pkg_setup() {
+	multilib_toolchain_setup x86
+}
 
 src_unpack() {
 	default
