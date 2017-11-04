@@ -32,11 +32,14 @@ SRC_URI="
 							http://myarcad.spdns.de/packages/FREE-Linux/pool/zesty/main/t/${TUX_SMALL_N}/${TUX_SMALL_N}_${TUX_SMALL_V}_amd64.deb )
 			)"
 
-KEYWORDS="~amd64"
+KEYWORDS="-* ~amd64"
 RESTRICT="mirror"
 IUSE="povray samples"
 SLOT="0"
 
+QA_DESKTOP_FILE="
+	/usr/share/applications/arcad-c1.desktop
+	/opt/tuxbase/projects/arcad-c1/arcad-c1.desktop"
 QA_PRESTRIPPED="
 	/opt/tuxbase/projects/arcad-c1/bin_Linux_x86_64_4.10.0/arcad-c1
 	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxxpm.so
@@ -95,10 +98,10 @@ src_install() {
 	local target=_Linux_x86_64_4.10.0
 
 	cp -R . "${D}"/ || die
-	dosym /opt/tuxbase/projects/${app}/${app}.desktop /usr/share/applications/${app}.desktop || die
+	dosym ../../../opt/tuxbase/projects/${app}/${app}.desktop /usr/share/applications/${app}.desktop || die
 	dosym lib${target} /opt/tuxbase/lib || die
 	dosym bin${target} /opt/tuxbase/projects/${app}/bin || die
-	dosym /opt/tuxbase/projects/${app}/start /usr/bin/${app} || die
+	dosym ../../opt/tuxbase/projects/${app}/start /usr/bin/${app} || die
 
 	dosym ../../../usr/lib64/libjpeg.so /opt/tuxbase/lib/libjpeg.so.62 || die
 
