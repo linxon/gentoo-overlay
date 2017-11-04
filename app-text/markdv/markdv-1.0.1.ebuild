@@ -27,6 +27,6 @@ src_install() {
 	if use autoconv; then
 		dobin "${FILESDIR}"/${PN}
 	else
-		dosym /usr/bin/${scr_name} /usr/bin/${PN} || die
+		dosym ./${scr_name} /usr/bin/${PN} || die
 	fi
 }
