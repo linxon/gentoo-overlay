@@ -1,0 +1,6 @@
+#amd64           linxon-desktop/default/linux/amd64/           stable
+#amd64           linxon-desktop/default/linux/amd64/xfce       stable
+amd64 		   	 hardened/linux/amd64/no-multilib              stable
+amd64 		   	 hardened/linux/amd64/no-multilib/selinux/     stable
+
+# vim: set ts=8:
