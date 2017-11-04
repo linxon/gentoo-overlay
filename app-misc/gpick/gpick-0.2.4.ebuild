@@ -52,7 +52,7 @@ src_install() {
 	scons DESTDIR="${D}/usr" install \
 		|| die "scons install failed"
 
-	dosym /usr/share/icons/hicolor/48x48/apps/gpick.png /usr/share/pixmaps/gpick.png
+	dosym ../icons/hicolor/48x48/apps/gpick.png /usr/share/pixmaps/gpick.png
 }
 
 pkg_preinst() {
