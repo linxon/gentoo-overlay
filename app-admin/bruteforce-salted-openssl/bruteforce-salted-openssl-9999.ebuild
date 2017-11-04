@@ -18,7 +18,7 @@ fi
 
 LICENSE="GPL-3"
 SLOT="0"
-DEPEND="dev-libs/openssl"
+DEPEND="dev-libs/openssl:0"
 RDEPEND="${DEPEND}"
 DOCS=( ChangeLog INSTALL README NEWS AUTHORS )
 
