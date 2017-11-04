@@ -10,7 +10,7 @@ HOMEPAGE="http://xscreenshot.com"
 SRC_URI="http://xscreenshot.com/downloads/${PN}-linux-i386.tar.gz -> ${P}.tar.gz"
 LICENSE="all-rights-reserved"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 -*"
+KEYWORDS="-* ~amd64 ~x86"
 RESTRICT="mirror strip"
 
 RDEPEND="
@@ -31,10 +31,6 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"
-
-pkg_setup() {
-	multilib_toolchain_setup x86
-}
 
 src_unpack() {
 	default
