@@ -57,7 +57,7 @@ src_configure() {
 src_install() {
 	cmake-utils_src_install
 
-	dosym /usr/bin/com.github.philip-scott.spice-up /usr/bin/spice-up
+	dosym ./com.github.philip-scott.spice-up /usr/bin/spice-up
 	dodoc README.md
 }
 
