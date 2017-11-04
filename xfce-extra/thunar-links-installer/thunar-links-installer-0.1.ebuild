@@ -14,5 +14,5 @@ RDEPEND="xfce-base/thunar"
 S="${WORKDIR}"
 
 src_install() {
-	dosym /usr/bin/thunar /usr/bin/thu
+	dosym ./thunar /usr/bin/thu
 }
