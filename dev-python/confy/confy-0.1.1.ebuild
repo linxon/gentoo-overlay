@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python2_7 )
 inherit distutils-r1
 
 DESCRIPTION="Simple config parser and basic strings manipulation"
-HOMEPAGE="http://sourceforge.net/projects/pymusicpd"
+HOMEPAGE="https://sourceforge.net/projects/pymusicpd"
 LICENSE="MIT"
 
 SRC_URI="mirror://sourceforge/pymusicpd/${P}.tar.gz"
