@@ -21,5 +21,5 @@ src_install() {
 	exeinto /usr/share/${PN}/
 	doexe bb
 
-	dosym /usr/share/${PN}/${MY_PN} /usr/bin/${PN}
+	dosym ../share/${PN}/${MY_PN} /usr/bin/${PN}
 }
