@@ -28,5 +28,5 @@ src_install() {
 	dodoc README.md
 
 	dobin ${PN}
-	dosym /usr/bin/${PN} /usr/bin/pping
+	dosym ./${PN} /usr/bin/pping
 }
