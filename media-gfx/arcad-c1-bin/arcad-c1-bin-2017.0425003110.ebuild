@@ -37,9 +37,6 @@ RESTRICT="mirror"
 IUSE="povray samples"
 SLOT="0"
 
-QA_DESKTOP_FILE="
-	/usr/share/applications/arcad-c1.desktop
-	/opt/tuxbase/projects/arcad-c1/arcad-c1.desktop"
 QA_PRESTRIPPED="
 	/opt/tuxbase/projects/arcad-c1/bin_Linux_x86_64_4.10.0/arcad-c1
 	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxxpm.so
@@ -93,12 +90,20 @@ RDEPEND="!app-office/lxfibu-c1-bin
 
 S="${WORKDIR}"
 
+src_prepare() {
+	# Fix QA_* error messages
+	sed -i \
+		-e "18d" \
+		-e "22d" opt/tuxbase/projects/arcad-c1/arcad-c1.desktop || die
+
+	default
+}
+
 src_install() {
 	local app=${PN%%-bin}
 	local target=_Linux_x86_64_4.10.0
 
 	cp -R . "${D}"/ || die
-	dosym ../../../opt/tuxbase/projects/${app}/${app}.desktop /usr/share/applications/${app}.desktop || die
 	dosym lib${target} /opt/tuxbase/lib || die
 	dosym bin${target} /opt/tuxbase/projects/${app}/bin || die
 	dosym ../../opt/tuxbase/projects/${app}/start /usr/bin/${app} || die
@@ -108,6 +113,8 @@ src_install() {
 	# Ensure that the shipped libXm.so.4.0.3 is used rather than the system-wide libXm.so.4.0.4 or we get:
 	# symbol lookup error: /opt/tuxbase/lib/libtxtbl.so.2010.02: undefined symbol: _XmXftSetClipRectangles
 	dosym ../../../usr/lib64/libXm.so.4.0.3 /opt/tuxbase/lib/libXm.so.4 || die
+
+	domenu opt/tuxbase/projects/${app}/${app}.desktop
 }
 
 pkg_preinst() {
