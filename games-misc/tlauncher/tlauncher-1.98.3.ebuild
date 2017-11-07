@@ -9,6 +9,7 @@ DESCRIPTION="A advanced launcher for Minecraft"
 HOMEPAGE="https://tlauncher.org"
 LICENSE="all-rights-reserved"
 
+# Get url: http://tlauncherrepo.com/tlauncher/legacy/bootstrap.json
 PKG_HASH="00aa8d0014ce30f2116a13b8313de65cc9be690f475758d83359e7756fa848f0"
 SRC_URI="http://tlauncherrepo.com/legacy/bootstrap/${PKG_HASH}.jar -> ${P}.jar"
 
