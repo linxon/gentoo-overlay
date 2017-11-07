@@ -25,7 +25,7 @@ SLOT="0"
 
 DEPEND=""
 RDEPEND="${PYTHON_DEPS}
-	dev-python/pycrypto
+	dev-python/pycryptodome
 	dev-libs/protobuf
 	dev-python/clint
 	dev-python/requests"
