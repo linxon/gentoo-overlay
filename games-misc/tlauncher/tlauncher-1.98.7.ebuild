@@ -21,12 +21,10 @@ DEPEND=""
 RDEPEND="${DEPEND}
 	dev-java/oracle-jdk-bin"
 
-src_unpack() {
-	local w_path="${WORKDIR}"/"${P}"
+S="${WORKDIR}"
 
-	mkdir "${w_path}" || die
-	cp "${DISTDIR}"/"${P}.jar" "${w_path}"/"${P}.jar" || die
-	tar -x -f "${FILESDIR}"/icon.tar.gz -C "${w_path}" || die
+src_unpack() {
+	tar -x -f "${FILESDIR}"/icon.tar.gz -C "${S}" || die
 }
 
 src_install() {
@@ -49,7 +47,7 @@ src_install() {
 		"TLauncher Legacy" \
 		"${PN}-${SLOT}" \
 		"Game" \
-		"StartupNotify=false"
+		"Path=${inst_dir}"
 }
 
 pkg_preinst() {
