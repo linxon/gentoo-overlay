@@ -41,7 +41,7 @@ src_prepare() {
 }
 
 src_compile() {
-	local make_opts=($([ use debug && ! use support_aes ] && echo debug2))
+	local make_opts=($(use debug && ! use support_aes && echo debug2))
 
 	if use support_aes; then
 		make_opts+=(
@@ -58,7 +58,7 @@ src_compile() {
 src_install() {
 	local ex_name="${PN%%-tunnel}"
 
-	dodoc -r doc/* README.md example.conf
+	dodoc -r doc/* README.md example.conf Dockerfile
 	dobin ${ex_name}
 }
 
