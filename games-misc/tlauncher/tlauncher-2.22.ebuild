@@ -19,12 +19,10 @@ DEPEND=""
 RDEPEND="${DEPEND}
 	dev-java/oracle-jdk-bin"
 
-src_unpack() {
-	local w_path="${WORKDIR}"/"${P}"
+S="${WORKDIR}"
 
-	mkdir "${w_path}" || die
-	cp "${DISTDIR}"/"${P}.jar" "${w_path}"/"${P}.jar" || die
-	tar -x -f "${FILESDIR}"/icon.tar.gz -C "${w_path}" || die
+src_unpack() {
+	tar -x -f "${FILESDIR}"/icon.tar.gz -C "${S}" || die
 }
 
 src_install() {
@@ -42,7 +40,12 @@ src_install() {
 	fperms 664 "${inst_dir}"/${ex_file}
 
 	make_wrapper "${PN}${SLOT}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
-	make_desktop_entry "/usr/bin/${PN}${SLOT}" "TLauncher ${PV}" "${PN}-${SLOT}" "Game" "Path=${inst_dir}"
+	make_desktop_entry \
+		"/usr/bin/${PN}${SLOT}" \
+		"TLauncher" \
+		"${PN}-${SLOT}" \
+		"Game" \
+		"Path=${inst_dir}"
 }
 
 pkg_preinst() {
