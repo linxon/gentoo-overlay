@@ -40,7 +40,12 @@ src_install() {
 	doins "${WORKDIR}"/${PN}.png
 
 	make_wrapper "${PN}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
-	make_desktop_entry "/usr/bin/${PN}" "Pixelitor" "${PN}" "Graphics" "Path=${inst_dir}"
+	make_desktop_entry \
+		"/usr/bin/${PN}" \
+		"Pixelitor" \
+		"${PN}" \
+		"Graphics" \
+		"Path=${inst_dir}"
 
 	dodoc README
 }
