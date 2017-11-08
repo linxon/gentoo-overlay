@@ -41,7 +41,7 @@ src_prepare() {
 }
 
 src_compile() {
-	local make_opts=($([ use debug && ! use support_aes ] && echo debug2))
+	local make_opts=($(use debug && ! use support_aes && echo debug2))
 
 	if use support_aes; then
 		make_opts+=(
