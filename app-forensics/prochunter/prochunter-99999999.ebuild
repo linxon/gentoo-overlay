@@ -1,0 +1,67 @@
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=6
+
+PYTHON_COMPAT=( python3_4 )
+MODULE_NAMES="${PN}(misc:${S}:${S})"
+BUILD_PARAMS="-j1"
+BUILD_TARGETS="clean all"
+
+inherit git-r3 python-r1 linux-mod versionator
+
+DESCRIPTION="Linux process hunter"
+HOMEPAGE="https://gitlab.com/nowayout/prochunter"
+SRC_URI=""
+
+EGIT_REPO_URI="https://gitlab.com/nowayout/prochunter"
+if [[ ${PV} != *9999 ]]; then
+	EGIT_COMMIT="94f703f71719bd70014f24835fd542e2b8b12ded"
+	KEYWORDS="~amd64 ~x86"
+fi
+
+LICENSE="GPL-2"
+SLOT="0"
+IUSE="sources"
+
+RDEPEND="${PYTHON_DEPS}
+	dev-python/psutil[${PYTHON_USEDEP}]"
+
+DEPEND="${RDEPEND}"
+
+src_prepare() {
+	default
+
+	# Fix error message "fatal error: linux/sched/signal.h: No such file or directory"
+	# removing "#include <linux/sched/signal.h>" line is not critical 
+	# for >=4.10 version of the kernel (https://gitlab.com/nowayout/prochunter/issues/1#note_46894766)
+	if version_is_at_least "${KV_FULL}" "4.10"; then
+		sed -i -e "/#include <linux\/sched\/signal.h>/d" prochunter.c || die "sed failed!"
+	fi
+
+	# Change KMOD_PATH param
+	sed -i \
+		-e "s:KMOD_PATH=\"./prochunter.ko\":KMOD_PATH=\"/lib/modules/${KV_FULL}/misc/prochunter.ko\":" \
+		prochunter.py || die "sed failed!"
+}
+
+src_install() {
+	linux-mod_src_install
+
+	if use sources; then
+		insinto /usr/src/${PN}
+		doins prochunter.c Makefile
+	fi
+
+	python_scriptinto /usr/sbin
+	python_foreach_impl python_doscript ${PN}.py
+
+	dodoc README.md
+}
+
+pkg_postinst() {
+	elog
+	use sources && elog "Source code of the ${PN} module you can find in /usr/src/${PN} directory"
+	elog "See documentation: https://gitlab.com/nowayout/prochunter/blob/master/README.md#how-to-use"
+	elog
+}
