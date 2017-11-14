@@ -2,11 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-
 PYTHON_COMPAT=( python3_4 )
-MODULE_NAMES="${PN}(misc:${S}:${S})"
-BUILD_PARAMS="-j1"
-BUILD_TARGETS="clean all"
 
 inherit git-r3 python-r1 linux-mod versionator
 
@@ -22,31 +18,50 @@ fi
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="sources"
+IUSE="kernel_linux sources"
 
 RDEPEND="${PYTHON_DEPS}
 	dev-python/psutil[${PYTHON_USEDEP}]"
 
 DEPEND="${RDEPEND}"
 
-src_prepare() {
-	default
+pkg_setup() {
+	if use kernel_linux; then
+		MODULE_NAMES="${PN}(misc:${S}:${S})"
+		BUILD_TARGETS="clean all"
 
-	# Fix error message "fatal error: linux/sched/signal.h: No such file or directory"
-	# removing "#include <linux/sched/signal.h>" line is not critical 
-	# for >=4.10 version of the kernel (https://gitlab.com/nowayout/prochunter/issues/1#note_46894766)
-	if version_is_at_least "${KV_FULL}" "4.10"; then
-		sed -i -e "/#include <linux\/sched\/signal.h>/d" prochunter.c || die "sed failed!"
+		linux-mod_pkg_setup
+	else
+		die "Could not determine proper ${PN} package"
+	fi
+}
+
+src_prepare() {
+	if use kernel_linux; then
+		# Change KMOD_PATH param
+		sed -i \
+			-e "s:KMOD_PATH=\"./prochunter.ko\":KMOD_PATH=\"/lib/modules/${KV_FULL}/misc/prochunter.ko\":" \
+			prochunter.py || die "sed failed!"
+
+		# Fix error message "fatal error: linux/sched/signal.h: No such file or directory"
+		# removing "#include <linux/sched/signal.h>" line is not critical 
+		# for >=4.10 version of the kernel (https://gitlab.com/nowayout/prochunter/issues/1#note_46894766)
+		if version_is_at_least "${KV_FULL}" "4.10"; then
+			sed -i -e "/#include <linux\/sched\/signal.h>/d" prochunter.c || die "sed failed!"
+		fi
 	fi
 
-	# Change KMOD_PATH param
-	sed -i \
-		-e "s:KMOD_PATH=\"./prochunter.ko\":KMOD_PATH=\"/lib/modules/${KV_FULL}/misc/prochunter.ko\":" \
-		prochunter.py || die "sed failed!"
+	eapply_user
+}
+
+src_compile() {
+	if use kernel_linux; then
+		MAKEOPTS="-j1" linux-mod_src_compile
+	fi
 }
 
 src_install() {
-	linux-mod_src_install
+	use kernel_linux && linux-mod_src_install
 
 	if use sources; then
 		insinto /usr/src/${PN}
@@ -60,6 +75,8 @@ src_install() {
 }
 
 pkg_postinst() {
+	use kernel_linux && linux-mod_pkg_postinst
+
 	elog
 	use sources && elog "Source code of the ${PN} module you can find in /usr/src/${PN} directory"
 	elog "See documentation: https://gitlab.com/nowayout/prochunter/blob/master/README.md#how-to-use"
