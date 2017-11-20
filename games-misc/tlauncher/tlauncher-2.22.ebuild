@@ -54,9 +54,7 @@ pkg_preinst() {
 
 pkg_postinst() {
 	ewarn
-	ewarn "You need put a commands:"
-	ewarn "gpasswd -a <username> video"
-	ewarn "gpasswd -a <username> games"
+	ewarn "Just run 'gpasswd -a <USER> games' and 'gpasswd -a <USER> video', then have <USER> re-login."
 	ewarn
 
 	xdg_desktop_database_update
