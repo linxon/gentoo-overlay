@@ -20,7 +20,7 @@ RESTRICT="mirror"
 LICENSE="MIT"
 SLOT="0"
 
-DEPEND="${DEPEND}
+DEPEND="
 	>=dev-lang/go-1.8
 	dev-go/go-net
 	dev-go/go-crypto"
