@@ -64,7 +64,7 @@ src_install() {
 	local x
 
 	for x in ${LINGUAS}; do
-		if [[ -f "translations/yandex-disk-indicator_${x}.mo" ]] && use linguas_${x}; then
+		if [ -f "translations/yandex-disk-indicator_${x}.mo" ] && use linguas_${x}; then
 			insinto /usr/share/locale/${x}/LC_MESSAGES
 			newins translations/yandex-disk-indicator_${x}.mo yandex-disk-indicator.mo
 		elif ! use linguas_${x}; then
