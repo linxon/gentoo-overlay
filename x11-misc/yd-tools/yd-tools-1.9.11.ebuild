@@ -8,7 +8,7 @@ inherit eutils gnome2-utils xdg-utils python-r1
 
 DESCRIPTION="Panel indicator (GUI) for YandexDisk CLI client"
 HOMEPAGE="https://github.com/slytomcat/yandex-disk-indicator"
-LICENSE="GPL-3"
+SRC_URI=""
 
 MY_PN="yandex-disk-indicator"
 MY_P="${MY_PN}-${PV}"
@@ -21,6 +21,7 @@ else
 	S="${WORKDIR}"/${MY_P}
 fi
 
+LICENSE="GPL-3"
 RESTRICT="mirror"
 SLOT="0"
 IUSE=""
@@ -66,19 +67,15 @@ src_install() {
 		if [[ -f "translations/yandex-disk-indicator_${x}.mo" ]] && use linguas_${x}; then
 			insinto /usr/share/locale/${x}/LC_MESSAGES
 			newins translations/yandex-disk-indicator_${x}.mo yandex-disk-indicator.mo
-			# remove this from translations/*
-			rm -f translations/yandex-disk-indicator_${x}.{mo,po} || die "cleanup failed!"
-		elif [[ -f "translations/yandex-disk-indicator_${x}.mo" && -f "translations/yandex-disk-indicator_${x}.po" ]]; then
-			# remove other *.mo|*.po|*.lang files from translations/*
-			rm -f translations/yandex-disk-indicator_${x}.{mo,po} \
-				translations/actions-${x}.lang translations/ya-setup-${x}.lang || die "cleanup failed!"
+		elif ! use linguas_${x}; then
+			rm -f translations/{actions-,ya-setup-}${x}.lang
 		fi
+
+		rm -f translations/yandex-disk-indicator_${x}.{mo,po}
 	done
 
-	insinto /usr/share/yd-tools
+	insinto /usr/share/yd-tools && exeinto /usr/share/yd-tools
 	doins -r translations icons fm-actions
-
-	exeinto /usr/share/yd-tools
 	doexe ya-setup
 
 	dodoc README.md TODO ChangeLog man/yd-tools
