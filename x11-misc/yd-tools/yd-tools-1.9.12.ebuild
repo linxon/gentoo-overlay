@@ -10,12 +10,11 @@ DESCRIPTION="Panel indicator (GUI) for YandexDisk CLI client"
 HOMEPAGE="https://github.com/slytomcat/yandex-disk-indicator"
 SRC_URI=""
 
-MY_PN="yandex-disk-indicator"
-MY_P="${MY_PN}-${PV}"
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/slytomcat/yandex-disk-indicator"
 else
+	MY_P="yandex-disk-indicator-${PV}"
 	KEYWORDS="~amd64 ~x86"
 	SRC_URI="https://github.com/slytomcat/yandex-disk-indicator/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 	S="${WORKDIR}"/${MY_P}
