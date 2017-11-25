@@ -14,14 +14,15 @@ LICENSE="all-rights-reserved"
 RESTRICT="mirror"
 KEYWORDS="-* ~amd64 ~x86"
 SLOT="0"
+IUSE="+policykit"
 
 DEPEND=""
-RDEPEND="
+RDEPEND="${DEPEND}
+	policykit? ( sys-auth/polkit )
 	app-arch/bzip2
 	>=dev-libs/libbsd-0.8.6
 	sys-libs/glibc:2.2
 	sys-libs/zlib
-	sys-auth/polkit
 	media-libs/fontconfig
 	media-libs/freetype
 	media-libs/libpng
@@ -49,13 +50,20 @@ src_install() {
 	use amd64 && doexe linux64/SSDUtility
 	use x86 && doexe linux32/SSDUtility
 
-	insinto /usr/share/polkit-1/actions/
-	doins "${FILESDIR}"/org.ocz.pkexec.ssdutility.policy
-
 	insinto /usr/share/pixmaps/
 	doins "${FILESDIR}"/ssd-utility.png
 
-	make_wrapper "${PN}" "pkexec \"/opt/ssd-utility/SSDUtility\""
+	if use policykit; then
+		insinto /usr/share/polkit-1/actions/
+		doins "${FILESDIR}"/org.ocz.pkexec.ssdutility.policy
+
+		make_wrapper \
+			"${PN}" \
+			"pkexec \"${inst_dir}/SSDUtility\""
+	else
+		dosym ../../opt/${PN}/SSDUtility /usr/bin/${PN}
+	fi
+
 	make_desktop_entry \
 		"/usr/bin/${PN}" \
 		"OCZ SSD Utility" \
