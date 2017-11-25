@@ -2,21 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
+MY_PN="SSDUtility"
+MY_P="${MY_PN}_${PV}"
 
 inherit eutils gnome2-utils xdg-utils
 
 DESCRIPTION="SSD Utility is complementary management software designed to help you maintain, monitor and tune your OCZ SSD"
 HOMEPAGE="https://ocz.com/us/download/ssd-utility"
-LICENSE="all-rights-reserved"
-
-MY_PN="SSDUtility"
-MY_P="${MY_PN}_${PV}"
 SRC_URI="https://ocz.com/download/software/ssd-utility/${PV}/SSDUtility_${PV}.tar.gz"
-
+LICENSE="all-rights-reserved"
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="-* ~amd64 ~x86"
 SLOT="0"
-QA_PRESTRIPPED="/opt/ssd-utility/SSDUtility"
 
 DEPEND=""
 RDEPEND="
@@ -24,6 +21,7 @@ RDEPEND="
 	>=dev-libs/libbsd-0.8.6
 	sys-libs/glibc:2.2
 	sys-libs/zlib
+	sys-auth/polkit
 	media-libs/fontconfig
 	media-libs/freetype
 	media-libs/libpng
@@ -37,12 +35,14 @@ RDEPEND="
 
 S="${WORKDIR}"/${MY_PN}
 
+QA_PRESTRIPPED="/opt/ssd-utility/SSDUtility"
+
 src_install() {
 	local inst_dir="/opt/${PN}"
 
 	exeinto "${inst_dir}"
-	use amd64 && doexe "${S}"/linux64/${MY_PN}
-	use x86 && doexe "${S}"/linux32/${MY_PN}
+	use amd64 && doexe linux64/SSDUtility
+	use x86 && doexe linux32/SSDUtility
 
 	insinto /usr/share/polkit-1/actions/
 	doins "${FILESDIR}"/org.ocz.pkexec.ssdutility.policy
