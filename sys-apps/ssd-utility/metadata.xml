@@ -6,6 +6,6 @@
     <name>Yury Martynov</name>
   </maintainer>
   <use>
-    <flag name="policykit">Add policy framework (sys-auth/polkit) support</flag>
+    <flag name="policykit">Enable PolicyKit authentication support</flag>
   </use>
 </pkgmetadata>
