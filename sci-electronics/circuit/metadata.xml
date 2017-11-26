@@ -5,4 +5,8 @@
     <email>email@linxon.ru</email>
     <name>Yury Martynov</name>
   </maintainer>
+  <use>
+    <flag name="examples">Install examples (circuits)</flag>
+    <flag name="source">Install sources</flag>
+  </use>
 </pkgmetadata>
