@@ -7,10 +7,8 @@ inherit eutils gnome2-utils xdg-utils
 
 DESCRIPTION="Electronic circuit simulator written in Java by falstad.com"
 HOMEPAGE="http://www.falstad.com/circuit-java/"
-LICENSE="GPL-2"
-
 SRC_URI="http://www.falstad.com/circuit-java/${PN}.zip -> ${P}.zip"
-
+LICENSE="GPL-2"
 KEYWORDS="amd64 x86"
 SLOT="0"
 IUSE="+examples source"
@@ -22,7 +20,7 @@ RDEPEND="${DEPEND}
 S="${WORKDIR}"
 
 src_unpack() {
-	unpack ${A}
+	default
 	unpack "${FILESDIR}"/circuit.png.tar.gz
 }
 
@@ -38,8 +36,16 @@ src_install() {
 	insinto /usr/share/pixmaps/
 	doins ${PN}.png
 
-	make_wrapper "${PN}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
-	make_desktop_entry "/usr/bin/${PN}" "Circuit simulator ${PV}" "${PN}" "Education" "StartupNotify=false\nPath=${inst_dir}"
+	make_wrapper \
+		"${PN}" \
+		"/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
+
+	make_desktop_entry \
+		"/usr/bin/${PN}" \
+		"Circuit simulator ${PV}" \
+		"${PN}" \
+		"Education" \
+		"StartupNotify=false\nPath=${inst_dir}"
 }
 
 pkg_preinst() {
