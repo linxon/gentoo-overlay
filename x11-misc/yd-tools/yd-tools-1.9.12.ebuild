@@ -49,13 +49,18 @@ src_prepare() {
 
 	# Change "Exec" path in *.desktop files
 	sed -i \
-		-e "s:Exec=yandex-disk-indicator:Exec=/usr/bin/${MY_PN}.py:" \
+		-e "s:Exec=yandex-disk-indicator:Exec=/usr/bin/yandex-disk-indicator.py:" \
 		Yandex.Disk-indicator.desktop || die "sed failed!"
 
 	# Disable activateActions() on starting
 	# because ${PN} freeze while is trying install another filemanagers
 	# ¯\_(ツ)_/¯
 	epatch "${FILESDIR}"/disable_activateActions.patch
+
+	# Fix #181: Change initialization behavior
+	# https://github.com/slytomcat/yandex-disk-indicator/issues/181
+	epatch "${FILESDIR}"/change_initialization_behavior.patch
+
 	eapply_user
 }
 
@@ -84,7 +89,7 @@ src_install() {
 	python_foreach_impl python_doscript yandex-disk-indicator.py
 
 	make_wrapper \
-		"${MY_PN}" \
+		"yandex-disk-indicator.py" \
 		"python3 /usr/bin/yandex-disk-indicator.py"
 }
 
