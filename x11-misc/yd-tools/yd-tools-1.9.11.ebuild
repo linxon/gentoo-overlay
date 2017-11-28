@@ -84,7 +84,7 @@ src_install() {
 	python_foreach_impl python_doscript yandex-disk-indicator.py
 
 	make_wrapper \
-		"yandex-disk-indicator.py" \
+		"yandex-disk-indicator" \
 		"python3 /usr/bin/yandex-disk-indicator.py"
 }
 
