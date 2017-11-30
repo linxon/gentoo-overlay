@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python{2_7,3_4} )
+PYTHON_COMPAT=( python{2_7,3_4,3_5} )
 
 inherit distutils-r1
 
@@ -27,7 +27,7 @@ DOCS=( README.md Documentation )
 
 DEPEND=""
 RDEPEND="${PYTHON_DEPS}
-	dev-python/pycryptodome
+	dev-python/pycryptodome[${PYTHON_USEDEP}]
 	dev-libs/protobuf
-	dev-python/clint
-	dev-python/requests"
+	dev-python/clint[${PYTHON_USEDEP}]
+	dev-python/requests[${PYTHON_USEDEP}]"
