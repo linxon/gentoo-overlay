@@ -35,7 +35,7 @@ python_install_all() {
 
 	make_desktop_entry \
 		"${PN}" \
-		"Youtube-dl (GTK+)" \
+		"Youtube-DLG" \
 		"youtube-dl-gui" \
 		"Network;GTK;" \
 		"StartupNotify=true"
