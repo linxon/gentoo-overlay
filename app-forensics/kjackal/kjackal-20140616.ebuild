@@ -48,8 +48,4 @@ src_install() {
 
 pkg_postinst() {
 	use kernel_linux && linux-mod_pkg_postinst
-
-	elog
-	elog "See documentation: https://gitlab.com/nowayout/prochunter/blob/master/README.md#how-to-use"
-	elog
 }
