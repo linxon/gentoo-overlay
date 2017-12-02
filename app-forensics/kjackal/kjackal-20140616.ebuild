@@ -34,11 +34,14 @@ pkg_setup() {
 }
 
 src_prepare() {
+	eapply_user
+
+	# Author of patch: can't really test it because arch doesn't provide 
+	#                  system.map anymore, but at least someone else can 
+	#                  get to use it, I guess
 	if ! version_is_at_least "${KV_FULL}" "3.15"; then
 		epatch "${FILESDIR}"/port_to_modern_kernel_api.patch
 	fi
-
-	eapply_user
 }
 
 src_install() {
