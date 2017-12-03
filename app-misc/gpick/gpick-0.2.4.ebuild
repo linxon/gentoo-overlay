@@ -3,11 +3,11 @@
 
 EAPI=6
 
-inherit eutils gnome2-utils xdg-utils
+inherit scons-utils gnome2-utils xdg-utils
 
 DESCRIPTION="Advanced color picker written in C++ using GTK+ toolkit"
 HOMEPAGE="http://www.gpick.org/"
-LICENSE="BSD"
+SRC_URI=""
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
@@ -19,6 +19,7 @@ else
 	S="${WORKDIR}"/${MY_P}
 fi
 
+LICENSE="BSD"
 RESTRICT="mirror"
 SLOT="0"
 IUSE="dbus debug unique"
@@ -40,17 +41,18 @@ src_prepare() {
 }
 
 src_compile() {
+	export CXXFLAGS="${CXXFLAGS} -std=gnu++98"
+
 	use unique && WITH_UNIQUE=yes
 	use dbus && WITH_DBUSGLIB=yes
 	use debug && DEBUG=yes
 
-	scons ${MAKEOPTS} build \
-		|| die "scons build failed"
+	escons build || die "escons build failed!"
 }
 
 src_install() {
-	scons DESTDIR="${D}/usr" install \
-		|| die "scons install failed"
+	escons DESTDIR="${D}/usr" install \
+		|| die "escons install failed!"
 
 	dosym ../icons/hicolor/48x48/apps/gpick.png /usr/share/pixmaps/gpick.png
 }
