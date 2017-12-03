@@ -56,7 +56,6 @@ src_prepare() {
 	# because ${PN} freeze while is trying install another filemanagers
 	# ¯\_(ツ)_/¯
 	epatch "${FILESDIR}"/disable_activateActions.patch
-
 	eapply_user
 }
 
