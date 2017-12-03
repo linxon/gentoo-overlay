@@ -1,2 +1,2 @@
 # Will be deleted after 10 days 
-app-text/cherrytree::linxon
+app-text/cherrytree
