@@ -18,7 +18,7 @@ fi
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="kernel_linux sources"
+IUSE="kernel_linux"
 
 RDEPEND="${PYTHON_DEPS}
 	dev-python/psutil[${PYTHON_USEDEP}]"
@@ -63,11 +63,6 @@ src_compile() {
 src_install() {
 	use kernel_linux && linux-mod_src_install
 
-	if use sources; then
-		insinto /usr/src/${PN}
-		doins prochunter.c Makefile
-	fi
-
 	python_scriptinto /usr/sbin
 	python_foreach_impl python_doscript ${PN}.py
 
@@ -78,7 +73,6 @@ pkg_postinst() {
 	use kernel_linux && linux-mod_pkg_postinst
 
 	elog
-	use sources && elog "Source code of the ${PN} module you can find in /usr/src/${PN} directory"
 	elog "See documentation: https://gitlab.com/nowayout/prochunter/blob/master/README.md#how-to-use"
 	elog
 }
