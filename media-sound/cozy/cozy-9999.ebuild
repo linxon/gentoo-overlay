@@ -4,7 +4,7 @@
 EAPI=6
 PYTHON_COMPAT=( python{3_4,3_5,3_6} )
 
-inherit meson gnome2-utils xdg-utils python-r1 
+inherit meson gnome2-utils xdg-utils python-r1
 
 DESCRIPTION="A modern audio book player for Linux using GTK+ 3"
 HOMEPAGE="https://github.com/geigi/cozy"
