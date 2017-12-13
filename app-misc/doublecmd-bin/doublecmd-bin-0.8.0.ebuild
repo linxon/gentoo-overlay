@@ -19,7 +19,7 @@ SRC_URI="
 				qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.x86_64.tar.xz ) )"
 
 RESTRICT="mirror"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="+gtk2 qt4"
 REQUIRED_USE="^^ ( gtk2 qt4 )"
 SLOT="0"
