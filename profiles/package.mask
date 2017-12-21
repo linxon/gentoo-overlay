@@ -1,0 +1,3 @@
+# Will be removed after 10 days (You can find this in "pentoo" overlay)
+# layman -a pentoo && emerge -av dev-python/gpapi
+dev-python/gpapi
