@@ -1,3 +1,6 @@
 # Will be removed after 10 days (You can find this in "pentoo" overlay)
 # layman -a pentoo && emerge -av dev-python/gpapi
 dev-python/gpapi
+
+# Я не понимаю, почему эта хуета не собирается (разберусь после, а пока, у меня нет времени...)
+=app-office/spice-up-1.2.1
