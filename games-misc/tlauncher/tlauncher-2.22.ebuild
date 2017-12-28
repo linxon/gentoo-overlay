@@ -9,7 +9,8 @@ DESCRIPTION="A advanced launcher for Minecraft"
 HOMEPAGE="https://tlauncher.org"
 LICENSE="all-rights-reserved"
 
-SRC_URI="https://tlauncher.org/download/3049 -> ${P}.jar"
+SRC_URI="https://tlauncher.org/download/3049 -> ${P}.jar
+         https://minecraft.net/apple-icon-180x180.png -> ${P}.png"
 
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86"
@@ -21,10 +22,6 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}"
 
-src_unpack() {
-	tar -x -f "${FILESDIR}"/icon.tar.gz -C "${S}" || die
-}
-
 src_install() {
 	local inst_dir="/opt/${P}"
 	local ex_file="${PN}.jar"
@@ -32,7 +29,7 @@ src_install() {
 	insinto "${inst_dir}"
 	newins "${DISTDIR}"/"${P}.jar" "${ex_file}"
 	insinto /usr/share/pixmaps/
-	newins minecraft.png ${PN}-${SLOT}.png
+	newins "${DISTDIR}"/${P}.png ${PN}-${SLOT}.png
 
 	# Fix error message — "Error in custom provider, java.lang.NoClassDefFoundError..."
 	fowners -R root:games "${inst_dir}"

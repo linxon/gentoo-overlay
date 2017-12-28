@@ -11,7 +11,8 @@ LICENSE="all-rights-reserved"
 
 # Get url: http://tlauncherrepo.com/tlauncher/legacy/bootstrap.json
 PKG_HASH="00aa8d0014ce30f2116a13b8313de65cc9be690f475758d83359e7756fa848f0"
-SRC_URI="http://tlauncherrepo.com/legacy/bootstrap/${PKG_HASH}.jar -> ${P}.jar"
+SRC_URI="http://tlauncherrepo.com/legacy/bootstrap/${PKG_HASH}.jar -> ${P}.jar
+         https://minecraft.net/apple-icon-180x180.png -> ${P}.png"
 
 RESTRICT="mirror"
 KEYWORDS="amd64 x86"
@@ -23,10 +24,6 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}"
 
-src_unpack() {
-	tar -x -f "${FILESDIR}"/icon.tar.gz -C "${S}" || die
-}
-
 src_install() {
 	local inst_dir="/opt/${P}"
 	local ex_file="${PN}.jar"
@@ -34,7 +31,7 @@ src_install() {
 	insinto "${inst_dir}"
 	newins "${DISTDIR}"/"${P}.jar" "${ex_file}"
 	insinto /usr/share/pixmaps/
-	newins minecraft.png ${PN}-${SLOT}.png
+	newins "${DISTDIR}"/${P}.png ${PN}-${SLOT}.png
 
 	# Fix error message — "Could not access JAR file."
 	fowners -R root:games "${inst_dir}"
