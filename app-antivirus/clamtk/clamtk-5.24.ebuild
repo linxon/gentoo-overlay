@@ -1,7 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-
-# Thanks for https://github.com/Sabayon/for-gentoo (updated break links)
 
 EAPI=6
 
