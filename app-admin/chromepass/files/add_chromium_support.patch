@@ -1,0 +1,31 @@
+From abf3adb5c6c0374d8c92cc6369b955bb519bc1b5 Mon Sep 17 00:00:00 2001
+From: Paul Henning <vxbinaca@users.noreply.github.com>
+Date: Tue, 29 Aug 2017 10:38:32 -0400
+Subject: [PATCH] Chromium linux support
+
+---
+ chromepass.py | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/chromepass.py b/chromepass.py
+index a53b5cb..4beac12 100644
+--- a/chromepass.py
++++ b/chromepass.py
+@@ -111,7 +111,17 @@ def getpath():
+         if (os.path.isdir(PathName) == False):
+             print('[!] Chrome Doesn\'t exists')
+             sys.exit(0)
++    elif (os.name == "posix"):
++        # This is the Linux Chromium Path
++        PathName = os.getenv('HOME') + '~/.config/chromium/Default/'
++        if (os.path.isdir(PathName) == False):
++            print('[!] Chromium Doesn\'t exists')
++            sys.exit(0)
++
++
+ 
++		
++		
+     return PathName
+ 
+ 
