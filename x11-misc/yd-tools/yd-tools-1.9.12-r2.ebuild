@@ -2,9 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python{3_4,3_5,3_6} )
+PYTHON_COMPAT=( python3_{4,5,6} )
+PLOCALES="be bg el ru"
 
-inherit eutils gnome2-utils xdg-utils python-r1
+inherit eutils gnome2-utils l10n xdg-utils python-r1
 
 DESCRIPTION="Panel indicator (GUI) for YandexDisk CLI client"
 HOMEPAGE="https://github.com/slytomcat/yandex-disk-indicator"
@@ -23,12 +24,7 @@ fi
 LICENSE="GPL-3"
 RESTRICT="mirror"
 SLOT="0"
-IUSE=""
-
-LINGUAS="be bg el ru"
-for X in ${LINGUAS}; do
-	IUSE="${IUSE} linguas_${X}"
-done
+IUSE="nls"
 
 RDEPEND="${PYTHON_DEPS}
 	>=dev-libs/glib-2.0:2
@@ -61,22 +57,37 @@ src_prepare() {
 	# https://github.com/slytomcat/yandex-disk-indicator/issues/181
 	epatch "${FILESDIR}"/change_initialization_behavior.patch
 
+	if use nls; then
+		l10n_find_plocales_changes "translations" "yandex-disk-indicator_" ".po"
+
+		rm_loc() {
+			rm -fv translations/yandex-disk-indicator_${1}.{mo,po} || die
+			rm -fv translations/{actions-,ya-setup-}${1}.lang || die
+		}
+		l10n_for_each_disabled_locale_do rm_loc
+	else
+		for x in ${PLOCALES}; do
+			rm -fv translations/{actions-,ya-setup-}${x}.lang || die
+			rm -fv translations/yandex-disk-indicator_${x}.{mo,po} || die
+		done
+	fi
+
 	eapply_user
 }
 
 src_install() {
 	local x
 
-	for x in ${LINGUAS}; do
-		if [ -f "translations/yandex-disk-indicator_${x}.mo" ] && use linguas_${x}; then
-			insinto /usr/share/locale/${x}/LC_MESSAGES
-			newins translations/yandex-disk-indicator_${x}.mo yandex-disk-indicator.mo
-		elif ! use linguas_${x}; then
-			rm -f translations/{actions-,ya-setup-}${x}.lang
-		fi
+	if use nls; then
+		do_loc() {
+			insinto /usr/share/locale/${1}/LC_MESSAGES
+			newins translations/yandex-disk-indicator_${1}.mo yandex-disk-indicator.mo
 
-		rm -f translations/yandex-disk-indicator_${x}.{mo,po}
-	done
+			# Remove other excluded translations
+			rm -f translations/yandex-disk-indicator_${1}.{mo,po} || die
+		}
+		l10n_for_each_locale_do do_loc
+	fi
 
 	insinto /usr/share/yd-tools && exeinto /usr/share/yd-tools
 	doins -r translations icons fm-actions
