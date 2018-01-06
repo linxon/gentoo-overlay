@@ -1,2 +1,5 @@
 # Я не понимаю, почему эта хуета не собирается (разберусь после, а пока, у меня нет времени...)
 =app-office/spice-up-1.2.1
+
+# Unfortunately this driver has not work by my elan1200 touchpad :(
+sys-kernel/linux-elan1200-touchpad
