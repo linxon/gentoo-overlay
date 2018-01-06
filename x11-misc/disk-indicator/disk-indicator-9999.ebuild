@@ -19,8 +19,15 @@ fi
 RESTRICT="mirror"
 LICENSE="GPL-3"
 SLOT="0"
-DEPEND="x11-libs/libX11"
-RDEPEND="${DEPEND}"
+
+RDEPEND="
+	dev-libs/libbsd
+	sys-libs/glibc
+	x11-libs/libX11
+	x11-libs/libXau
+	x11-libs/libXdmcp"
+
+DEPEND="${RDEPEND}"
 
 src_install() {
 	dodoc DEPENDS AUTHORS README.md "${FILESDIR}"/config.sample
