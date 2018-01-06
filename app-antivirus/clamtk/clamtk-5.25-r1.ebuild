@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PLOCALES="af ar ast az bg bs ca cs da de el_GR en_AU en_CA en_GB es eu fi fo fr ga gl he hr hu id it ja km ko lo lt lv mr ms nb nl_BE nl nn pa pl pt_BR pt ro ru sk sl sr@latin sv ta te th tr ug uk uz zh_CN zh_TW"
+PLOCALES="af ar ast az bg bs ca cs da de el_GR en_AU en_CA en_GB eo es eu fi fo fr ga gl he hr hu id it ja km ko lo lt lv mr ms nb nl nl_BE nn pa pl pt pt_BR ro ru si sk sl sr@latin sv ta te th tr ug uk uz zh_CN zh_TW"
 
 inherit eutils perl-module gnome2-utils l10n xdg-utils
 
@@ -36,6 +36,11 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}" || die "cd failed"
 	gunzip ${PN}.1.gz || die "gunzip failed"
+}
+
+src_prepare() {
+	l10n_find_plocales_changes "po" "" ".po"
+	default
 }
 
 src_install() {
