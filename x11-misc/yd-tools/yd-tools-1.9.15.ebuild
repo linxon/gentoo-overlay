@@ -63,8 +63,8 @@ src_prepare() {
 		l10n_for_each_disabled_locale_do rm_loc
 	else
 		for x in ${PLOCALES}; do
-			rm -fv translations/{actions-,ya-setup-}${x}.lang || die
 			rm -fv translations/yandex-disk-indicator_${x}.{mo,po} || die
+			rm -fv translations/{actions-,ya-setup-}${x}.lang || die
 		done
 	fi
 
