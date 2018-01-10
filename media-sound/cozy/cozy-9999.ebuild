@@ -2,9 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python{3_4,3_5,3_6} )
+PYTHON_COMPAT=( python3_{4,5,6} )
+PLOCALES="da_DK de en_IE es fi fr it ms_MY nl pl pt ru tr"
 
-inherit meson gnome2-utils xdg-utils python-r1
+inherit gnome2-utils meson l10n python-r1 xdg-utils
 
 DESCRIPTION="A modern audio book player for Linux using GTK+ 3"
 HOMEPAGE="https://github.com/geigi/cozy"
@@ -22,23 +23,40 @@ fi
 RESTRICT="mirror"
 LICENSE="GPL-3"
 SLOT="0"
-IUSE=""
+IUSE="nls"
 
-DEPEND="${PYTHON_DEPS}
-	>=dev-util/meson-0.40.0
+RDEPEND="${PYTHON_DEPS}
 	dev-libs/glib:2
 	dev-python/peewee[${PYTHON_USEDEP}]
 	media-libs/mutagen[${PYTHON_USEDEP}]
 	media-libs/gstreamer:1.0
 	>=x11-libs/gtk+-3.22"
 
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}
+	>=dev-util/meson-0.40.0
+	nls? ( sys-devel/gettext )"
 
 src_prepare() {
 	sed -i \
 		-e "11d" data/desktop.in || die "sed failed!"
 
 	mv debian/changelog ChangeLog || die
+
+	if use nls; then
+		l10n_find_plocales_changes "po" "" ".po"
+
+		rm_loc() {
+			rm -fv po/${1}.{mo,po} || die
+			echo $(l10n_get_locales) > po/LINGUAS || die
+		}
+		l10n_for_each_disabled_locale_do rm_loc
+	else
+		for x in ${PLOCALES}; do
+			rm -fv po/${x}.{mo,po} || die
+			echo > po/LINGUAS || die
+		done
+	fi
+
 	eapply_user
 }
 
