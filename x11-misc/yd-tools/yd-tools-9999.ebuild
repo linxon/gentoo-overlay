@@ -37,7 +37,8 @@ RDEPEND="${PYTHON_DEPS}
 	>=x11-libs/gtk+-3.0:3
 	>=x11-libs/gdk-pixbuf-2.0:2"
 
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	nls? ( sys-devel/gettext )"
 
 src_prepare() {
 	mv todo.txt TODO || die
