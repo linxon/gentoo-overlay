@@ -36,18 +36,21 @@ DEPEND="${RDEPEND}
 	>=dev-util/scons-1.0.0"
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-update-SConscript.patch
 	epatch "${FILESDIR}"/${P}-fix_revision.patch
 	eapply_user
 }
 
+src_configure() {
+	MYSCONS=(
+		WITH_UNIQUE=$(usex unique)
+		WITH_DBUSGLIB=$(usex dbus)
+		DEBUG=$(usex debug)
+	)
+}
+
 src_compile() {
-	export CXXFLAGS="${CXXFLAGS} -std=gnu++98"
-
-	use unique && WITH_UNIQUE=yes
-	use dbus && WITH_DBUSGLIB=yes
-	use debug && DEBUG=yes
-
-	escons build || die "escons build failed!"
+	escons "${MYSCONS[@]}" build || die "escons build failed!"
 }
 
 src_install() {
