@@ -2,17 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-MY_PN="${PN%%-bin}"
-MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Colorizing \"cat\""
 HOMEPAGE="https://github.com/jingweno/ccat"
 
 SRC_URI="
-	amd64? ( https://github.com/jingweno/ccat/releases/download/v${PV}/linux-amd64-${PV}.tar.gz -> ${MY_P}.tar.gz )
-	x86? ( https://github.com/jingweno/ccat/releases/download/v${PV}/linux-386-${PV}.tar.gz -> ${MY_P}.tar.gz )"
+	amd64? ( https://github.com/jingweno/ccat/releases/download/v${PV}/linux-amd64-${PV}.tar.gz -> ${P}.tar.gz )
+	x86? ( https://github.com/jingweno/ccat/releases/download/v${PV}/linux-386-${PV}.tar.gz -> ${P}.tar.gz )"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="-* ~amd64 ~x86"
 RESTRICT="mirror"
 LICENSE="MIT"
 SLOT="0"
@@ -26,7 +24,7 @@ src_unpack() {
 }
 
 src_install() {
-	dobin ${MY_PN}
+	dobin ${PN%%-bin}
 	dodoc README.md
 }
 
