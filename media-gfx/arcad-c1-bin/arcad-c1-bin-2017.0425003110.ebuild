@@ -4,8 +4,9 @@
 # Thanks for "betagarden" (https://gpo.zugaina.org/Overlays/betagarden/media-gfx/arcad-c1-bin — updated)
 
 EAPI=6
+PLOCALES="de"
 
-inherit unpacker gnome2-utils xdg-utils
+inherit unpacker gnome2-utils l10n xdg-utils
 
 # Depends
 TUX_LIB_N="tux-library"
@@ -34,7 +35,7 @@ SRC_URI="
 
 KEYWORDS="-* ~amd64"
 RESTRICT="mirror"
-IUSE="povray samples"
+IUSE="povray samples nls"
 SLOT="0"
 
 QA_PRESTRIPPED="
@@ -68,7 +69,6 @@ QA_PRESTRIPPED="
 	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxbse.so
 	/opt/tuxbase/lib_Linux_x86_64_4.10.0/libtxani.so"
 
-DEPEND=""
 RDEPEND="!app-office/lxfibu-c1-bin
 	=x11-libs/motif-2.3.3
 	>=sys-libs/glibc-2.14
@@ -88,6 +88,9 @@ RDEPEND="!app-office/lxfibu-c1-bin
 	x11-libs/libXt
 	povray? ( >=media-gfx/povray-3.7.0.0 )"
 
+DEPEND="
+	nls? ( sys-devel/gettext )"
+
 S="${WORKDIR}"
 
 src_prepare() {
@@ -95,6 +98,15 @@ src_prepare() {
 	sed -i \
 		-e "18d" \
 		-e "22d" opt/tuxbase/projects/arcad-c1/arcad-c1.desktop || die
+
+	if use nls; then
+		l10n_find_plocales_changes "usr/share/locale" "" ""
+
+		rm_loc() { rm -rf usr/share/locale/${1} || die; }
+		l10n_for_each_disabled_locale_do rm_loc
+	else
+		rm -rf usr/share/locale
+	fi
 
 	default
 }
