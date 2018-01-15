@@ -7,7 +7,7 @@ inherit autotools gnome2-utils xdg-utils
 
 DESCRIPTION="DroidPad lets you use an Android mobile to control a joystick or mouse"
 HOMEPAGE="https://www.digitalsquid.co.uk/droidpad/"
-SRC_URI="https://launchpad.net/droidpad-linux/1.0/${PV}/+download/${P}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://launchpad.net/droidpad-linux/1.0/${PV}/+download/${P}.tar.gz"
 KEYWORDS="amd64 ~x86"
 LICENSE="GPL-2+"
 RESTRICT="mirror"
