@@ -29,7 +29,7 @@ RDEPEND="
 	dev-libs/libevdev
 	dev-libs/libgudev
 	dev-libs/json-glib
-	>=dev-libs/granite-0.4.1
+	>=dev-libs/granite-0.5
 	>=x11-libs/gtk+-3.9.10:3"
 
 DEPEND="${RDEPEND}
