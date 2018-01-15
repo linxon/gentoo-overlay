@@ -1,0 +1,11 @@
+--- droidpad-1.1/src/statfuncs.cpp	2010-05-29 01:00:49.000000000 +0530
++++ droidpad-1.1-2/src/statfuncs.cpp	2011-07-17 00:31:09.932417434 +0530
+@@ -46,7 +46,7 @@
+ Glib::ustring getOption(Glib::ustring orig, Glib::ustring p1, Glib::ustring p2)
+ {
+ 	int bPos = orig.find(p1) + p1.size();
+-	return Glib::ustring::ustring(
++	return Glib::ustring(
+ 		orig,
+ 		bPos,
+ 		orig.find(p2) - bPos);

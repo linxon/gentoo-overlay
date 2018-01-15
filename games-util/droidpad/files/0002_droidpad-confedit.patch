@@ -1,0 +1,10 @@
+--- a/src/confEdit.cpp	2010-06-12 03:57:08.000000000 +0400
++++ b/src/confEdit.cpp	2018-01-15 10:45:03.356840011 +0300
+@@ -25,6 +25,7 @@
+ 
+ #include <glib/gstdio.h>
+ 
++#include <glibmm/regex.h>
+ #include "statfuncs.hpp"
+ 
+ ConfEdit::ConfEdit(Glib::ustring dataDir)
