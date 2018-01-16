@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -25,14 +25,16 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 pkg_setup() {
-	use samba && enewgroup sambashare
-
 	XFCONF=(
 		--disable-static
 		$(xfconf_use_debug)
 	)
 
-	DOCS=( AUTHORS ChangeLog NEWS README TODO "${FILESDIR}"/smb.conf.example )
+	DOCS=( AUTHORS ChangeLog NEWS README TODO )
+	if use samba; then
+		enewgroup sambashare
+		DOCS+=( "${FILESDIR}"/smb.conf.example )
+	fi
 }
 
 src_prepare() {
@@ -51,17 +53,19 @@ src_install() {
 }
 
 pkg_postinst() {
-	ewarn "Just run 'gpasswd -a <USER> sambashare', then have <USER> re-login"
-	ewarn "and update your /etc/samba/smb.conf"
-	ewarn
-	ewarn "   [global]"
-    ewarn "       workgroup = WORKGROUP"
-    ewarn "       security = share"
-    ewarn "       usershare path = /var/lib/samba/usershares"
-    ewarn "       usershare max shares = 100"
-    ewarn "       usershare allow guests = yes"
-    ewarn "       usershare owner only = yes"
-	ewarn
+	if use samba; then
+		ewarn "Just run 'gpasswd -a <USER> sambashare', then have <USER> re-login"
+		ewarn "and update your /etc/samba/smb.conf"
+		ewarn
+		ewarn "   [global]"
+		ewarn "       workgroup = WORKGROUP"
+		ewarn "       security = share"
+		ewarn "       usershare path = /var/lib/samba/usershares"
+		ewarn "       usershare max shares = 100"
+		ewarn "       usershare allow guests = yes"
+		ewarn "       usershare owner only = yes"
+		ewarn
+	fi
 
 	xfconf_pkg_postinst
 }
