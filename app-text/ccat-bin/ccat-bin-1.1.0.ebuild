@@ -10,7 +10,7 @@ SRC_URI="
 	amd64? ( https://github.com/jingweno/ccat/releases/download/v${PV}/linux-amd64-${PV}.tar.gz -> ${P}.tar.gz )
 	x86? ( https://github.com/jingweno/ccat/releases/download/v${PV}/linux-386-${PV}.tar.gz -> ${P}.tar.gz )"
 
-KEYWORDS="-* ~amd64 ~x86"
+KEYWORDS="-* amd64 ~x86"
 RESTRICT="mirror"
 LICENSE="MIT"
 SLOT="0"
