@@ -15,7 +15,7 @@ RESTRICT="mirror"
 LICENSE="MIT"
 SLOT="0"
 
-RDEPEND=""
+RDEPEND="!app-text/ccat"
 DEPEND="${RDEPEND}"
 
 src_unpack() {
