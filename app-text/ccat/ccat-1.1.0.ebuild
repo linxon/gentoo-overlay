@@ -23,6 +23,7 @@ SLOT="0"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
+	!app-text/ccat-bin
 	>=dev-lang/go-1.8"
 
 src_prepare() {

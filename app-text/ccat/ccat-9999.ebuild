@@ -14,7 +14,7 @@ if [[ ${PV} == *9999 ]]; then
 	EGIT_REPO_URI="https://github.com/jingweno/ccat"
 else
 	SRC_URI="https://github.com/jingweno/ccat/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 ~x86"
 fi
 
 RESTRICT="mirror"
@@ -23,6 +23,7 @@ SLOT="0"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
+	!app-text/ccat-bin
 	>=dev-lang/go-1.8"
 
 src_prepare() {
