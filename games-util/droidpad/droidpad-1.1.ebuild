@@ -16,9 +16,9 @@ IUSE="nls"
 
 RDEPEND="
 	dev-util/android-tools
-	dev-libs/openssl
+	dev-libs/openssl:0
 	x11-libs/gksu
-	>=dev-cpp/gtkmm-2.8.0"
+	>=dev-cpp/gtkmm-2.8.0:2.4"
 
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
