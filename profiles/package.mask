@@ -1,2 +1,6 @@
 # Unfortunately this driver has not work by my elan1200 touchpad :(
 sys-kernel/linux-elan1200-touchpad
+
+# Will be removed after 10 days
+dev-libs/granite
+app-office/spice-up
