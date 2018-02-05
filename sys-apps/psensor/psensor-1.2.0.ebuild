@@ -35,7 +35,8 @@ RDEPEND="
 
 DEPEND="${RDEPEND}
 	sys-apps/help2man
-	app-text/asciidoc"
+	app-text/asciidoc
+	nls? ( sys-devel/gettext )"
 
 src_configure() {
 	local econfargs=(
