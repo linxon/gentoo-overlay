@@ -49,11 +49,6 @@ src_prepare() {
 		-e "s:Exec=yandex-disk-indicator:Exec=/usr/bin/yandex-disk-indicator.py:" \
 		Yandex.Disk-indicator.desktop || die "sed failed!"
 
-	# Disable activateActions() on starting
-	# because ${PN} freeze while is trying install another filemanagers
-	# ¯\_(ツ)_/¯
-	epatch "${FILESDIR}"/disable_activateActions.patch
-
 	if use nls; then
 		l10n_find_plocales_changes "translations" "yandex-disk-indicator_" ".po"
 
@@ -64,8 +59,8 @@ src_prepare() {
 		l10n_for_each_disabled_locale_do rm_loc
 	else
 		for x in ${PLOCALES}; do
-			rm -fv translations/{actions-,ya-setup-}${x}.lang || die
 			rm -fv translations/yandex-disk-indicator_${x}.{mo,po} || die
+			rm -fv translations/{actions-,ya-setup-}${x}.lang || die
 		done
 	fi
 
