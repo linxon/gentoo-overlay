@@ -29,8 +29,10 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 pkg_setup() {
-	enewgroup ${PN}
-	enewuser ${PN} -1 -1 /dev/null ${PN}
+	if use suid; then
+		enewgroup ${PN}
+		enewuser ${PN} -1 -1 /dev/null ${PN}
+	fi
 }
 
 src_compile() {
@@ -44,7 +46,7 @@ src_install() {
 		fperms 4750 /usr/bin/${PN}
 	fi
 
-	dodoc README.rst 
+	dodoc README.rst
 }
 
 pkg_postinst() {
