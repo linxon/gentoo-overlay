@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>email@linxon.ru</email>
+		<name>Yury Martynov</name>
+	</maintainer>
+	<use>
+		<flag name="caja">Build extension for the Caja filemanager</flag>
+		<flag name="gcrypt">Use dev-libs/libgcrypt library</flag>
+		<flag name="gtk2">Use gtk2 instead of gtk3</flag>
+		<flag name="gtk3">Use gtk3 instead of gtk2</flag>
+		<flag name="linux-crypto">Use the Linux-2.6.38+ hash algorithm interface (CONFIG_CRYPTO_USER_API_HASH=y)</flag>
+		<flag name="mbedtls">Use mbed TLS instead of OpenSSL</flag>
+		<flag name="nautilus">Build the Nautilus extension</flag>
+		<flag name="nemo">Build the Nemo extension</flag>
+		<flag name="nettle">Use the Nettle cryptographic library</flag>
+		<!--<flag name="openssl">Enable the libcrypto (a dev-libs/openssl library)</flag>-->
+		<flag name="thunar">Build the Thunar extension</flag>
+	</use>
+</pkgmetadata>
