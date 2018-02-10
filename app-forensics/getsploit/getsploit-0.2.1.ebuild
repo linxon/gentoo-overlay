@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python3_{4,5,6} )
 
 inherit eutils python-r1
 
@@ -37,7 +37,7 @@ src_install() {
 	python_foreach_impl python_doscript getsploit.py
 	make_wrapper \
 		"getsploit" \
-		"python /usr/bin/getsploit.py"
+		"python3 /usr/bin/getsploit.py"
 }
 
 pkg_postinst() {
