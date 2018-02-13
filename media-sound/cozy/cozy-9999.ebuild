@@ -3,7 +3,7 @@
 
 EAPI=6
 PYTHON_COMPAT=( python3_{4,5,6} )
-PLOCALES="da_DK de en_IE es fi fr it ms_MY nl pl pt ru tr"
+PLOCALES="da_DK de en_IE es fi fr it ms_MY nl pl pt ru tr uk zh_CN"
 
 inherit gnome2-utils meson l10n python-r1 xdg-utils
 
@@ -45,16 +45,18 @@ src_prepare() {
 	if use nls; then
 		l10n_find_plocales_changes "po" "" ".po"
 
-		rm_loc() {
-			rm -fv po/${1}.{mo,po} || die
-			echo $(l10n_get_locales) > po/LINGUAS || die
-		}
+		rm_loc() { rm -fv po/${1}.{mo,po} || die; }
 		l10n_for_each_disabled_locale_do rm_loc
+
+		# Update a LINGUAS file
+		echo $(l10n_get_locales) > po/LINGUAS || die
 	else
 		for x in ${PLOCALES}; do
 			rm -fv po/${x}.{mo,po} || die
-			echo > po/LINGUAS || die
 		done
+
+		# ...
+		echo > po/LINGUAS || die
 	fi
 
 	eapply_user
