@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit autotools gnome2-utils linux-info xdg-utils
+inherit autotools gnome2-utils linux-info versionator xdg-utils
 
 DESCRIPTION="A GTK+ utility for computing message digests or checksums "
 HOMEPAGE="https://github.com/tristanheaven/gtkhash"
@@ -57,10 +57,6 @@ DEPEND="${RDEPEND}
 
 pkg_setup() {
 	if use linux-crypto; then
-		if ! version_is_at_least "${KV_FULL}" "2.6.38"; then
-			die "\"linux-crypto\" only support in the Linux-2.6.38+ version of kernel."
-		fi
-
 		local CONFIG_CHECK="~CRYPTO_USER_API_HASH"
 		local WARNING_CRYPTO_USER_API_HASH="CONFIG_CRYPTO_USER_API_HASH is required for hash algorithm interface."
 		check_extra_config
@@ -68,6 +64,12 @@ pkg_setup() {
 }
 
 src_prepare() {
+	if use linux-crypto; then
+		if version_is_at_least "${KV_FULL}" "2.6.38"; then
+			die "\"linux-crypto\" only support in the Linux-2.6.38+ version of kernel."
+		fi
+	fi
+
 	eautoreconf
 	eapply_user
 }
