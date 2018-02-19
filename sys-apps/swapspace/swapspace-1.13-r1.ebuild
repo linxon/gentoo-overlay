@@ -7,7 +7,7 @@ inherit eutils autotools systemd
 
 DESCRIPTION="A fork of Jeroen T. Vermeulen's excellent dynamic swap space manager"
 HOMEPAGE="https://github.com/Tookmund/Swapspace"
-LICENSE="GPL-2"
+SRC_URI=""
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
@@ -19,12 +19,22 @@ else
 	S="${WORKDIR}/${MY_P}"
 fi
 
+RDEPEND="sys-libs/glibc"
+DEPEND="${RDEPEND}"
+
+LICENSE="GPL-2"
+RESTRICT="mirror"
+IUSE="systemd"
 SLOT="0"
 
 src_prepare() {
-	default
-	epatch "${FILESDIR}"/fix_varpref_and_etcpref.patch
+	sed -i \
+		-e 's:#define ETCPREFIX "/usr/local":#define ETCPREFIX "/":' \
+		-e 's:#define VARPREFIX "/usr/local":#define VARPREFIX "/":' \
+		src/env.h || die "sed failed!"
+
 	eautoreconf
+	eapply_user
 }
 
 src_install() {
@@ -33,7 +43,7 @@ src_install() {
 
 	newconfd "${FILESDIR}"/swapspace.confd ${PN}
 	newinitd "${FILESDIR}"/swapspace.initd ${PN}
-	systemd_dounit "${FILESDIR}"/swapspace.service
+	use systemd && systemd_dounit "${FILESDIR}"/swapspace.service
 
 	insinto /etc
 	newins "${FILESDIR}"/swapspace.conf ${PN}.conf
