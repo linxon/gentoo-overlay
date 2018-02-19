@@ -7,7 +7,7 @@ inherit eutils autotools systemd
 
 DESCRIPTION="A fork of Jeroen T. Vermeulen's excellent dynamic swap space manager"
 HOMEPAGE="https://github.com/Tookmund/Swapspace"
-LICENSE="GPL-2"
+SRC_URI=""
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
@@ -19,6 +19,10 @@ else
 	S="${WORKDIR}/${MY_P}"
 fi
 
+RDEPEND="sys-libs/glibc"
+DEPEND="${RDEPEND}"
+
+LICENSE="GPL-2"
 RESTRICT="mirror"
 IUSE="systemd"
 SLOT="0"
