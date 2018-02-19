@@ -19,12 +19,18 @@ else
 	S="${WORKDIR}/${MY_P}"
 fi
 
+RESTRICT="mirror"
+IUSE="systemd"
 SLOT="0"
 
 src_prepare() {
-	default
-	epatch "${FILESDIR}"/fix_varpref_and_etcpref.patch
+	sed -i \
+		-e 's:#define ETCPREFIX "/usr/local":#define ETCPREFIX "/":' \
+		-e 's:#define VARPREFIX "/usr/local":#define VARPREFIX "/":' \
+		src/env.h || die "sed failed!"
+
 	eautoreconf
+	eapply_user
 }
 
 src_install() {
@@ -33,7 +39,7 @@ src_install() {
 
 	newconfd "${FILESDIR}"/swapspace.confd ${PN}
 	newinitd "${FILESDIR}"/swapspace.initd ${PN}
-	systemd_dounit "${FILESDIR}"/swapspace.service
+	use systemd && systemd_dounit "${FILESDIR}"/swapspace.service
 
 	insinto /etc
 	newins "${FILESDIR}"/swapspace.conf ${PN}.conf
