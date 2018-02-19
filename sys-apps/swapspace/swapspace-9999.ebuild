@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit eutils autotools systemd
+inherit eutils autotools linux-info systemd
 
 DESCRIPTION="A fork of Jeroen T. Vermeulen's excellent dynamic swap space manager"
 HOMEPAGE="https://github.com/Tookmund/Swapspace"
@@ -26,6 +26,13 @@ LICENSE="GPL-2"
 RESTRICT="mirror"
 IUSE="systemd"
 SLOT="0"
+
+pkg_setup() {
+	local CONFIG_CHECK="~SWAP"
+	local WARNING_SWAP="CONFIG_SWAP is required for ${PN} support."
+
+	check_extra_config
+}
 
 src_prepare() {
 	sed -i \
