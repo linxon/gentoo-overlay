@@ -3,7 +3,7 @@
 
 EAPI=6
 VALA_MIN_API_VERSION="0.26"
-PLOCALES="en es fr lt pt ru"
+PLOCALES="en es es_ES fr lt pt pt_BR pt_PT ru"
 
 inherit gnome2-utils meson l10n vala xdg-utils
 
