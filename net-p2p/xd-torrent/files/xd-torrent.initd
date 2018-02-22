@@ -1,0 +1,56 @@
+#!/sbin/openrc-run
+# Copyright 1999-2018 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+DAEMON="/usr/bin/XD"
+PID_DIR=${PID_DIR:-/var/run/${RC_SVCNAME}}
+PID_FILE=${PID_DIR}/${RC_SVCNAME}.pid
+USER=${RC_SVCNAME}
+GROUP=${RC_SVCNAME}
+DEFAULT_WORK_DIR="/var/lib/${RC_SVCNAME}"
+DEFAULT_LOG_FILE="/var/log/${RC_SVCNAME}.log"
+DAEMON_ARGS=()
+
+depend() {
+	need net
+	use netmount
+}
+
+_init_req_file() {
+	local filepath="${1}"
+
+	if ! [ -f "${filepath}" ]; then
+		touch "${filepath}" > /dev/null 2>&1 && chown ${USER}:${GROUP} "${filepath}" || \
+				( eerror "Cannot create: ${filepath}" && return 1 )
+	fi
+}
+
+checkconfig() {
+	if [ ! -d ${PID_DIR} ]; then
+		checkpath -q -d -o ${USER}:${GROUP} -m 0755 ${PID_DIR} || return 1
+	fi
+
+	[ -z "${LOG_FILE}" ] || DEFAULT_LOG_FILE="${LOG_FILE}"
+	[ -z "${HOME_DIR}" ] || DEFAULT_WORK_DIR="${HOME_DIR}"
+
+	DAEMON_ARGS+=( "${DEFAULT_WORK_DIR}/config.ini" )
+}
+
+start() {
+	checkconfig || return 1
+	_init_req_file "${DEFAULT_LOG_FILE}" || return 1
+
+	ebegin "Starting XD"
+	start-stop-daemon --start --background --make-pidfile \
+		--pidfile "${PID_FILE}" --user "${USER}" --chdir "${DEFAULT_WORK_DIR}" \
+		--exec "${DAEMON}" -1 ${DEFAULT_LOG_FILE} -- "${DAEMON_ARGS[@]}"
+	eend ${?}
+}
+
+stop() {
+	ebegin "Stopping XD"
+	start-stop-daemon --stop --quiet --pidfile "${PID_FILE}" --user "${USER}"
+	eend ${?}
+}
+
+# vim: set ft=gentoo-init-d ts=4 :

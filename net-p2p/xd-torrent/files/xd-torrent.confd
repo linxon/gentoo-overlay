@@ -1,0 +1,7 @@
+# /etc/conf.d/fiche: config file for /etc/init.d/fiche
+
+# Default: /var/lib/xd-torrent
+#HOME_DIR=""
+
+# Default: /var/log/xd-torrent.log
+#LOG_FILE=""

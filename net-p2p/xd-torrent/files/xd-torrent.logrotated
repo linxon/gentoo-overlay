@@ -1,0 +1,11 @@
+/var/log/xd-torrent.log {
+	compress
+	daily
+	rotate 4
+	notifempty
+	missingok
+	nocreate
+    postrotate
+        /etc/init.d/xd-torrent reload > /dev/null 2>&1 || true
+    endscript
+}
