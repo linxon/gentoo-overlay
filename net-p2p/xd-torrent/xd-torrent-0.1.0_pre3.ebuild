@@ -55,6 +55,7 @@ src_install() {
 pkg_postinst() {
 	ewarn
 	ewarn "You need enable the SAM Bridge in /etc/i2pd/i2pd.conf"
+	ewarn "and run 'gpasswd -a <USER> ${PN}', then have <USER> re-login."
 	elog "See documentation: https://github.com/majestrate/XD#usage"
 	elog
 }
