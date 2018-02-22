@@ -5,7 +5,7 @@
 	notifempty
 	missingok
 	nocreate
-    postrotate
-        /etc/init.d/xd-torrent reload > /dev/null 2>&1 || true
-    endscript
+	postrotate
+		/etc/init.d/xd-torrent reload > /dev/null 2>&1 || true
+	endscript
 }
