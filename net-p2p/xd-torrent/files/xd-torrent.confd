@@ -1,4 +1,4 @@
-# /etc/conf.d/fiche: config file for /etc/init.d/fiche
+# /etc/conf.d/xd-torrent: config file for /etc/init.d/xd-torrent
 
 # Default: /var/lib/xd-torrent
 #HOME_DIR=""
