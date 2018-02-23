@@ -21,7 +21,7 @@ _init_req_file() {
 
 	if ! [ -f "${filepath}" ]; then
 		touch "${filepath}" > /dev/null 2>&1 && chown ${USER}:${GROUP} "${filepath}" || \
-				( eerror "Cannot create: ${filepath}" && return 1 )
+			( eerror "Cannot create: ${filepath}" && return 1 )
 	fi
 }
 
