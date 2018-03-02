@@ -21,7 +21,11 @@ fi
 
 RESTRICT="mirror"
 SLOT="0"
-RDEPEND="x11-libs/wxGTK:3.0"
+
+RDEPEND="
+	sys-libs/glibc
+	x11-libs/wxGTK:3.0"
+
 DEPEND="${RDEPEND}"
 
 src_install() {
