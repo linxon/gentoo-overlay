@@ -5,4 +5,7 @@
     <email>email@linxon.ru</email>
     <name>Yury Martynov</name>
   </maintainer>
+  <use>
+    <flag name="live_preview">Enable live editing using chromium/google-chrome</flag>
+  </use>
 </pkgmetadata>
