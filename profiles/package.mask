@@ -4,3 +4,6 @@ sys-kernel/linux-elan1200-touchpad
 # ...this's very unstable package 
 # Please use this package at your own risk (using latest version of kernel)
 app-forensics/kjackal
+
+# Mask temporary...
+sys-apps/fselect
