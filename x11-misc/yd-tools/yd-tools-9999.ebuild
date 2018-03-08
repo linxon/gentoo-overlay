@@ -68,8 +68,6 @@ src_prepare() {
 }
 
 src_install() {
-	local x
-
 	if use nls; then
 		do_loc() {
 			insinto /usr/share/locale/${1}/LC_MESSAGES
