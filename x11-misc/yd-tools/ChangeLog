@@ -1,15 +1,6 @@
-yd-tools (1.9.14) xenial; urgency=medium
+yd-tools (1.9.18) xenial; urgency=medium
   * Changes:
-    - Change initialization behavior (fix for #181)
-    - Code optimization and clearance
-    - Debug messages optimization
+    - Fix for github issue #185
+    - Fix for github issue #186
 
- -- Sly_tom_cat <slytomcat@mail.ru>  Sun, 17 Dec 2017 23:26:11 +0300
-
-
-yd-tools (1.9.11) xenial; urgency=medium
-  * Changes:
-    - Use yandex-disk absolute path received by which command (fix for issue #174)
-    - More informative error status (related to issue #173)
-
- -- Sly_tom_cat <slytomcat@mail.ru>  Sun, 07 May 2017 13:45:39 +0300
+ -- Sly_tom_cat <slytomcat@mail.ru>  Sun, 02 Feb 2018 13:45:39 +0300
