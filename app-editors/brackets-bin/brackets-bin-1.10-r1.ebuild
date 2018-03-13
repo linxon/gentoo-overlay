@@ -22,7 +22,6 @@ QA_PRESTRIPPED="/opt/brackets/www/node_modules/phantomjs/lib/phantom/bin/phantom
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	|| ( >=virtual/libudev-147 >=virtual/libudev-198 )
 	!app-editors/brackets
 	>=dev-libs/atk-1.12.4
 	>=dev-libs/expat-1.95.8
@@ -38,6 +37,7 @@ RDEPEND="${DEPEND}
 	>=net-print/cups-1.4.0
 	>=sys-apps/dbus-1.2.14
 	>=sys-devel/gcc-4.1.1
+	>=virtual/libudev-198
 	>=x11-libs/cairo-1.6.0
 	>=x11-libs/gdk-pixbuf-2.22.0
 	>=x11-libs/gtk+-2.24.0:2
