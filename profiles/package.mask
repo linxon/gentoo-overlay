@@ -7,3 +7,6 @@ app-forensics/kjackal
 
 # Mask temporary...
 sys-apps/fselect
+
+# ...this's very unstable package
+=app-forensics/getsploit-0.2.2
