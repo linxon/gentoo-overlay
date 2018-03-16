@@ -27,7 +27,7 @@ IUSE=""
 RDEPEND="${PYTHON_DEPS}"
 
 src_prepare() {
-	eapply "${FILESDIR}"
+	epatch "${FILESDIR}"/${P}_add_support_user_home_dir.patch
 	eapply_user
 }
 
