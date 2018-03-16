@@ -21,7 +21,6 @@ else
 fi
 
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~x86"
 LICENSE="GPL-3"
 SLOT="0"
 IUSE="nls"
