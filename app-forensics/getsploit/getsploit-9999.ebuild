@@ -4,7 +4,7 @@
 EAPI=6
 PYTHON_COMPAT=( python3_{4,5,6} )
 
-inherit eutils python-r1
+inherit eutils distutils-r1
 
 DESCRIPTION="Command line utility for searching and downloading exploits"
 HOMEPAGE="https://github.com/vulnersCom/getsploit"
@@ -27,17 +27,8 @@ IUSE=""
 RDEPEND="${PYTHON_DEPS}"
 
 src_prepare() {
-	eapply "${FILESDIR}"
+	epatch "${FILESDIR}"/getsploit-0.2.2_add_support_user_home_dir.patch
 	eapply_user
-}
-
-src_install() {
-	dodoc README.md
-
-	python_foreach_impl python_doscript getsploit.py
-	make_wrapper \
-		"getsploit" \
-		"python3 /usr/bin/getsploit.py"
 }
 
 pkg_postinst() {
