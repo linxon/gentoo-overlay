@@ -10,3 +10,6 @@ sys-apps/fselect
 
 # ...this's very unstable package
 =app-forensics/getsploit-0.2.2
+
+# This package is not be updated a long time 
+net-p2p/transmission-i2p
