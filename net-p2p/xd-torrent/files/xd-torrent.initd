@@ -20,8 +20,12 @@ _init_req_file() {
 	local filepath="${1}"
 
 	if ! [ -f "${filepath}" ]; then
-		touch "${filepath}" > /dev/null 2>&1 && chown ${USER}:${GROUP} "${filepath}" || \
-			( eerror "Cannot create: ${filepath}" && return 1 )
+		if touch "${filepath}" > /dev/null 2>&1; then
+			chown ${USER}:${GROUP} "${filepath}"
+		else
+			eerror "Cannot create: ${filepath}"
+			return 1
+		fi
 	fi
 }
 
@@ -43,13 +47,13 @@ start() {
 	ebegin "Starting XD"
 	start-stop-daemon --start --background --make-pidfile \
 		--pidfile "${PID_FILE}" --user "${USER}" --chdir "${DEFAULT_WORK_DIR}" \
-		--exec "${DAEMON}" -1 ${DEFAULT_LOG_FILE} -- "${DAEMON_ARGS[@]}"
+		--exec "${DAEMON}" -1 "${DEFAULT_LOG_FILE}" -- "${DAEMON_ARGS[@]}"
 	eend ${?}
 }
 
 stop() {
 	ebegin "Stopping XD"
-	start-stop-daemon --stop --quiet --pidfile "${PID_FILE}" --user "${USER}"
+	start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile "${PID_FILE}" --user "${USER}"
 	eend ${?}
 }
 
