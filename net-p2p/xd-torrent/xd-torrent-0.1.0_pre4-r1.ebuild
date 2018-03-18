@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit user eutils
+inherit eutils systemd user
 
 DESCRIPTION="Standalone I2P BitTorrent Client written in GO"
 HOMEPAGE="https://github.com/majestrate/XD"
@@ -22,9 +22,12 @@ fi
 RESTRICT="mirror"
 LICENSE="MIT"
 SLOT="0"
-IUSE="+webui"
+IUSE="+webui systemd"
 
-RDEPEND="|| ( net-vpn/i2pd net-vpn/i2p )"
+RDEPEND="
+	|| ( net-vpn/i2pd net-vpn/i2p )
+	systemd? ( sys-apps/systemd )"
+
 DEPEND=">=dev-lang/go-1.8"
 
 pkg_setup() {
@@ -43,13 +46,14 @@ src_install() {
 
 	newinitd "${FILESDIR}"/xd-torrent.initd ${PN}
 	newconfd "${FILESDIR}"/xd-torrent.confd ${PN}
+	use systemd && systemd_dounit "${FILESDIR}"/xd-torrent.service
 
 	insinto /etc/logrotate.d/
 	newins "${FILESDIR}"/xd-torrent.logrotated ${PN}
 
-	emake PREFIX="${D}/usr" install
+	emake PREFIX="${D}"/usr install
 
-	dodoc README.md contrib/docker/Dockerfile
+	dodoc -r README.md contrib/docker/Dockerfile docs
 }
 
 pkg_postinst() {
