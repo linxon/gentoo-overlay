@@ -35,6 +35,6 @@ DEPEND="${RDEPEND}
 
 pkg_postinst() {
 	ewarn
-	ewarn "Just restart a Thunar! :)"
+	ewarn "Just restart the Thunar! :)"
 	ewarn
 }
