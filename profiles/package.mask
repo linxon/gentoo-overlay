@@ -1,7 +1,7 @@
 # Unfortunately this driver has not work by my elan1200 touchpad :(
 sys-kernel/linux-elan1200-touchpad
 
-# ...this's very unstable package 
+# ...this is very unstable package
 # Please use this package at your own risk (using latest version of kernel)
 app-forensics/kjackal
 
