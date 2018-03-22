@@ -64,6 +64,9 @@ src_prepare() {
 		done
 	fi
 
+	# Fix: https://github.com/slytomcat/yandex-disk-indicator/issues/191
+	epatch "${FILESDIR}"/${P}_fix_for_191.patch
+
 	eapply_user
 }
 
