@@ -13,3 +13,6 @@ sys-apps/fselect
 
 # This package is not be updated a long time 
 net-p2p/transmission-i2p
+
+# Will be removed after 10 days (Recommended to use official "net-misc/ubridge" package)
+net-misc/ubridge
