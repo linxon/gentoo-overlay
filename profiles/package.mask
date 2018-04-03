@@ -8,11 +8,8 @@ app-forensics/kjackal
 # Mask temporary...
 sys-apps/fselect
 
-# ...this's very unstable package
+# ...this is very unstable package
 =app-forensics/getsploit-0.2.2
 
 # This package is not be updated a long time 
 net-p2p/transmission-i2p
-
-# Will be removed after 10 days (Recommended to use official "net-misc/ubridge" package)
-net-misc/ubridge
