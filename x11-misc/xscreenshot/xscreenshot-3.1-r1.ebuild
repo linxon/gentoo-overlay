@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit unpacker gnome2-utils xdg-utils multilib
+inherit gnome2-utils xdg-utils multilib
 
 DESCRIPTION="A tool for capture, edit, share and exchange screenshots between people via the internet"
 HOMEPAGE="http://xscreenshot.com"
