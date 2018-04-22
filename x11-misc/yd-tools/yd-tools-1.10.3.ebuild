@@ -41,8 +41,8 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_prepare() {
-	mv todo.txt TODO || die
-	mv build/yd-tools/debian/changelog ChangeLog || die
+	mv -v todo.txt TODO || die
+	mv -v build/yd-tools/debian/changelog ChangeLog || die
 
 	# Change "Exec" path in *.desktop files
 	sed -i \
