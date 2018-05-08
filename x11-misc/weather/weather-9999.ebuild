@@ -3,7 +3,7 @@
 
 EAPI=6
 VALA_MIN_API_VERSION="0.26"
-PLOCALES="en es es_ES fr lt pt pt_BR pt_PT ru"
+PLOCALES="ca de en es es_ES fr lt pt pt_BR pt_PT ru"
 
 inherit gnome2-utils meson l10n vala xdg-utils
 
@@ -28,6 +28,7 @@ IUSE="nls"
 RDEPEND="
 	dev-libs/libappindicator:3
 	>=dev-libs/json-glib-1.0[introspection]
+	dev-libs/appstream-glib[introspection]
 	net-libs/libsoup:2.4
 	net-libs/webkit-gtk:4
 	media-libs/clutter:1.0[gtk]
@@ -39,6 +40,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	$(vala_depend)
 	virtual/pkgconfig
+	dev-util/desktop-file-utils
 	>=dev-util/meson-0.40.0
 	nls? ( sys-devel/gettext )"
 
