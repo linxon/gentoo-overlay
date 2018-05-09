@@ -17,7 +17,7 @@ S="${WORKDIR}"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	dev-java/oracle-jdk-bin:1.8"
+	>=virtual/jdk-1.7"
 
 src_unpack() {
 	unpack ${A} && cp "${DISTDIR}"/"${P}.jar" "${WORKDIR}" || die
