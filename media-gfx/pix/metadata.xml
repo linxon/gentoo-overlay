@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>email@linxon.ru</email>
+    <name>Yury Martynov</name>
+  </maintainer>
+  <use>
+    <flag name="cdr">Burn disc support (app-cdr/brasero)</flag>
+    <flag name="exif">Exiv2 support</flag>
+    <flag name="gstreamer">GStreamer support</flag>
+    <flag name="http">Web services support</flag>
+    <flag name="jpeg">JPEG tools</flag>
+    <flag name="raw">Use libopenraw</flag>
+    <flag name="slideshow">Clutter support</flag>
+    <flag name="svg">SVG support</flag>
+    <flag name="tiff">TIFF tools</flag>
+    <flag name="webkit">Webkit support</flag>
+    <flag name="webp">WebP support</flag>
+  </use>
+</pkgmetadata>
