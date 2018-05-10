@@ -1,0 +1,17 @@
+--- a/src/Makefile	2018-05-06 18:36:46.000000000 +0300
++++ b/src/Makefile	2018-05-10 07:41:28.888683292 +0300
+@@ -33,13 +33,7 @@
+ # Compile with OPTIM=0 to disable gcc optimizations, to enable debug.
+   STRIP = strip
+ 
+-# Detect GIT revision
+-  GIT_REVISION = $(shell git rev-list --count 1af8c74f53110e349d8f0d19b14599281913f71f..)
+-  GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
+-  ifneq (master,$(GIT_BRANCH))
+-    GIT_REVISION := "$(GIT_REVISION)-$(GIT_BRANCH)"
+-  endif
+-
++  GIT_REVISION := "2.5-gentoo"
+   REVISION_CACHE = .revision.cache
+   RES := $(shell if [ ! -f $(REVISION_CACHE) ] || [ "`cat $(REVISION_CACHE)`" != "$(GIT_REVISION)" ] ; then echo "$(GIT_REVISION)" > $(REVISION_CACHE) ; fi )
+ 
