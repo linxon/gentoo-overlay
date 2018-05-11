@@ -23,7 +23,7 @@ RESTRICT="mirror"
 SLOT="0"
 DOCS=( CHANGELOG.md README.md )
 
-DEPEND="
+DEPEND="${PYTHON_DEPS}
 	dev-python/boto3[${PYTHON_USEDEP}]
 	dev-python/clint[${PYTHON_USEDEP}]
 	dev-python/click[${PYTHON_USEDEP}]
