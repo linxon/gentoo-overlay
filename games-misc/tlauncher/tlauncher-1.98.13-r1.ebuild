@@ -9,16 +9,18 @@ DESCRIPTION="A advanced launcher for Minecraft"
 HOMEPAGE="https://tlauncher.org"
 LICENSE="all-rights-reserved"
 
-SRC_URI="https://tlauncher.org/download/3049 -> ${P}.jar
+# Get url: http://tlauncherrepo.com/tlauncher/legacy/bootstrap.json
+PKG_HASH="00aa8d0014ce30f2116a13b8313de65cc9be690f475758d83359e7756fa848f0"
+SRC_URI="http://tlauncherrepo.com/legacy/bootstrap/${PKG_HASH}.jar -> ${P}.jar
          https://minecraft.net/apple-icon-180x180.png -> ${P}.png"
 
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~x86"
-SLOT="2"
+KEYWORDS="amd64 x86"
+SLOT="1"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	dev-java/oracle-jdk-bin"
+	>=virtual/jdk-1.7"
 
 S="${WORKDIR}"
 
@@ -31,7 +33,7 @@ src_install() {
 	insinto /usr/share/pixmaps/
 	newins "${DISTDIR}"/${P}.png ${PN}-${SLOT}.png
 
-	# Fix error message — "Error in custom provider, java.lang.NoClassDefFoundError..."
+	# Fix error message — "Could not access JAR file."
 	fowners -R root:games "${inst_dir}"
 	fperms 775 "${inst_dir}"
 	fperms 664 "${inst_dir}"/${ex_file}
@@ -39,7 +41,7 @@ src_install() {
 	make_wrapper "${PN}${SLOT}" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
 	make_desktop_entry \
 		"/usr/bin/${PN}${SLOT}" \
-		"TLauncher" \
+		"TLauncher Legacy" \
 		"${PN}-${SLOT}" \
 		"Game" \
 		"Path=${inst_dir}"
