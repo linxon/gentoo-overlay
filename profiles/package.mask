@@ -11,3 +11,5 @@ sys-apps/fselect
 # This package is not be updated a long time
 net-p2p/transmission-i2p
 
+# Bug: https://github.com/abbat/ekstertera/issues/9
+=x11-misc/ekstertera-0.1.11
