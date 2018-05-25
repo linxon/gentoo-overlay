@@ -15,7 +15,7 @@ IUSE="+examples source"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	dev-java/oracle-jdk-bin"
+	>=virtual/jdk-1.7"
 
 S="${WORKDIR}"
 
