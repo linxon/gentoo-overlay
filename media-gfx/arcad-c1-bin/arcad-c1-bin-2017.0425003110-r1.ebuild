@@ -108,6 +108,9 @@ src_prepare() {
 		rm -rf usr/share/locale
 	fi
 
+	# Cleanup
+	rm -rf usr/share/doc/
+
 	default
 }
 
