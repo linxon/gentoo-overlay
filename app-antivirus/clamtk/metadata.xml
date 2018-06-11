@@ -6,6 +6,7 @@
     <name>Yury Martynov</name>
   </maintainer>
   <use>
+    <flag name="nemo">Context menu scan of files or folders in Nemo</flag>
     <flag name="thunar">Context menu scan of files or folders in Thunar</flag>
   </use>
 </pkgmetadata>

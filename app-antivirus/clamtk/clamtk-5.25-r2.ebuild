@@ -15,7 +15,7 @@ LICENSE="|| ( Artistic GPL-1+ )"
 RESTRICT="mirror userpriv"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="nls thunar"
+IUSE="nemo nls thunar"
 
 RDEPEND="
 	>=app-antivirus/clamav-0.95
@@ -26,6 +26,7 @@ RDEPEND="
 	dev-perl/glib-perl
 	dev-perl/Gtk2
 	dev-perl/libwww-perl
+	nemo? ( gnome-extra/nemo-sendto-clamtk )
 	virtual/perl-Digest-SHA
 	virtual/perl-MIME-Base64
 	virtual/perl-Time-Piece
@@ -70,6 +71,11 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
+	gnome2_icon_cache_update
+	xdg_desktop_database_update
+}
+
+pkg_postrm() {
 	gnome2_icon_cache_update
 	xdg_desktop_database_update
 }
