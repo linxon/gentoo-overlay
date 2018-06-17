@@ -7,11 +7,13 @@ inherit xdg-utils gnome2-utils
 
 DESCRIPTION="Pixelitor is a free and open source image editing software"
 HOMEPAGE="http://pixelitor.sourceforge.net/"
-LICENSE="GPL-3"
+
 
 MY_P="${PN}_${PV}"
-SRC_URI="https://netcologne.dl.sourceforge.net/project/pixelitor/${PV}/${MY_P}.jar"
+SRC_URI="https://github.com/lbalazscs/Pixelitor/releases/download/v${PV}/${MY_P}.jar"
 
+LICENSE="GPL-3"
+RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
@@ -19,7 +21,7 @@ S="${WORKDIR}"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	dev-java/oracle-jdk-bin:1.8"
+	>=virtual/jdk-1.7"
 
 src_unpack() {
 	unpack ${A} && cp "${DISTDIR}"/"${MY_P}.jar" "${WORKDIR}" || die
@@ -55,6 +57,11 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
+	xdg_desktop_database_update
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
 	xdg_desktop_database_update
 	gnome2_icon_cache_update
 }
