@@ -5,13 +5,12 @@ EAPI=6
 
 inherit eutils unpacker gnome2-utils xdg-utils
 
-MY_PV="release-1.13-prerelease-3"
 DESCRIPTION="A code editor for HTML, CSS and JavaScript"
 HOMEPAGE="http://brackets.io/"
 
 SRC_URI="
-	amd64? ( https://github.com/adobe/brackets/releases/download/${MY_PV}/Brackets.Release.${MY_PV}.64-bit.deb )
-	x86?   ( https://github.com/adobe/brackets/releases/download/${MY_PV}/Brackets.Release.${MY_PV}.32-bit.deb )"
+	amd64? ( https://github.com/adobe/brackets/releases/download/release-${PV}/Brackets.Release.${PV}.64-bit.deb )
+	x86?   ( https://github.com/adobe/brackets/releases/download/release-${PV}/Brackets.Release.${PV}.32-bit.deb )"
 
 KEYWORDS="-* ~amd64 ~x86"
 RESTRICT="mirror"
