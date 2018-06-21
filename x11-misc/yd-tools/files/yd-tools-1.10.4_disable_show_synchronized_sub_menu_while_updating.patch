@@ -1,0 +1,14 @@
+--- a/yandex-disk-indicator.py	2018-06-17 14:59:17.000000000 +0300
++++ b/yandex-disk-indicator.py	2018-06-20 20:23:49.617947698 +0300
+@@ -780,6 +780,11 @@
+       # Update last synchronized sub-menu on first run or when last data has changed
+       if vals['lastchg'] or vals['laststatus'] == 'unknown':
+         # Update last synchronized sub-menu
++        
++        # Fix bug: https://github.com/slytomcat/yandex-disk-indicator/issues/197
++        # Temporary disable show synchronized sub menu while updating
++        self.lastItems.destroy()
++        
+         self.lastItems = Gtk.Menu()                   # Create new Sub-menu:
+         for filePath in vals['lastitems']:            # Create new sub-menu items
+           # Create menu label as file path (shorten it down to 50 symbols when path length > 50
