@@ -11,6 +11,7 @@
     <flag name="gstreamer">GStreamer support</flag>
     <flag name="http">Web services support</flag>
     <flag name="jpeg">JPEG tools</flag>
+    <flag name="json">Use the libjson-glib library</flag>
     <flag name="raw">Use libopenraw</flag>
     <flag name="slideshow">Clutter support</flag>
     <flag name="svg">SVG support</flag>
