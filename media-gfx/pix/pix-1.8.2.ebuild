@@ -93,3 +93,9 @@ pkg_postinst() {
 	gnome2_icon_cache_update
 	gnome2_schemas_update
 }
+
+pkg_postrm() {
+	xdg_desktop_database_update
+	gnome2_icon_cache_update
+	gnome2_schemas_update
+}
