@@ -1,0 +1,22 @@
+From 6fc48697c5ba90808e38a920b2f08d317ab7befe Mon Sep 17 00:00:00 2001
+From: Kasra_mp <kasra_mp@yahoo.com>
+Date: Sat, 11 Aug 2018 10:58:13 +0200
+Subject: [PATCH] #69 Fix typo
+
+---
+ toot/ui/app.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/toot/ui/app.py b/toot/ui/app.py
+index d9fb784..71f28fa 100644
+--- a/toot/ui/app.py
++++ b/toot/ui/app.py
+@@ -298,7 +298,7 @@ def get_content(self):
+             "  v      - view current toot in browser",
+             "  q      - quit application",
+             "",
+-            "Press q to exist help.",
++            "Press q to exit help.",
+             "",
+             ("https://github.com/ihabunek/toot", Color.YELLOW),
+         ]

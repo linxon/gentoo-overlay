@@ -25,3 +25,8 @@ DEPEND=""
 RDEPEND="${PYTHON_DEPS}
 	>=dev-python/requests-2.13[${PYTHON_USEDEP}]
 	>=dev-python/beautifulsoup-4.5.0:4[${PYTHON_USEDEP}]"
+
+src_prepare() {
+	eapply "${FILESDIR}"/fix_help_typo.patch
+	eapply_user
+}
