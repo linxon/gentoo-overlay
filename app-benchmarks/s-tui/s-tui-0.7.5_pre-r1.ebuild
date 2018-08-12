@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
+PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6,3_7} )
 
 inherit distutils-r1
 
@@ -13,8 +13,11 @@ if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/amanusk/s-tui"
 else
-	SRC_URI="https://github.com/amanusk/s-tui/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	MY_PV="${PV%%_pre}"
+	MY_P="${PN}-${MY_PV}"
+	SRC_URI="https://github.com/amanusk/s-tui/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
+	S="${WORKDIR}"/${MY_P}
 fi
 
 LICENSE="GPL-2"
