@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5,6} )
+PYTHON_COMPAT=( python3_{4,5,6,7} )
 PLOCALES="be bg el ru"
 
 inherit eutils gnome2-utils l10n xdg-utils python-r1
@@ -41,9 +41,6 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_prepare() {
-	mv todo.txt TODO || die
-	mv build/yd-tools/debian/changelog ChangeLog || die
-
 	# Change "Exec" path in *.desktop files
 	sed -i \
 		-e "s:Exec=yandex-disk-indicator:Exec=/usr/bin/yandex-disk-indicator.py:" \
@@ -83,7 +80,7 @@ src_install() {
 	doins -r translations icons fm-actions
 	doexe ya-setup
 
-	dodoc README.md TODO ChangeLog man/yd-tools
+	dodoc README.md man/yd-tools
 	domenu Yandex.Disk-indicator.desktop
 	doman man/yd-tools.1
 
