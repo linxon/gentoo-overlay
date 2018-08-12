@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5,6} )
+PYTHON_COMPAT=( python3_{4,5,6,7} )
 PLOCALES="da_DK de en_IE es fi fr it ms_MY nl pl pt ru tr uk zh_CN"
 
 inherit gnome2-utils meson l10n python-r1 xdg-utils
