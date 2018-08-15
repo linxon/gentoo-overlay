@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6,3_7} )
 
 inherit eutils python-r1
 
@@ -33,6 +33,7 @@ src_prepare() {
 	mv debian/changelog ChangeLog || die
 	mv README.md README.ru.md && mv README.en.md README.md || die
 
+	epatch "${FILESDIR}"/rename_async_vars.patch
 	eapply_user
 }
 
@@ -44,5 +45,5 @@ src_install() {
 
 	make_wrapper \
 		"ydcmd" \
-		"python2 /usr/bin/ydcmd.py"
+		"python3 /usr/bin/ydcmd.py"
 }
