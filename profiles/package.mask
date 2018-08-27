@@ -13,3 +13,6 @@ net-p2p/transmission-i2p
 
 # Bug: https://github.com/abbat/ekstertera/issues/9
 #=x11-misc/ekstertera-0.1.11
+
+# Hacked? https://github.com/solusipse/fiche/issues/87
+net-misc/fiche
