@@ -61,27 +61,28 @@ RDEPEND="${DEPEND}
 
 QA_PREBUILT="*"
 S="${WORKDIR}"
-BRACKETS_HOME="opt/brackets"
 
 pkg_setup() {
 	chromium_suid_sandbox_check_kernel_config
 }
 
 src_prepare() {
-	default
+	local brackets_home="opt/brackets"
 
-	pax-mark m "${BRACKETS_HOME}/Brackets"
+	pax-mark m "${brackets_home}/Brackets"
+
+	pushd "${brackets_home}/locales" > /dev/null || die "Failed to install!"
+	chromium_remove_language_paks
+	popd > /dev/null || die "Failed to install!"
 
 	# Fix: "FATAL:setuid_sandbox_host.cc(162)]
 	#       The SUID sandbox helper binary was found, but is not configured correctly"
 	chmod 4755 opt/brackets/chrome-sandbox || die "Failed to install!"
 
-	pushd "${BRACKETS_HOME}/locales" > /dev/null || die "Failed to install!"
-	chromium_remove_language_paks
-	popd > /dev/null || die "Failed to install!"
-
 	# Cleanup
 	rm -rf usr/share/menu usr/share/doc
+
+	default
 }
 
 src_install() {
