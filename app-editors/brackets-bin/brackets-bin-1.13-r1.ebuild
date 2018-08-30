@@ -1,9 +1,12 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI="6"
+CHROMIUM_LANGS="am ar bg bn ca cs da de el en-GB es es-419 et fa fi fil fr
+	gu he hi hr hu id it ja kn ko lt lv ml mr ms nb nl pl pt-BR pt-PT ro ru
+	sk sl sr sv sw ta te th tr uk vi zh-CN zh-TW"
 
-inherit eutils unpacker gnome2-utils xdg-utils
+inherit chromium-2 eutils gnome2-utils pax-utils unpacker xdg-utils
 
 DESCRIPTION="A code editor for HTML, CSS and JavaScript"
 HOMEPAGE="http://brackets.io/"
@@ -21,6 +24,7 @@ SLOT="0"
 DEPEND=""
 RDEPEND="${DEPEND}
 	!app-editors/brackets
+	app-misc/ca-certificates
 	>=dev-libs/atk-1.12.4
 	>=dev-libs/expat-1.95.8
 	>=dev-libs/glib-2.18.0:2
@@ -32,6 +36,7 @@ RDEPEND="${DEPEND}
 	>=media-libs/fontconfig-2.8.0
 	>=media-libs/freetype-2.3.9
 	net-misc/wget
+	net-misc/curl
 	>=net-print/cups-1.4.0
 	>=sys-apps/dbus-1.2.14
 	>=sys-devel/gcc-4.1.1
@@ -45,23 +50,35 @@ RDEPEND="${DEPEND}
 	>=x11-libs/libXdamage-1.1
 	>=x11-libs/libXrandr-1.2.0
 	>=x11-misc/xdg-utils-1.0.2
-	app-misc/ca-certificates
-	net-misc/curl
 	x11-libs/libXext
+	x11-libs/libXi
+	x11-libs/libXcursor
 	x11-libs/libXfixes
 	x11-libs/libXrender
 	live_preview? (
 		|| ( www-client/chromium www-client/google-chrome )
 	)"
 
+QA_PREBUILT="*"
 S="${WORKDIR}"
+BRACKETS_HOME="opt/brackets"
+
+pkg_setup() {
+	chromium_suid_sandbox_check_kernel_config
+}
 
 src_prepare() {
 	default
 
+	pax-mark m "${BRACKETS_HOME}/Brackets"
+
 	# Fix: "FATAL:setuid_sandbox_host.cc(162)]
 	#       The SUID sandbox helper binary was found, but is not configured correctly"
 	chmod 4755 opt/brackets/chrome-sandbox || die "Failed to install!"
+
+	pushd "${BRACKETS_HOME}/locales" > /dev/null || die "Failed to install!"
+	chromium_remove_language_paks
+	popd > /dev/null || die "Failed to install!"
 
 	# Cleanup
 	rm -rf usr/share/menu usr/share/doc
@@ -72,9 +89,7 @@ src_install() {
 	local s_libs="libnspr4.so.0d libplds4.so.0d libplc4.so.0d libssl3.so.1d \
 		libnss3.so.1d libsmime3.so.1d libnssutil3.so.1d libudev.so.1"
 
-	# Unfortunately, i can't fix warning message "QA Notice: The following files 
-	# contain writable and executable sections"
-	cp -Rp . "${D}"
+	cp -Rp . "${D}" || die "Failed to install!"
 
 	# Install symlinks (dev-libs/nss, dev-libs/nspr, dev-libs/openssl, etc...)
 	for f in ${s_libs}; do
@@ -101,4 +116,9 @@ pkg_postinst() {
 	elog
 	elog "See documentation: https://github.com/adobe/brackets/wiki"
 	elog
+}
+
+pkg_postrm() {
+	xdg_desktop_database_update
+	gnome2_icon_cache_update
 }
