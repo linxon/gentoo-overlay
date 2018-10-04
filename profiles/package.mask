@@ -20,3 +20,7 @@ net-misc/fiche
 # Unfortunately links of x11-misc/weather is currently unavailable
 # may be i'm remove it after 10 days
 x11-misc/weather
+
+# Mask x11-themes/retrosmart-icon-theme
+# Problems while updating icon cache.
+x11-themes/retrosmart-icon-theme
