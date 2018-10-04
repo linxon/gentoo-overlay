@@ -8,7 +8,6 @@ inherit xdg-utils gnome2-utils
 DESCRIPTION="Pixelitor is a free and open source image editing software"
 HOMEPAGE="http://pixelitor.sourceforge.net/"
 
-
 MY_P="${PN}_${PV}"
 SRC_URI="https://github.com/lbalazscs/Pixelitor/releases/download/v${PV}/${MY_P}.jar"
 
