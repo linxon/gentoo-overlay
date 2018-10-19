@@ -24,3 +24,6 @@ x11-misc/weather
 # Mask x11-themes/retrosmart-icon-theme
 # Problems while updating icon cache.
 x11-themes/retrosmart-icon-theme
+
+# Use this at your own risk (^_^)
+x11-misc/linxon-scripts
