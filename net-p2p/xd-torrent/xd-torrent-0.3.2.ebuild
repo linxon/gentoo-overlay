@@ -6,7 +6,7 @@ EAPI=6
 inherit eutils systemd user
 
 DESCRIPTION="Standalone I2P BitTorrent Client written in GO"
-HOMEPAGE="https://github.com/majestrate/XD"
+HOMEPAGE="https://xd-torrent.github.io/"
 SRC_URI=""
 
 if [[ ${PV} == *9999 ]]; then
