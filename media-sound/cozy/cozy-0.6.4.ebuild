@@ -40,8 +40,6 @@ src_prepare() {
 	sed -i \
 		-e "11d" data/desktop.in || die "sed failed!"
 
-	mv debian/changelog ChangeLog || die
-
 	if use nls; then
 		l10n_find_plocales_changes "po" "" ".po"
 
@@ -66,7 +64,6 @@ src_install() {
 	meson_src_install
 
 	dosym ./com.github.geigi.cozy /usr/bin/cozy
-	dodoc ChangeLog
 }
 
 pkg_preinst() {
