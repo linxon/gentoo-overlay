@@ -1,6 +1,6 @@
 diff -ur a/yandex-disk-indicator.py b/yandex-disk-indicator.py
---- a/yandex-disk-indicator.py	2018-10-16 00:24:42.000000000 +0300
-+++ b/yandex-disk-indicator.py	2018-10-23 07:37:59.101808673 +0300
+--- a/yandex-disk-indicator.py	2018-10-22 17:23:11.000000000 +0300
++++ b/yandex-disk-indicator.py	2018-10-31 18:49:11.443968583 +0300
 @@ -781,6 +781,11 @@
        # Update last synchronized sub-menu on first run or when last data has changed
        if vals['lastchg'] or vals['laststatus'] == 'unknown':
