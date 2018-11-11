@@ -53,6 +53,9 @@ src_install() {
 		newinitd "${FILESDIR}"/remote-input.initd remote-inputd
 		newconfd "${FILESDIR}"/remote-input.confd remote-inputd
 
+		insinto /etc/logrotate.d/
+		newins "${FILESDIR}"/remote-input.logrotated remote-inputd
+
 		dosbin remote-inputd
 	fi
 
