@@ -1,0 +1,11 @@
+diff -ur a/Makefile b/Makefile
+--- a/Makefile	2018-11-11 15:48:50.146693000 +0300
++++ b/Makefile	2018-11-11 15:49:44.808754602 +0300
+@@ -14,7 +14,6 @@
+ CFLAGS += \
+ 	-Wall \
+ 	-Wextra \
+-	-Werror \
+ 	-Wno-unused-parameter \
+ 	-Wformat-security \
+ 	-Wformat-nonliteral \

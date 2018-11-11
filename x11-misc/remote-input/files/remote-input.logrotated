@@ -1,0 +1,7 @@
+/var/log/remote-inputd.log {
+	compress
+	daily
+	rotate 3
+	notifempty
+	missingok
+}

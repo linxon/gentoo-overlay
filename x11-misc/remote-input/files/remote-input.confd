@@ -1,0 +1,15 @@
+# /etc/conf.d/remote-inputd: config file for /etc/init.d/remote-inputd
+
+# Address and port service will listen on
+#
+# WARNING: Suitable for use in embedded/Android 
+# devices, but as there is no protection whatsoever it 
+# shouldn't be used outside of private/trusted networks.
+REMOTE_INPUTD_ADDRESS="127.0.0.1"
+REMOTE_INPUTD_PORT="4004"
+
+# Log file
+REMOTE_INPUTD_LOGFILE="/var/log/remote-inputd.log"
+
+# See more: remote-inputd -h
+REMOTE_INPUTD_ARGS="-v"
