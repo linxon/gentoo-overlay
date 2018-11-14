@@ -9,7 +9,7 @@ inherit eutils gnome2-utils xdg-utils
 
 DESCRIPTION="SSD Utility is complementary management software designed to help you maintain, monitor and tune your OCZ SSD"
 HOMEPAGE="https://ocz.com/us/download/ssd-utility"
-SRC_URI="https://www.ocz.com/download/software/ssd-utility/${PV}/SSDUtility_${PV}_Linux.zip"
+SRC_URI="https://fichiers.touslesdrivers.com/55230/${MY_P}_Linux.zip"
 LICENSE="all-rights-reserved"
 RESTRICT="mirror"
 KEYWORDS="-* ~amd64 ~x86"
