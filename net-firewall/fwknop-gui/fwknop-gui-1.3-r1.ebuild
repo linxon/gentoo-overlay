@@ -34,7 +34,6 @@ RDEPEND="
 	media-libs/libjpeg-turbo
 	media-libs/libpng:0
 	sys-libs/glibc
-	x11-libs/gtk+:2
 	x11-libs/libnotify
 	x11-libs/pango
 	x11-libs/cairo
