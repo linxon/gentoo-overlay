@@ -16,7 +16,7 @@ if [[ ${PV} == *9999 ]]; then
 	EGIT_REPO_URI="https://github.com/slytomcat/yandex-disk-indicator"
 else
 	MY_P="yandex-disk-indicator-${PV}"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 ~x86"
 	SRC_URI="https://github.com/slytomcat/yandex-disk-indicator/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 	S="${WORKDIR}"/${MY_P}
 fi
@@ -41,6 +41,9 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_prepare() {
+	mv -v todo.txt TODO || die
+	mv -v build/yd-tools/debian/changelog ChangeLog || die
+
 	# Change "Exec" path in *.desktop files
 	sed -i \
 		-e "s:Exec=yandex-disk-indicator:Exec=/usr/bin/yandex-disk-indicator.py:" \
@@ -61,6 +64,8 @@ src_prepare() {
 		done
 	fi
 
+	# Fix bug: https://github.com/slytomcat/yandex-disk-indicator/issues/197
+	epatch "${FILESDIR}"/${P}_disable_show_synchronized_sub_menu_while_updating.patch
 	eapply_user
 }
 
@@ -80,7 +85,7 @@ src_install() {
 	doins -r translations icons fm-actions
 	doexe ya-setup
 
-	dodoc README.md man/yd-tools
+	dodoc README.md TODO ChangeLog man/yd-tools
 	domenu Yandex.Disk-indicator.desktop
 	doman man/yd-tools.1
 
