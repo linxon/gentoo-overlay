@@ -12,7 +12,7 @@ LICENSE="GPL-1"
 SRC_URI=""
 EGIT_REPO_URI="https://github.com/dave-theunsub/thunar-sendto-clamtk"
 if [[ ${PV} != *9999 ]]; then
-	EGIT_COMMIT="bde230697ce015cd7b7509ec723a5a21f68ecffd"
+	EGIT_COMMIT="da9f6dfbe0a44822cd68103a99c8f9aaf7dc1b20"
 	KEYWORDS="amd64 x86"
 fi
 
