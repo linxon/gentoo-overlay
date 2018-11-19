@@ -5,9 +5,6 @@ sys-kernel/linux-elan1200-touchpad
 # Please use this package at your own risk (using latest version of kernel)
 app-forensics/kjackal
 
-# Mask temporary...
-sys-apps/fselect
-
 # This package is not be updated a long time
 net-p2p/transmission-i2p
 
