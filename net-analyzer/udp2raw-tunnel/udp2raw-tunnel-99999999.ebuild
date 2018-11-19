@@ -3,20 +3,19 @@
 
 EAPI=6
 
-inherit git-r3
+inherit git-r3 toolchain-funcs
 
 DESCRIPTION="A Tunnel which turns UDP Traffic into Encrypted FakeTCP/UDP/ICMP Traffic by using Raw Socket"
 HOMEPAGE="https://github.com/wangyu-/udp2raw-tunnel"
-LICENSE="MIT"
-
 SRC_URI=""
-EGIT_REPO_URI="https://github.com/wangyu-/udp2raw-tunnel"
 
+EGIT_REPO_URI="https://github.com/wangyu-/udp2raw-tunnel"
 if [[ ${PV} != *9999 ]]; then
-	EGIT_COMMIT="${PV}"
+	EGIT_COMMIT="0137dba1fd421ed1a61e7e913039833751e0446e"
 	KEYWORDS="~amd64 ~arm ~mips ~x86"
 fi
 
+LICENSE="MIT"
 RESTRICT="mirror"
 SLOT="0"
 IUSE="debug support_aes"
@@ -26,8 +25,13 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	# Disable warnings and remove prefix name of exec files
+	# (ﾉಥ益ಥ）ﾉ﻿  WHY???
 	sed -i \
-		-e 's/-std=c++11 -Wall/-std=c++11 -Wall -Wno-unused-result/' \
+		-e "s/\${cc_local}/$(tc-getCXX)/" \
+		-e "s/\${cc_mips24kc_be}/$(tc-getCXX)/" \
+		-e "s/\${cc_arm}/$(tc-getCXX)/" \
+		-e "s/-std=c++11 -Wall/${CXXFLAGS} -std=c++11 -Wall -Wno-unused-result/" \
+		-e 's/-static -O3/-static/' \
 		-e 's/_\$@//' makefile || die "sed failed!"
 
 	if use debug && use support_aes; then
