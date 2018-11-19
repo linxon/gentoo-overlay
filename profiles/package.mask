@@ -21,3 +21,6 @@ x11-misc/linxon-scripts
 # https://github.com/BaloneyGeek/dennisng — 404 not found
 # May be i'm remove it after 10 days
 net-dns/dennis-ng
+
+# May be i'm remove it after 30 days
+xfce-extra/xfce4-mixer
