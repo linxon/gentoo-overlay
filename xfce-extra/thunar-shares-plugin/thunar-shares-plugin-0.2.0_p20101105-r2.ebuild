@@ -1,11 +1,9 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
-EAUTORECONF=yes
-inherit eutils user xfconf
+EAPI=6
 
-# git clone -b thunarx-2 git://git.xfce.org/thunar-plugins/thunar-shares-plugin
+inherit user autotools
 
 DESCRIPTION="Thunar plugin to share files using Samba"
 HOMEPAGE="https://goodies.xfce.org/projects/thunar-plugins/thunar-shares-plugin"
@@ -14,22 +12,18 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 ~arm x86"
-IUSE="debug samba"
+IUSE="samba"
 
 RDEPEND=">=dev-libs/glib-2.18
 	samba? ( net-fs/samba )
 	>=x11-libs/gtk+-2.12:2
-	>=xfce-base/thunar-1.2"
+	<xfce-base/thunar-1.7"
 DEPEND="${RDEPEND}
 	dev-util/intltool
+	dev-util/xfce4-dev-tools
 	virtual/pkgconfig"
 
 pkg_setup() {
-	XFCONF=(
-		--disable-static
-		$(xfconf_use_debug)
-	)
-
 	DOCS=( AUTHORS ChangeLog NEWS README TODO )
 	if use samba; then
 		enewgroup sambashare
@@ -37,19 +31,37 @@ pkg_setup() {
 	fi
 }
 
+src_configure() {
+	local myconf=(
+		--disable-static
+		# workaround the default for git builds
+		--enable-debug=minimal
+	)
+	econf "${myconf[@]}"
+}
+
 src_prepare() {
+	mv configure.in configure.ac || die
 	# https://bugzilla.xfce.org/show_bug.cgi?id=10032
-	sed -i -e 's:AM_CONFIG_HEADER:AC_CONFIG_HEADERS:' configure.in || die
-	xfconf_src_prepare
+	sed -i \
+		-e 's:AM_CONFIG_HEADER:AC_CONFIG_HEADERS:' \
+		-e 's:-Werror::' \
+		configure.ac || die
+
+	local AT_M4DIR="${EPREFIX}/usr/share/xfce4/dev-tools/m4macros"
+	eautoreconf
+
+	eapply_user
 }
 
 src_install() {
+	default
 	if use samba; then
 		keepdir "/var/lib/samba/usershares"
 		fowners root:sambashare "/var/lib/samba/usershares"
 		fperms 01770 "/var/lib/samba/usershares"
 	fi
-	xfconf_src_install
+	find "${D}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {
@@ -66,6 +78,4 @@ pkg_postinst() {
 		ewarn "       usershare owner only = yes"
 		ewarn
 	fi
-
-	xfconf_pkg_postinst
 }
