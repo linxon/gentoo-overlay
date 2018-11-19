@@ -14,6 +14,11 @@ RESTRICT="mirror"
 SLOT="0"
 IUSE=""
 
+QA_PRESTRIPPED="
+	/opt/Auryo/auryo
+	/opt/Auryo/libffmpeg.so
+	/opt/Auryo/libnode.so"
+
 RDEPEND="
 	gnome-base/gconf:2
 	dev-libs/atk
