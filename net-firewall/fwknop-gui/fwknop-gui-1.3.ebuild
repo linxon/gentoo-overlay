@@ -3,7 +3,6 @@
 
 EAPI=6
 CMAKE_MIN_VERSION="2.8.11"
-BUILD_DIR="${S}"
 
 inherit eutils cmake-utils gnome2-utils xdg-utils wxwidgets
 
@@ -24,6 +23,7 @@ fi
 
 RESTRICT="mirror"
 SLOT="0"
+BUILD_DIR="${S}"
 
 RDEPEND="
 	app-crypt/gpgme
@@ -41,11 +41,6 @@ RDEPEND="
 	x11-libs/wxGTK:3.0"
 
 DEPEND="${RDEPEND}"
-
-src_prepare() {
-	cp -v fwknop-gui.8.asciidoc fwknop-gui.8
-	cmake-utils_src_prepare
-}
 
 pkg_preinst() {
 	gnome2_icon_savelist
