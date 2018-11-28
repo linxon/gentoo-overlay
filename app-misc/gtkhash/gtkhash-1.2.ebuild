@@ -55,6 +55,13 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 
+_get_thunarx_extension_dir() {
+	_EXTENSION_DIR="/usr/include/thunarx"
+	if [ -d "${_EXTENSION_DIR}-2" ]; then echo '2';
+	elif [ -d "${_EXTENSION_DIR}-3" ]; then echo '3';
+	else die "/usr/include/thunarx-* — is not found!"; fi
+}
+
 pkg_setup() {
 	if use linux-crypto; then
 		local CONFIG_CHECK="~CRYPTO_USER_API_HASH"
@@ -69,6 +76,10 @@ src_prepare() {
 			die "\"linux-crypto\" only support in the Linux-2.6.38+ version of kernel."
 		fi
 	fi
+
+	sed -i \
+ 		-e "s/thunarx-\${with_thunarx}/thunarx-$(_get_thunarx_extension_dir)/" \
+		configure.ac || die 'sed filed!'
 
 	eautoreconf
 	eapply_user
