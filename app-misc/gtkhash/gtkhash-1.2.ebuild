@@ -56,9 +56,9 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 _get_thunarx_extension_dir() {
-	_EXTENSION_DIR="/usr/include/thunarx"
-	if [ -d "${_EXTENSION_DIR}-2" ]; then echo '2';
-	elif [ -d "${_EXTENSION_DIR}-3" ]; then echo '3';
+	local extension_dir="/usr/include/thunarx"
+	if [ -d "${extension_dir}-2" ]; then echo '2';
+	elif [ -d "${extension_dir}-3" ]; then echo '3';
 	else die "/usr/include/thunarx-* — is not found!"; fi
 }
 
