@@ -25,7 +25,3 @@ net-dns/dennis-ng
 # May be i'm remove it after 30 days
 xfce-extra/xfce4-mixer
 
-# Remove after 10 days
-# Use it from official "gentoo" repo
-app-antivirus/clamtk
-xfce-extra/thunar-sendto-clamtk
