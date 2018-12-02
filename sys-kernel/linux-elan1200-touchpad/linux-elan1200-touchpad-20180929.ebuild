@@ -11,7 +11,7 @@ SRC_URI=""
 
 EGIT_REPO_URI="https://github.com/mishurov/linux_elan1200_touchpad"
 if [[ ${PV} != *9999 ]]; then
-	EGIT_COMMIT="c5345109d508c859fd40eef6614a89788f498666"
+	EGIT_COMMIT="5c67dee5740f28339d96dd378989dab5d77e96f3"
 	KEYWORDS="~amd64 ~x86"
 fi
 
