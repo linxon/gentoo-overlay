@@ -41,6 +41,7 @@ src_prepare() {
 			-e '/debug2: git_version/,+2 d' makefile || die "sed failed!"
 	fi
 
+	eapply "${FILESDIR}"/fix_typo.patch
 	eapply_user
 }
 
