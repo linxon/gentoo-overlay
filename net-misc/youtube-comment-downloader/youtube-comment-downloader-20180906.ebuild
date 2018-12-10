@@ -13,7 +13,7 @@ SRC_URI=""
 EGIT_REPO_URI="https://github.com/egbertbouman/youtube-comment-downloader"
 if [[ ${PV} != *9999 ]]; then
 	#EGIT_COMMIT="${PV}"
-	EGIT_COMMIT="9572fde45d4791560bf96d7817b4e21fbf67485e"
+	EGIT_COMMIT="c776ae568ebf27297139ee0e3efaa74fe4bc2621"
 	KEYWORDS="~amd64 ~x86"
 fi
 
