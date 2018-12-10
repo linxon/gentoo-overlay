@@ -12,10 +12,10 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 ~arm x86"
-IUSE="samba"
+IUSE=""
 
 RDEPEND=">=dev-libs/glib-2.18
-	samba? ( net-fs/samba )
+	net-fs/samba
 	>=x11-libs/gtk+-2.12:2
 	<xfce-base/thunar-1.7"
 DEPEND="${RDEPEND}
@@ -24,11 +24,8 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 pkg_setup() {
-	DOCS=( AUTHORS ChangeLog NEWS README TODO )
-	if use samba; then
-		enewgroup sambashare
-		DOCS+=( "${FILESDIR}"/smb.conf.example )
-	fi
+	DOCS=( AUTHORS ChangeLog NEWS README TODO "${FILESDIR}"/smb.conf.example )
+	enewgroup sambashare
 }
 
 src_configure() {
@@ -56,26 +53,24 @@ src_prepare() {
 
 src_install() {
 	default
-	if use samba; then
-		keepdir "/var/lib/samba/usershares"
-		fowners root:sambashare "/var/lib/samba/usershares"
-		fperms 01770 "/var/lib/samba/usershares"
-	fi
+
+	keepdir "/var/lib/samba/usershares"
+	fowners root:sambashare "/var/lib/samba/usershares"
+	fperms 01770 "/var/lib/samba/usershares"
+
 	find "${D}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {
-	if use samba; then
-		ewarn "Just run 'gpasswd -a <USER> sambashare', then have <USER> re-login"
-		ewarn "and update your /etc/samba/smb.conf"
-		ewarn
-		ewarn "   [global]"
-		ewarn "       workgroup = WORKGROUP"
-		ewarn "       security = share"
-		ewarn "       usershare path = /var/lib/samba/usershares"
-		ewarn "       usershare max shares = 100"
-		ewarn "       usershare allow guests = yes"
-		ewarn "       usershare owner only = yes"
-		ewarn
-	fi
+	ewarn "Just run 'gpasswd -a <USER> sambashare', then have <USER> re-login"
+	ewarn "and update your /etc/samba/smb.conf"
+	ewarn
+	ewarn "   [global]"
+	ewarn "       workgroup = WORKGROUP"
+	ewarn "       security = share"
+	ewarn "       usershare path = /var/lib/samba/usershares"
+	ewarn "       usershare max shares = 100"
+	ewarn "       usershare allow guests = yes"
+	ewarn "       usershare owner only = yes"
+	ewarn
 }
