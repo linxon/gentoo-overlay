@@ -2,15 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
+
 TPARTY_1_PV="1.1.2"
-TPARTY_1_PN="QOnlineTranslator"
-TPARTY_1_P="${TPARTY_1_PN}-${TPARTY_1_PV}"
+TPARTY_1_P="QOnlineTranslator-${TPARTY_1_PV}"
 TPARTY_2_PV="1.2.2"
-TPARTY_2_PN="QHotkey"
-TPARTY_2_P="${TPARTY_2_PN}-${TPARTY_2_PV}"
+TPARTY_2_P="QHotkey-${TPARTY_2_PV}"
 TPARTY_3_PV="3.0.13"
-TPARTY_3_PN="SingleApplication"
-TPARTY_3_P="${TPARTY_3_PN}-${TPARTY_3_PV}"
+TPARTY_3_P="SingleApplication-${TPARTY_3_PV}"
 
 inherit eutils qmake-utils gnome2-utils xdg-utils
 
@@ -33,22 +31,27 @@ RDEPEND="
 	dev-qt/qtcore:5
 	dev-qt/qtwidgets:5
 	dev-qt/qtx11extras:5
+	dev-qt/qtmultimedia:5
 	dev-libs/openssl:0
 	media-libs/gst-plugins-good:1.0"
 
 DEPEND="${RDEPEND}"
 
-src_prepare() {
-	cp -R \
+src_unpack() {
+	unpack ${A}
+
+	mv -f \
 		"${WORKDIR}"/${TPARTY_1_P}/* \
 		"${WORKDIR}"/${P}/src/qonlinetranslator/ || die
-	cp -R \
+	mv -f \
 		"${WORKDIR}"/${TPARTY_2_P}/* \
 		"${WORKDIR}"/${P}/src/third-party/qhotkey/ || die
-	cp -R \
+	mv -f \
 		"${WORKDIR}"/${TPARTY_3_P}/* \
 		"${WORKDIR}"/${P}/src/third-party/singleapplication/ || die
+}
 
+src_prepare() {
 	eqmake5
 	eapply_user
 }
@@ -56,16 +59,14 @@ src_prepare() {
 src_install() {
 	local size
 
+	insinto /usr/share/icons/hicolor/
+	doins -r dist/unix/generic/hicolor/scalable
 	for size in 16 22 24 32 36 48 64 72 96 128 192 256; do
-		insinto /usr/share/icons/hicolor/
 		doins -r dist/unix/generic/hicolor/${size}x${size}
 	done
 
-	insinto /usr/share/icons/hicolor/
-	doins -r dist/unix/generic/hicolor/scalable
-	domenu dist/unix/generic/crow-translate.desktop
-
 	dobin crow
+	domenu dist/unix/generic/crow-translate.desktop
 }
 
 pkg_preinst() {
