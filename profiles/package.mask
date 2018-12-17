@@ -18,10 +18,6 @@ x11-themes/retrosmart-icon-theme
 # Use this at your own risk (^_^)
 x11-misc/linxon-scripts
 
-# https://github.com/BaloneyGeek/dennisng — 404 not found
-# May be i'm remove it after 10 days
-net-dns/dennis-ng
-
 # May be i'm remove it after 30 days
 xfce-extra/xfce4-mixer
 
