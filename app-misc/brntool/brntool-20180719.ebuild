@@ -14,7 +14,7 @@ EGIT_REPO_URI="https://github.com/rvalles/brntool"
 
 if [[ ${PV} != *9999 ]]; then
 	#EGIT_COMMIT="${PV}"
-	EGIT_COMMIT="2457f10ba6bf3a78a3adb64e78464cf5366a2df8"
+	EGIT_COMMIT="dfcf27503d952919d7a46e6a7ee1eef048b2b151"
 	KEYWORDS="~amd64 ~x86"
 fi
 
