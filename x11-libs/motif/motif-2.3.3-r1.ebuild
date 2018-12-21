@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
+TPARTY_1_P="printproto-1.0.4"
 
 inherit autotools eutils flag-o-matic multilib multilib-minimal rpm
 
@@ -9,7 +10,9 @@ DESCRIPTION="Legacy Open Motif libraries for old binaries"
 HOMEPAGE="http://motif.ics.com/"
 
 MY_P="openmotif-${PV}"
-SRC_URI="http://vault.centos.org/6.9/os/Source/SPackages/${MY_P}-9.el6.src.rpm"
+SRC_URI="
+	http://vault.centos.org/6.9/os/Source/SPackages/${MY_P}-9.el6.src.rpm
+	http://ftp.x.org/pub/individual/proto/${TPARTY_1_P}.tar.bz2"
 
 RESTRICT="mirror"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -38,27 +41,33 @@ src_unpack() {
 
 src_prepare() {
 	eapply "${WORKDIR}"
-	eapply_user
 
-	# Build only the libraries
-	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/=.*/= lib clients/;}' Makefile.am
-	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/=.*/= uil/;}' clients/Makefile.am
+	sed \
+		-e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/=.*/= lib clients/;}' \
+		-i Makefile.am || die 'sed failed!'
+	sed \
+		-e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/=.*/= uil/;}' \
+		-i clients/Makefile.am || die 'sed failed!'
+
+	mv "${WORKDIR}"/${TPARTY_1_P}/Print.h lib/Xm/PrintPR.h \
+		|| die "install failed!"
+	sed -e "s:X11/extensions/Print.h:Xm/PrintPR.h:" \
+		-i lib/Xm/Xm.h || die "install failed!"
 
 	AM_OPTS="--force-missing" eautoreconf
 
-	# get around some LANG problems in make (#15119)
 	unset LANG
 
-	# bug #80421
 	filter-flags -ftracer
-
-	# feel free to fix properly if you care
 	append-flags -fno-strict-aliasing
+
+	eapply_user
 }
 
 multilib_src_configure() {
 	ECONF_SOURCE="${S}" econf \
 		--with-x \
+		--disable-printing \
 		$(use_enable static-libs static) \
 		$(use_enable unicode utf8) \
 		$(use_enable jpeg) \
