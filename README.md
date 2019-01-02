@@ -26,9 +26,9 @@ or
 #### Manually
 Add an entry to `/etc/portage/repos.conf`:
 ```ini
-[reagentoo]
-location = /usr/local/portage/reagentoo
-sync-uri = https://github.com/reagentoo/gentoo-overlay.git
+[linxon]
+location = /usr/local/portage/linxon
+sync-uri = https://github.com/linxon/gentoo-overlay.git
 sync-type = git
 auto-sync = yes
 ```
