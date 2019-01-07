@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -36,17 +36,8 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	virtual/man"
 
-src_prepare() {
-	cmake-utils_src_prepare
-}
-
 src_install() {
 	cmake-utils_src_install
-
-	for manpage in docs/*.man; do
-		mv -v "${manpage}" "${manpage%.man}.1" || die
-		doman "${manpage%.man}.1"
-	done
 
 	dodoc \
 		"docs/mame-0.96.dtd" \
