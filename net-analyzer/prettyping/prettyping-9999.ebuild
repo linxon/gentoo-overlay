@@ -1,9 +1,9 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-DESCRIPTION="Wrapper around the standard ping tool"
+DESCRIPTION="Wrapper around the standard ping tool."
 HOMEPAGE="http://denilson.sa.nom.br/prettyping/"
 
 if [[ ${PV} == *9999 ]]; then
@@ -20,8 +20,8 @@ SLOT="0"
 IUSE=""
 
 DEPEND=""
-RDEPEND="net-misc/iputils
-	app-shells/bash
+RDEPEND="app-shells/bash
+	net-misc/iputils
 	virtual/awk"
 
 src_install() {
