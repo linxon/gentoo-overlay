@@ -1,9 +1,7 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-
-inherit eutils
 
 DESCRIPTION="c64 data compression software"
 HOMEPAGE="http://csdb.dk/release/?id=109317"
@@ -13,7 +11,7 @@ MY_PN="bb"
 SRC_URI="http://csdb.dk/getinternalfile.php/106578/${MY_PN}.7z"
 
 RESTRICT="mirror"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 SLOT="0"
 S="${WORKDIR}"/${MY_PN}
 
