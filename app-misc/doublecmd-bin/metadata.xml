@@ -7,6 +7,6 @@
   </maintainer>
   <use>
     <flag name="gtk2">Use gtk2 instead of qt4</flag>
-    <flag name="qt4">Use qt4 instead of gtk2</flag>
+    <flag name="qt5">Use qt5 instead of gtk2</flag>
   </use>
 </pkgmetadata>
