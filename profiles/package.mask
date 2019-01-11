@@ -19,3 +19,7 @@ x11-misc/linxon-scripts
 # you can use it from "pentoo" overlay 
 # https://github.com/pentoo/pentoo-overlay/tree/master/app-crypt/bruteforce-salted-openssl
 app-admin/bruteforce-salted-openssl
+
+# Will be removed after 10 days
+# because this package is not supported
+app-backup/backerupper
