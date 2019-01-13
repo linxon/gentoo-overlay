@@ -6,6 +6,6 @@
     <name>linxon (Yury Martynov)</name>
   </maintainer>
   <use>
-    <flag name="recoil">Build RECOIL coder for ImageMagick</flag>
+    <flag name="recoil">Support of the RECOIL (REtro COmputer Image Library)</flag>
   </use>
 </pkgmetadata>
