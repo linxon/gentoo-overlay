@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -6,7 +6,7 @@ EAPI=6
 inherit gnome2-utils xdg-utils
 
 RECOIL_P="recoil-4.2.0"
-DESCRIPTION="The ultimate 256 color painting program"
+DESCRIPTION="A bitmap paint program specialized in 256 color drawing."
 HOMEPAGE="https://gitlab.com/GrafX2/grafX2"
 
 SRC_URI="
@@ -38,17 +38,21 @@ src_unpack() {
 	default
 
 	if use recoil; then
-		mv "${WORKDIR}"/${RECOIL_P} "${S}"/3rdparty || die
+		mv "${WORKDIR}"/${RECOIL_P} "${S}"/3rdparty \
+			|| die 'failed to install!'
 	fi
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}_disable_checking_git_revision.patch
+	# Cleanup
+	rm -f doc/gpl-2.0.txt || die 'failed to install!'
 	eapply_user
 }
 
 src_compile() {
 	local makeconf=()
+
+	# Do you need a "USE_JOYSTICK=1" and "NOLAYERS=1" options? 
 	use lua || makeconf+=( "NOLUA=1" )
 	use recoil || makeconf+=( "NORECOIL=1" )
 	use truetype || makeconf+=( "NOTTF=1" )
@@ -60,18 +64,25 @@ src_install() {
 	insinto /usr/share
 	doins -r share/${PN}
 
-	insinto /usr/share/icons
+	insinto /usr/share/metainfo/
+	doins misc/unix/grafx2.appdata.xml
+
+	insinto /usr/share/icons/hicolor/scalable/apps/
 	doins share/icons/grafx2.svg
+	insinto /usr/share/pixmaps
+	doins misc/unix/grafx2.xpm
 
 	doman misc/unix/grafx2.1
-	dodoc CONTRIBUTING.md doc/*
+	dodoc -r doc/*
+
+	mv -v "bin/${PN}-sdl" "bin/${PN}" || die 'failed to install!'
 	dobin bin/${PN}
 
 	make_desktop_entry \
 		"${PN}" \
 		"GrafX2" \
 		"${PN}" \
-		"Graphics"
+		"Graphics;2DGraphics;"
 }
 
 pkg_preinst() {
