@@ -1,11 +1,11 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-inherit scons-utils gnome2-utils xdg-utils
+inherit gnome2-utils scons-utils toolchain-funcs xdg-utils
 
-DESCRIPTION="Advanced color picker written in C++ using GTK+ toolkit"
+DESCRIPTION="Advanced color picker written in C++ using GTK+ toolkit."
 HOMEPAGE="http://www.gpick.org/"
 SRC_URI=""
 
@@ -26,14 +26,15 @@ IUSE="dbus debug unique"
 
 RDEPEND="
 	>=dev-lang/lua-5.1:0
-	>=x11-libs/gtk+-2.12.0:2
-	dev-util/lemon
-	dev-libs/boost
-	dbus? ( >=dev-libs/dbus-glib-0.76 )
-	unique? ( >=dev-libs/libunique-1.0.8:1 )"
+	>=dev-libs/expat-2.0.1
+	dbus? ( >=dev-libs/dbus-glib-0.88 )
+	unique? ( >=dev-libs/libunique-1.0.8:1 )
+	>=x11-libs/cairo-1.2.4
+	>=x11-libs/gtk+-2.12.0:2"
 
-DEPEND="${RDEPEND}
-	>=dev-util/scons-1.0.0"
+DEPEND="
+	dev-util/lemon
+	dev-util/scons"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-update-SConscript.patch
@@ -43,6 +44,7 @@ src_prepare() {
 
 src_configure() {
 	MYSCONS=(
+		CC="$(tc-getCC)"
 		WITH_UNIQUE=$(usex unique)
 		WITH_DBUSGLIB=$(usex dbus)
 		DEBUG=$(usex debug)
@@ -50,14 +52,13 @@ src_configure() {
 }
 
 src_compile() {
-	escons "${MYSCONS[@]}" build || die "escons build failed!"
+	escons "${MYSCONS[@]}" build \
+		|| die "escons build failed!"
 }
 
 src_install() {
 	escons DESTDIR="${D}/usr" install \
 		|| die "escons install failed!"
-
-	dosym ../icons/hicolor/48x48/apps/gpick.png /usr/share/pixmaps/gpick.png
 }
 
 pkg_preinst() {
@@ -65,6 +66,11 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
+	xdg_desktop_database_update
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
 	xdg_desktop_database_update
 	gnome2_icon_cache_update
 }
