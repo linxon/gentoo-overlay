@@ -9,7 +9,7 @@ DESCRIPTION="A LALR(1) parser generator."
 HOMEPAGE="http://www.hwaci.com/sw/lemon/"
 SRC_URI="http://www.sqlite.org/sqlite-${PV}.tar.gz"
 LICENSE="public-domain"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 SLOT="0"
 
 S="${WORKDIR}"/sqlite-${PV}/tool
