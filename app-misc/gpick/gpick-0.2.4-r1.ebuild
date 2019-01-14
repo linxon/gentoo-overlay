@@ -32,7 +32,7 @@ RDEPEND="
 	>=x11-libs/cairo-1.2.4
 	>=x11-libs/gtk+-2.12.0:2"
 
-DEPEND="
+DEPEND="${RDEPEND}
 	dev-util/lemon
 	dev-util/scons"
 
