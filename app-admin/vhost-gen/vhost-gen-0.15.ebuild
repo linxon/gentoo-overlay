@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -30,10 +30,10 @@ RDEPEND="${PYTHON_DEPS}
 src_prepare() {
 	[ -f "Makefile" ] && rm -fv Makefile
 
-	sed -i \
+	sed \
 		-e "s/vhost_gen.py/${PN}/" \
-		-e "s/print('vhost_gen v0.3 (2017-09-30)')/print('${PN} v${PV} (2017-09-30)')/" \
-		bin/vhost_gen.py || die "sed failed!"
+		-e "s/print('vhost_gen v0.7 (2019-01-16)')/print('${PN} v${PV}')/" \
+		-i bin/vhost_gen.py
 
 	eapply_user
 }
