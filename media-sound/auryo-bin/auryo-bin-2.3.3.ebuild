@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -17,7 +17,8 @@ IUSE=""
 QA_PRESTRIPPED="
 	/opt/Auryo/auryo
 	/opt/Auryo/libffmpeg.so
-	/opt/Auryo/libnode.so"
+	/opt/Auryo/libEGL.so
+	/opt/Auryo/libGLESv2.so"
 
 RDEPEND="
 	gnome-base/gconf:2
@@ -38,8 +39,7 @@ RDEPEND="
 	x11-libs/pango
 	x11-libs/libnotify
 	x11-libs/libXtst
-	x11-libs/libXinerama
-	x11-libs/libXScrnSaver"
+	x11-libs/libXinerama"
 
 DEPEND=""
 
@@ -53,7 +53,7 @@ src_prepare() {
 }
 
 src_install() {
-	cp -Rp . "${D}/"
+	cp -Rp . "${D}/" || die
 
 	make_desktop_entry \
 		"/opt/Auryo/auryo" \
@@ -67,6 +67,11 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
+	xdg_desktop_database_update
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
 	xdg_desktop_database_update
 	gnome2_icon_cache_update
 }
