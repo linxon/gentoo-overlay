@@ -14,9 +14,3 @@ x11-themes/retrosmart-icon-theme
 
 # Use this at your own risk (^_^)
 x11-misc/linxon-scripts
-
-# Will be removed after 10 days
-# because this packages is not supported
-app-backup/backerupper
-media-gfx/arcad-c1-bin
-x11-libs/motif
