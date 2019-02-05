@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -10,9 +10,9 @@ TPARTY_2_P="QHotkey-${TPARTY_2_PV}"
 TPARTY_3_PV="3.0.13"
 TPARTY_3_P="SingleApplication-${TPARTY_3_PV}"
 
-inherit eutils qmake-utils gnome2-utils xdg-utils
+inherit eutils gnome2-utils qmake-utils xdg-utils
 
-DESCRIPTION="A simple translator that allows to translate and say selected text"
+DESCRIPTION="A simple translator that allows to translate and say selected text."
 HOMEPAGE="https://github.com/Shatur95/crow-translate"
 
 SRC_URI="
@@ -28,11 +28,12 @@ SLOT="0"
 IUSE=""
 
 RDEPEND="
+	dev-qt/qtgui:5
 	dev-qt/qtcore:5
+	dev-qt/qtnetwork:5[ssl]
 	dev-qt/qtwidgets:5
 	dev-qt/qtx11extras:5
-	dev-qt/qtmultimedia:5
-	dev-libs/openssl:0
+	dev-qt/qtmultimedia:5[alsa]
 	media-libs/gst-plugins-good:1.0"
 
 DEPEND="${RDEPEND}"
@@ -52,20 +53,28 @@ src_unpack() {
 }
 
 src_prepare() {
-	eqmake5
+	sed -e "s/TARGET = crow/TARGET = ${PN}/" \
+		-e "/include(src\/qgittag\/qgittag.pri)/d" \
+		-i "${PN}.pro" || die 'sed failed!'
+
+	sed -e "s/Exec=crow/Exec=${PN}/" \
+		-i dist/unix/generic/crow-translate.desktop || die 'sed failed!'
+
+	eqmake5 "$(qmake-utils_find_pro_file)"
 	eapply_user
 }
 
 src_install() {
 	local size
 
-	insinto /usr/share/icons/hicolor/
+	insinto /usr/share/icons/hicolor
 	doins -r dist/unix/generic/hicolor/scalable
 	for size in 16 22 24 32 36 48 64 72 96 128 192 256; do
 		doins -r dist/unix/generic/hicolor/${size}x${size}
 	done
 
-	dobin crow
+	dodoc "CHANGELOG.md"
+	dobin ${PN}
 	domenu dist/unix/generic/crow-translate.desktop
 }
 
