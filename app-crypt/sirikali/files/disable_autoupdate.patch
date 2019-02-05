@@ -1,0 +1,80 @@
+diff -ur a/src/configoptions.cpp b/src/configoptions.cpp
+--- a/src/configoptions.cpp	2018-10-01 07:16:36.000000000 +0300
++++ b/src/configoptions.cpp	2019-02-05 18:06:12.990560898 +0300
+@@ -58,16 +58,6 @@
+ 		utility::reUseMountPoint( e ) ;
+ 	} ) ;
+ 
+-	m_ui->cbAutoCheckForUpdates->setChecked( utility::autoCheck() ) ;
+-
+-	connect( m_ui->cbAutoCheckForUpdates,&QCheckBox::toggled,[]( bool e ){
+-
+-		utility::autoCheck( e ) ;
+-	} ) ;
+-
+-#ifdef Q_OS_WIN
+-	m_ui->cbAutoCheckForUpdates->setEnabled( false ) ;
+-#endif
+ 	m_ui->cbStartMinimized->setChecked( utility::startMinimized() ) ;
+ 
+ 	connect( m_ui->cbStartMinimized,&QCheckBox::toggled,[]( bool e ){
+diff -ur a/src/configoptions.ui b/src/configoptions.ui
+--- a/src/configoptions.ui	2018-10-01 07:16:36.000000000 +0300
++++ b/src/configoptions.ui	2019-02-05 18:10:35.262531259 +0300
+@@ -55,19 +55,6 @@
+       <string/>
+      </property>
+     </widget>
+-    <widget class="QCheckBox" name="cbAutoCheckForUpdates">
+-     <property name="geometry">
+-      <rect>
+-       <x>120</x>
+-       <y>80</y>
+-       <width>21</width>
+-       <height>41</height>
+-      </rect>
+-     </property>
+-     <property name="text">
+-      <string/>
+-     </property>
+-    </widget>
+     <widget class="QCheckBox" name="cbStartMinimized">
+      <property name="geometry">
+       <rect>
+@@ -124,22 +111,6 @@
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+-     </property>
+-    </widget>
+-    <widget class="QLabel" name="label_11">
+-     <property name="geometry">
+-      <rect>
+-       <x>150</x>
+-       <y>80</y>
+-       <width>401</width>
+-       <height>41</height>
+-      </rect>
+-     </property>
+-     <property name="text">
+-      <string>Auto Check For Updates</string>
+-     </property>
+-     <property name="wordWrap">
+-      <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+diff -ur a/src/sirikali.cpp b/src/sirikali.cpp
+--- a/src/sirikali.cpp	2018-10-01 07:16:36.000000000 +0300
++++ b/src/sirikali.cpp	2019-02-05 18:06:39.198659217 +0300
+@@ -372,10 +372,6 @@
+ 		return e ;
+ 	} ;
+ 
+-#ifndef Q_OS_WIN
+-	m->addAction( _addAction( false,false,tr( "Check For Updates" ),"Check For Updates",
+-				  SLOT( updateCheck() ) ) ) ;
+-#endif
+ 	m->addAction( _addAction( false,false,tr( "Unmount All" ),
+ 				  "Unmount All",SLOT( unMountAll() ) ) ) ;
+ 

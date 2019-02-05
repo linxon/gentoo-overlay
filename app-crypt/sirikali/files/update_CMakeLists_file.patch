@@ -1,0 +1,21 @@
+diff -ur a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	2018-10-01 07:16:36.000000000 +0300
++++ b/CMakeLists.txt	2019-02-05 17:45:20.186469480 +0300
+@@ -416,9 +416,6 @@
+ install( FILES translations/es_MX.qm DESTINATION ${CMAKE_INSTALL_DATADIR}/sirikali/translations )
+ install( FILES translations/de_DE.qm DESTINATION ${CMAKE_INSTALL_DATADIR}/sirikali/translations )
+ 
+-install( FILES src/sirikali.1.gz DESTINATION ${CMAKE_INSTALL_DATADIR}/man/man1/ )
+-install( FILES src/sirikali.pkexec.1.gz DESTINATION ${CMAKE_INSTALL_DATADIR}/man/man1/ )
+-
+ install( FILES src/sirikali.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo/ )
+ 
+ endif()
+@@ -476,6 +473,7 @@
+       <allow_active>auth_admin</allow_active>
+     </defaults>
+     <annotate key=\"org.freedesktop.policykit.exec.path\">${CMAKE_INSTALL_PREFIX}/bin/sirikali.pkexec</annotate>
++    <annotate key=\"org.freedesktop.policykit.exec.allow_gui\">true</annotate>
+   </action>
+ 
+ </policyconfig>

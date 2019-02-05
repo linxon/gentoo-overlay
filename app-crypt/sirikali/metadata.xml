@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>email@linxon.ru</email>
+    <name>Yury Martynov</name>
+  </maintainer>
+  <use>
+    <flag name="libsecret">Add support Gnome's libsecret secure storage of passwords</flag>
+    <flag name="kde">Add support KDE's secure storage of passwords</flag>
+    <flag name="encfs">Use sys-fs/encfs (An implementation of encrypted filesystem in user-space using FUSE)</flag>
+    <flag name="cryfs">Use sys-fs/cryfs (Encrypted FUSE filesystem that conceals metadata)</flag>
+    <flag name="sshfs">Use net-fs/sshfs (Fuse-filesystem utilizing the sftp service)</flag>
+  </use>
+</pkgmetadata>
