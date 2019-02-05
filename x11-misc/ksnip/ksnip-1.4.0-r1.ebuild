@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -16,14 +16,15 @@ IUSE=""
 
 RDEPEND="
 	dev-qt/qtcore:5
-	dev-qt/qtnetwork:5
+	dev-qt/qtnetwork:5[ssl]
 	dev-qt/qtprintsupport:5
-	dev-qt/qtwidgets:5
+	dev-qt/qtwidgets:5[png]
 	dev-qt/qtxml:5
 	dev-qt/qtx11extras:5
 	x11-libs/libxcb"
 
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	virtual/pkgconfig"
 
 pkg_preinst() {
 	gnome2_icon_savelist
