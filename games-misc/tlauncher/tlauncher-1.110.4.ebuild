@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -11,8 +11,9 @@ LICENSE="all-rights-reserved"
 
 # Get url: http://tlauncherrepo.com/tlauncher/legacy/bootstrap.json
 PKG_HASH="00aa8d0014ce30f2116a13b8313de65cc9be690f475758d83359e7756fa848f0"
-SRC_URI="http://tlauncherrepo.com/legacy/bootstrap/${PKG_HASH}.jar -> ${P}.jar
-         https://minecraft.net/apple-icon-180x180.png -> ${P}.png"
+SRC_URI="
+		http://tlauncherrepo.com/legacy/bootstrap/${PKG_HASH}.jar -> ${P}.jar
+		https://minecraft.net/apple-icon-180x180.png -> ${P}.png"
 
 RESTRICT="mirror"
 KEYWORDS="amd64 x86"

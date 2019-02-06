@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -9,8 +9,9 @@ DESCRIPTION="A advanced launcher for Minecraft"
 HOMEPAGE="https://tlauncher.org"
 LICENSE="all-rights-reserved"
 
-SRC_URI="https://tlauncher.org/download/3049 -> ${P}.jar
-         https://minecraft.net/apple-icon-180x180.png -> ${P}.png"
+SRC_URI="
+		https://tlauncher.org/download/3049 -> ${P}.jar
+		https://minecraft.net/apple-icon-180x180.png -> ${P}.png"
 
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86"
