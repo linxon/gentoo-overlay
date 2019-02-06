@@ -1,8 +1,8 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_COMPAT=( python3_{4,5,6} )
 PLOCALES="be bg el ru"
 
 inherit eutils gnome2-utils l10n xdg-utils python-r1
@@ -65,7 +65,7 @@ src_prepare() {
 	fi
 
 	# Fix bug: https://github.com/slytomcat/yandex-disk-indicator/issues/197
-	epatch "${FILESDIR}"/${P}_disable_show_synchronized_sub_menu_while_updating.patch
+	epatch "${FILESDIR}"/yd-tools-1.10.6_disable_show_synchronized_sub_menu_while_updating.patch
 	eapply_user
 }
 
