@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -34,7 +34,7 @@ src_prepare() {
 		-e "s/^LDFLAGS=/LDFLAGS=${LDFLAGS} /" \
 		-e "s/-s -static//" \
 		-i Makefile || die
-		
+
 	rm -fv getopt.h
 
 	eapply_user
