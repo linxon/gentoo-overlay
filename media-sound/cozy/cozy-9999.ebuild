@@ -1,8 +1,8 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_COMPAT=( python3_{4,5,6} )
 PLOCALES="da_DK de en_IE es fi fr it ms_MY nl pl pt ru tr uk zh_CN"
 
 inherit gnome2-utils meson l10n python-r1 xdg-utils
@@ -26,14 +26,13 @@ SLOT="0"
 IUSE="nls"
 
 RDEPEND="${PYTHON_DEPS}
-	dev-libs/glib:2
+	dev-libs/glib:=
 	dev-python/peewee[${PYTHON_USEDEP}]
 	media-libs/mutagen[${PYTHON_USEDEP}]
-	media-libs/gstreamer:1.0
-	>=x11-libs/gtk+-3.22"
+	media-libs/gstreamer:1.0=
+	x11-libs/gtk+:3"
 
 DEPEND="${RDEPEND}
-	>=dev-util/meson-0.40.0
 	nls? ( sys-devel/gettext )"
 
 src_prepare() {
