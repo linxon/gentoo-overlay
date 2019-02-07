@@ -1,6 +1,6 @@
 diff -ur a/CMakeLists.txt b/CMakeLists.txt
 --- a/CMakeLists.txt	2018-10-01 07:16:36.000000000 +0300
-+++ b/CMakeLists.txt	2019-02-05 17:45:20.186469480 +0300
++++ b/CMakeLists.txt	2019-02-07 12:56:44.974934118 +0300
 @@ -416,9 +416,6 @@
  install( FILES translations/es_MX.qm DESTINATION ${CMAKE_INSTALL_DATADIR}/sirikali/translations )
  install( FILES translations/de_DE.qm DESTINATION ${CMAKE_INSTALL_DATADIR}/sirikali/translations )
@@ -19,3 +19,17 @@ diff -ur a/CMakeLists.txt b/CMakeLists.txt
    </action>
  
  </policyconfig>
+diff -ur a/src/3rdParty/lxqt_wallet/frontend/CMakeLists.txt b/src/3rdParty/lxqt_wallet/frontend/CMakeLists.txt
+--- a/src/3rdParty/lxqt_wallet/frontend/CMakeLists.txt	2019-02-07 12:37:21.305854000 +0300
++++ b/src/3rdParty/lxqt_wallet/frontend/CMakeLists.txt	2019-02-07 12:57:15.342742306 +0300
+@@ -5,6 +5,10 @@
+      cmake_policy(SET CMP0020 NEW)
+ endif()
+ 
++if(POLICY CMP0012)
++     cmake_policy(SET CMP0012 NEW)
++endif()
++
+ INCLUDE(FindPkgConfig)
+ 
+ #
