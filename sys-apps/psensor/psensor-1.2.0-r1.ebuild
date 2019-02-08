@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -34,9 +34,14 @@ RDEPEND="
 	)"
 
 DEPEND="${RDEPEND}
-	sys-apps/help2man
 	app-text/asciidoc
+	sys-apps/help2man
 	nls? ( sys-devel/gettext )"
+
+src_prepare() {
+	epatch "${FILESDIR}"/fix_errors.patch
+	eapply_user
+}
 
 src_configure() {
 	local econfargs=(
