@@ -26,9 +26,10 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 src_prepare() {
-	local default_cflags="-Wall -Wextra -pedantic -Werror"
+	local default_cflags="-Wall -Wextra -pedantic -std=c99"
 
 	sed -e "s/^PROJECT=[a-zA-Z_]*/PROJECT=${PN}/" \
+		-e "s/^COMPILER=[a-zA-Z0-9]*/COMPILER=$(tc-getCC)/" \
 		-e '/^COMPILE_FLAGS=*/d' \
 		-e "s/^LINK_FLAGS=/LINK_FLAGS=${LDFLAGS} /" \
 		-e "/^LINK_FLAGS=*/a COMPILE_FLAGS=${default_cflags} -D _DEFAULT_SOURCE ${CFLAGS}" \
@@ -49,7 +50,7 @@ src_configure() {
 }
 
 src_compile() {
-	emake CC=$(tc-getCC) $(use debug && echo debug)
+	emake $(use debug && echo debug)
 }
 
 src_install() {
