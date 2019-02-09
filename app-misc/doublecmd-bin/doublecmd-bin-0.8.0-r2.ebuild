@@ -18,7 +18,7 @@ SRC_URI="
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86"
 LICENSE="LGPL-2"
-IUSE="+gtk2 qt5"
+IUSE="+gtk2 policykit qt5"
 
 REQUIRED_USE="
 	gtk2? ( !qt5 )
@@ -32,6 +32,7 @@ RDEPEND="
 	gtk2? (
 		media-libs/libpng
 		x11-libs/gtk+:2 )
+	policykit? ( sys-auth/polkit )
 	qt5? ( dev-qt/qtgui:5 )
 	sys-apps/dbus
 	x11-libs/libX11"
@@ -62,8 +63,10 @@ src_install() {
 	doins -r .
 	doexe doublecmd
 
-	insinto "/usr/share/polkit-1/actions/"
-	doins "${FILESDIR}"/org.doublecmd.root.policy
+	if use policykit; then
+		insinto "/usr/share/polkit-1/actions/"
+		doins "${FILESDIR}"/org.doublecmd.root.policy
+	fi
 
 	dosym \
 		"../../../${inst_dir}/doublecmd.png" \
