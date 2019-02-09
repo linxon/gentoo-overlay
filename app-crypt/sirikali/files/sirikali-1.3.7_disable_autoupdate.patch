@@ -1,0 +1,66 @@
+diff -ur a/src/configoptions.cpp b/src/configoptions.cpp
+--- a/src/configoptions.cpp	2019-02-09 13:38:29.000000000 +0300
++++ b/src/configoptions.cpp	2019-02-09 15:18:36.294745037 +0300
+@@ -55,16 +55,6 @@
+ 		settings::instance().reUseMountPoint( e ) ;
+ 	} ) ;
+ 
+-	connect( m_ui->cbAutoCheckForUpdates,&QCheckBox::toggled,[]( bool e ){
+-
+-		settings::instance().autoCheck( e ) ;
+-	} ) ;
+-
+-	if( utility::platformIsWindows() ){
+-
+-		m_ui->cbAutoCheckForUpdates->setEnabled( false ) ;
+-	}
+-
+ 	connect( m_ui->cbStartMinimized,&QCheckBox::toggled,[]( bool e ){
+ 
+ 		settings::instance().setStartMinimized( e ) ;
+@@ -267,8 +257,6 @@
+ 
+ 	m_ui->cbReUseMountPoint->setChecked( s.reUseMountPoint() ) ;
+ 
+-	m_ui->cbAutoCheckForUpdates->setChecked( s.autoCheck() ) ;
+-
+ 	m_ui->cbStartMinimized->setChecked( s.startMinimized() ) ;
+ 
+ 	m_ui->cbAutoMountAtStartUp->setChecked( s.autoMountFavoritesOnStartUp() ) ;
+diff -ur a/src/configoptions.ui b/src/configoptions.ui
+--- a/src/configoptions.ui	2019-02-09 13:38:29.000000000 +0300
++++ b/src/configoptions.ui	2019-02-09 15:22:55.098609000 +0300
+@@ -56,6 +56,9 @@
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cbAutoCheckForUpdates">
++     <property name="enabled">
++      <bool>false</bool>
++     </property>
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+@@ -127,6 +130,9 @@
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
++     <property name="enabled">
++      <bool>false</bool>
++     </property>
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+diff -ur a/src/sirikali.cpp b/src/sirikali.cpp
+--- a/src/sirikali.cpp	2019-02-09 13:38:29.000000000 +0300
++++ b/src/sirikali.cpp	2019-02-09 15:14:17.046845605 +0300
+@@ -378,10 +378,6 @@
+ 		return e ;
+ 	} ;
+ 
+-#ifndef Q_OS_WIN
+-	m->addAction( _addAction( false,false,tr( "Check For Updates" ),"Check For Updates",
+-				  SLOT( updateCheck() ) ) ) ;
+-#endif
+ 	m->addAction( _addAction( false,false,tr( "Unmount All" ),
+ 				  "Unmount All",SLOT( unMountAll() ) ) ) ;
+ 

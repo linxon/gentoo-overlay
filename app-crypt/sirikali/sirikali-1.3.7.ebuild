@@ -42,8 +42,8 @@ DEPEND="${RDEPEND}
 DOCS=( LINUX_BUILD_INSTRUCTIONS changelog README.md )
 
 PATCHES=(
-	"$FILESDIR"/update_CMakeLists_file.patch \
-	"$FILESDIR"/disable_autoupdate.patch
+	"$FILESDIR"/update_CMakeLists_file.patch
+	"$FILESDIR"/${P}_disable_autoupdate.patch
 )
 
 src_unpack() {
