@@ -58,7 +58,7 @@ src_install() {
 	dodoc -r doc/* && rm -rf doc
 
 	insinto "${inst_dir}" && exeinto "${inst_dir}"
-	doins -r .
+	doins -r . "${FILESDIR}"/doublecmd.xml
 	doexe doublecmd
 
 	if use policykit; then
