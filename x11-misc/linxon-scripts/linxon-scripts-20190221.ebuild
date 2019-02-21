@@ -3,12 +3,18 @@
 
 EAPI=6
 
-inherit eutils
+inherit eutils git-r3
 
-DESCRIPTION="My simple scripts"
+DESCRIPTION="My simple scripts."
 HOMEPAGE="http://www.linxon.ru"
 SRC_URI=""
-KEYWORDS="amd64 x86"
+
+EGIT_REPO_URI="https://github.com/linxon/linxon-scripts"
+if [[ "${PV}" != *9999 ]]; then
+	EGIT_COMMIT="4d736c83f178b372c8fe3aee9f489dfbd6750076"
+	KEYWORDS="amd64 x86"
+fi
+
 RESTRICT="mirror"
 LICENSE="Unlicense"
 SLOT="0"
@@ -17,10 +23,6 @@ IUSE=""
 DEPEND=""
 RDEPEND="app-shells/bash
 	virtual/awk"
-
-src_unpack() {
-	unpack "${FILESDIR}"/${P}.tar.gz
-}
 
 src_install() {
 	# autorun-scriptd
@@ -56,4 +58,8 @@ src_install() {
 	# linxons-skel
 	insinto /usr/share
 	doins -r linxons-skel
+
+	# portage scripts
+	exeinto /etc/portage/repo.postsync.d
+	doexe portage/repo.postsync.d/*
 }
