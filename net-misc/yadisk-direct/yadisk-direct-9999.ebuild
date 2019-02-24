@@ -1,12 +1,12 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 PYTHON_COMPAT=( python3_{4,5,6,7} )
 
 inherit distutils-r1 git-r3
 
-DESCRIPTION="Get real direct links usable with tools like curl or wget for files stored in Yandex.Disk"
+DESCRIPTION="Get real direct links for files stored in Yandex.Disk."
 HOMEPAGE="https://github.com/wldhx/yadisk-direct"
 LICENSE="GPL-3"
 
@@ -20,9 +20,8 @@ fi
 
 RESTRICT="mirror"
 SLOT="0"
-DEPEND=""
-RDEPEND="${DEPEND}
-	dev-python/requests"
+RDEPEND="${PYTHON_DEPS}
+	dev-python/requests[${PYTHON_USEDEP}]"
 
 pkg_postinst() {
 	ewarn "While this code depends on an open Yandex's API, I heartily recommend you to not use it in anything resembling production environments"
