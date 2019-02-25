@@ -1,0 +1,2 @@
+move media-sound/dromeaudio dev-libs/dromeaudio
+move x11-libs/qsudo x11-misc/qsudo
