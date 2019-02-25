@@ -36,6 +36,13 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
+src_prepare() {
+	sed -e "s:ksnip RUNTIME DESTINATION /bin:ksnip RUNTIME DESTINATION /usr/bin:" \
+		-i src/CMakeLists.txt || die 'sed failed!'
+
+	cmake-utils_src_prepare
+}
+
 pkg_preinst() {
 	gnome2_icon_savelist
 }
