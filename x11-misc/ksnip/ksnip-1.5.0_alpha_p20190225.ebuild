@@ -19,7 +19,7 @@ fi
 RESTRICT="mirror"
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="wayland X"
+IUSE=""
 
 RDEPEND="
 	dev-qt/qtcore:5
@@ -35,15 +35,6 @@ RDEPEND="
 
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
-
-src_configure() {
-	local mycmakeargs=(
-		$(usex wayland)
-		$(usex X)
-	)
-
-	cmake-utils_src_configure
-}
 
 pkg_preinst() {
 	gnome2_icon_savelist
