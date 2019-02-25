@@ -28,6 +28,12 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
+src_prepare() {
+	# Fix: https://github.com/DamirPorobic/kImageAnnotator/issues/43
+	eapply "${FILESDIR}"/${P}_set_blurRadiusWidget_to_nullptr_in_constructor.patch
+	cmake-utils_src_prepare
+}
+
 src_configure() {
 	local mycmakeargs=(
 		-DBUILD_SHARED_LIBS=ON
