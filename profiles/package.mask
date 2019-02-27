@@ -14,6 +14,3 @@ x11-themes/retrosmart-icon-theme
 
 # Use this at your own risk (^_^)
 x11-misc/linxon-scripts
-
-# May be i'm remove it after...
-sys-apps/gnome-usage
