@@ -49,8 +49,8 @@ src_prepare() {
 src_install() {
 	local size
 
-	for size in 16 32 48 64 128 256 512 1024; do
-		insinto /usr/share/icons/hicolor/${size}x${size}/apps/
+	for size in 16 32 48 64 128 256 512; do
+		insinto /usr/share/icons/hicolor/${size}x${size}/apps
 		doins packaging/linux/icons/${size}x${size}/org.olivevideoeditor.Olive.png
 	done
 
