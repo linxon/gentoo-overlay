@@ -7,7 +7,7 @@ TPARTY_1_PV="1.1.2"
 TPARTY_1_P="QOnlineTranslator-${TPARTY_1_PV}"
 TPARTY_2_PV="1.2.2"
 TPARTY_2_P="QHotkey-${TPARTY_2_PV}"
-TPARTY_3_PV="3.0.13"
+TPARTY_3_PV="3.0.14"
 TPARTY_3_P="SingleApplication-${TPARTY_3_PV}"
 
 inherit eutils gnome2-utils qmake-utils xdg-utils
