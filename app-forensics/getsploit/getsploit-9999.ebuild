@@ -1,12 +1,13 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_REQ_USE="sqlite"
 
 inherit eutils distutils-r1
 
-DESCRIPTION="Command line utility for searching and downloading exploits"
+DESCRIPTION="Command line utility for searching and downloading exploits."
 HOMEPAGE="https://github.com/vulnersCom/getsploit"
 SRC_URI=""
 
@@ -27,7 +28,7 @@ IUSE=""
 RDEPEND="${PYTHON_DEPS}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/getsploit-0.2.2_add_support_user_home_dir.patch
+	eapply "${FILESDIR}"/${P}_add_support_user_home_dir.patch
 	eapply_user
 }
 
