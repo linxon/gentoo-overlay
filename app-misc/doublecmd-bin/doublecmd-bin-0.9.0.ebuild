@@ -80,7 +80,7 @@ src_install() {
 
 	make_desktop_entry \
 		"${MY_PN}" \
-		"Double Commander" \
+		"Double Commander (bin)" \
 		"${MY_PN}" \
 		"Utility;FileTools;FileManager;"
 }
