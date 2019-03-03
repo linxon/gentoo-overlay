@@ -12,7 +12,7 @@ SRC_URI=""
 EGIT_REPO_URI="https://github.com/DamirPorobic/ksnip"
 if [[ ${PV} != *9999 ]]; then
 	#EGIT_COMMIT="${PV}"
-	EGIT_COMMIT="cdb37708039c07b13a22f17c35a4f1e92127ea17"
+	EGIT_COMMIT="7fc71cf9784ebac26d7c109a10eb4956cdfc907d"
 	KEYWORDS="~amd64 ~x86"
 fi
 
