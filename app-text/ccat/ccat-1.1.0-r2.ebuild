@@ -1,13 +1,14 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 EGO_PN="github.com/jingweno/ccat"
 
-inherit golang-build
+inherit golang-vcs-snapshot
 
-DESCRIPTION="Colorizing \"cat\""
+DESCRIPTION="Colorizing \"cat\"."
 HOMEPAGE="https://github.com/jingweno/ccat"
+SRC_URI=""
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
@@ -21,31 +22,24 @@ RESTRICT="mirror"
 LICENSE="MIT"
 SLOT="0"
 
-RDEPEND=""
+RDEPEND="!app-text/ccat-bin"
 DEPEND="${RDEPEND}
-	!app-text/ccat-bin
 	>=dev-lang/go-1.8"
 
-src_prepare() {
-	local _src="${S}"/src/${EGO_PN}
-
-	mkdir -p "${_src}" || die
-	cp -R *.go Godeps "${_src}" || die
-
-	default
+src_compile() {
+	GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" \
+		go install -v -work -x ${EGO_BUILD_FLAGS} "${EGO_PN}"
 }
 
 src_install() {
-	golang-build_src_install
-
 	dobin bin/${PN}
-	dodoc README.md
+	dodoc src/"${EGO_PN}"/README.md
 }
 
 pkg_postinst() {
 	elog
 	elog "It's recommended to alias ccat to cat:"
-	elog "alias cat=ccat"
+	elog "   alias cat=ccat"
 	elog
 	elog "See documentation: https://github.com/jingweno/ccat#usage"
 	elog
