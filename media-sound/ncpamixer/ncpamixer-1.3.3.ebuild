@@ -1,12 +1,11 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-CMAKE_BUILD_TYPE="release"
 
 inherit cmake-utils
 
-DESCRIPTION="An ncurses mixer for PulseAudio inspired by pavucontrol."
+DESCRIPTION="An ncurses mixer for PulseAudio inspired by pavucontrol"
 HOMEPAGE="https://github.com/fulhax/ncpamixer"
 
 if [[ ${PV} == *9999 ]]; then
@@ -28,10 +27,11 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 
+DOCS=( ../README.md )
+
 S="${S}/src"
 
-src_install() {
-	cmake-utils_src_install
-
-	dodoc ../README.md
+src_configure() {
+	local mycmakeargs=( USE_WIDE=1 )
+	cmake-utils_src_configure
 }
