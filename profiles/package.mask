@@ -14,7 +14,3 @@ x11-themes/retrosmart-icon-theme
 
 # Use this at your own risk (^_^)
 x11-misc/linxon-scripts
-
-# You can install in from "app-forensics/getsploit::pentoo"
-# Remove it after 10 days (https://github.com/pentoo/pentoo-overlay/pull/420)
-app-forensics/getsploit
