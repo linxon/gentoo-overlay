@@ -1,0 +1,28 @@
+diff -ur a/extensions/exiv2_tools/exiv2-utils.cpp b/extensions/exiv2_tools/exiv2-utils.cpp
+--- a/extensions/exiv2_tools/exiv2-utils.cpp	2018-12-11 16:52:55.000000000 +0300
++++ b/extensions/exiv2_tools/exiv2-utils.cpp	2019-03-15 09:45:50.453536268 +0300
+@@ -28,13 +28,14 @@
+ #include <exiv2/error.hpp>
+ #include <exiv2/image.hpp>
+ #include <exiv2/exif.hpp>
++#include <exiv2/exiv2.hpp>
+ #include <iostream>
+ #include <iomanip>
+ #include <string>
+ #include <sstream>
+ #include <vector>
+ #include <iomanip>
+-#include <exiv2/xmp.hpp>
++#include <exiv2/xmp_exiv2.hpp>
+ #include <pix.h>
+ #include "exiv2-utils.h"
+ 
+@@ -947,7 +948,7 @@
+ 
+ 	try {
+ 		if (exifData.empty()) {
+-			throw Exiv2::Error(1, " No Exif data found in the file");
++			throw Exiv2::Error(Exiv2::kerErrorMessage, " No Exif data found in the file");
+ 		}
+ 		Exiv2::ExifData::const_iterator end = exifData.end();
+ 		for (Exiv2::ExifData::const_iterator i = exifData.begin(); i != end; ++i) {
