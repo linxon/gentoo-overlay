@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -11,8 +11,8 @@ SRC_URI=""
 
 EGIT_REPO_URI="https://github.com/linxon/linxon-scripts"
 if [[ "${PV}" != *9999 ]]; then
-	EGIT_COMMIT="525d2e4404b63f2f50687a78d1322b3495f4b810"
-	KEYWORDS="amd64 x86"
+	EGIT_COMMIT="c99ab0cb569986fdd87a30d48ae442ca916fb890"
+	KEYWORDS="~amd64 ~x86"
 fi
 
 RESTRICT="mirror"
@@ -58,6 +58,8 @@ src_install() {
 	doins -r dotfiles
 
 	# portage env
-	exeinto /etc/portage/repo.postsync.d
-	doexe portage/repo.postsync.d/*
+	for envd in repo.postsync.d postsync.d; do
+		exeinto "/etc/portage/${envd}"
+		doexe "portage/${envd}"/*
+	done
 }
