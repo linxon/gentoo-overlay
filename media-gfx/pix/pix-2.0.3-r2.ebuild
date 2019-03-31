@@ -54,7 +54,7 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	gnome2_src_prepare
 
-	eapply "${FILESDIR}"/${P}_add_exiv2-0.27.0_support.patch
+	eapply "${FILESDIR}"/${P}_add_exiv2-0.27_api_support.patch
 	eautoreconf
 }
 
