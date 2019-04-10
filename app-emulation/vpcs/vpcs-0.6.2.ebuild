@@ -30,6 +30,8 @@ src_prepare() {
 		-e "s/-s //" \
 		-i Makefile || die
 
+	rm -fv getopt.h
+
 	eapply_user
 }
 
