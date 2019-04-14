@@ -17,4 +17,5 @@ x11-misc/linxon-scripts
 
 # Remove after 30 days
 # you can get it from ::pentoo overlay
-net-analyzer/udp2raw-tunnel
+app-admin/lazagne
+app-forensics/hackertarget
