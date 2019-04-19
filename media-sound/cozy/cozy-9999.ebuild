@@ -1,33 +1,30 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5,6} )
+PYTHON_COMPAT=( python3_{5,6} )
 PLOCALES="da_DK de en_IE es fi fr it ms_MY nl pl pt ru tr uk zh_CN"
 
 inherit gnome2-utils meson l10n python-r1 xdg-utils
 
 DESCRIPTION="A modern audio book player for Linux using GTK+ 3"
 HOMEPAGE="https://github.com/geigi/cozy"
-SRC_URI=""
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/geigi/cozy"
-	KEYWORDS=""
 else
 	SRC_URI="https://github.com/geigi/cozy/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
-RESTRICT="mirror"
 LICENSE="GPL-3"
 SLOT="0"
 IUSE="nls"
 
 RDEPEND="${PYTHON_DEPS}
 	dev-libs/glib:=
-	dev-python/peewee[${PYTHON_USEDEP}]
+	>=dev-python/peewee-3.5.0[${PYTHON_USEDEP}]
 	media-libs/mutagen[${PYTHON_USEDEP}]
 	media-libs/gstreamer:1.0=
 	x11-libs/gtk+:3"
