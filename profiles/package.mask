@@ -18,4 +18,6 @@ x11-misc/linxon-scripts
 # Remove after 30 days
 # you can get it from ::pentoo overlay
 app-admin/lazagne
+dev-python/memorpy
 app-forensics/hackertarget
+
