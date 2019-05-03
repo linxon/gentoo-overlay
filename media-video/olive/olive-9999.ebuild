@@ -3,15 +3,16 @@
 
 EAPI=6
 
-inherit git-r3 gnome2-utils qmake-utils xdg-utils
+inherit gnome2-utils qmake-utils xdg-utils
 
 DESCRIPTION="Professional open-source non-linear video editor"
 HOMEPAGE="https://github.com/olive-editor/olive"
-SRC_URI=""
 
-EGIT_REPO_URI="https://github.com/olive-editor/olive"
-if [[ ${PV} != *9999 ]]; then
-	EGIT_COMMIT="8cef5ce94d01063fc497fa44894e3253ed6a7413"
+if [[ ${PV} == *9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/olive-editor/olive"
+else
+	SRC_URI="https://github.com/olive-editor/olive/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
@@ -34,19 +35,13 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
-MY_PN="${PN}-editor"
-
-src_prepare() {
-	if ! use frei0r; then
-		sed -e "s/DEFINES += QT_DEPRECATED_WARNINGS/DEFINES += QT_DEPRECATED_WARNINGS NOFREI0R/" \
-			-i "${PN}.pro" || die 'sed failed!'
-	fi
-
-	eqmake5 "$(qmake-utils_find_pro_file)"
-	eapply_user
+src_configure() {
+	eqmake5 \
+		DEFINES+=$(usex frei0r "" NOFREI0R)
 }
 
 src_install() {
+	local my_pn="${PN}-editor"
 	local size
 
 	for size in 16 32 48 64 128 256 512; do
@@ -63,10 +58,10 @@ src_install() {
 	insinto /usr/share/olive-editor
 	doins -r effects
 
-	dobin "${MY_PN}"
+	dobin "${my_pn}"
 
 	make_desktop_entry \
-		"${MY_PN}" \
+		"${my_pn}" \
 		"Olive" \
 		"org.olivevideoeditor.Olive" \
 		"AudioVideo;Recorder;" \
