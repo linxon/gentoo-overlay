@@ -12,8 +12,10 @@ if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/olive-editor/olive"
 else
-	SRC_URI="https://github.com/olive-editor/olive/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	MY_PV="${PV%_pre}"
+	SRC_URI="https://github.com/olive-editor/olive/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
+	S="${WORKDIR}"/${PN}-${MY_PV}
 fi
 
 RESTRICT="mirror"
