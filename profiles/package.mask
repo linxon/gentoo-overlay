@@ -15,9 +15,3 @@ x11-themes/retrosmart-icon-theme
 # Use this at your own risk (^_^)
 x11-misc/linxon-scripts
 
-# Remove after 30 days
-# you can get it from ::pentoo overlay
-app-admin/lazagne
-dev-python/memorpy
-app-forensics/hackertarget
-
