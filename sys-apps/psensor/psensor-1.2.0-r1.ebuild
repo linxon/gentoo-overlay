@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -6,9 +6,8 @@ EAPI=6
 inherit gnome2-utils xdg-utils
 
 DESCRIPTION="A graphical hardware temperature monitor"
-HOMEPAGE="http://wpitchoune.net/psensor"
-SRC_URI="http://wpitchoune.net/${PN}/files/${PN}-${PV}.tar.gz"
-RESTRICT="mirror"
+HOMEPAGE="https://wpitchoune.net/psensor/"
+SRC_URI="https://wpitchoune.net/${PN}/files/${PN}-${PV}.tar.gz"
 KEYWORDS="amd64 ~x86"
 LICENSE="GPL-2"
 SLOT="0"
