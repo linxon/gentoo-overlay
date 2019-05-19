@@ -19,3 +19,8 @@ x11-misc/linxon-scripts
 # You can get it from the "pentoo" overlay
 # https://github.com/pentoo/pentoo-overlay/tree/master/net-vpn/tuntox
 net-vpn/tuntox
+
+# Masked for removal in 30 days.
+# You can get it from the "pentoo" overlay
+# https://github.com/pentoo/pentoo-overlay/tree/master/sys-fs/ubi_reader
+sys-fs/ubi_reader
