@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -6,7 +6,7 @@ EGO_PN="github.com/jingweno/ccat"
 
 inherit golang-vcs-snapshot
 
-DESCRIPTION="Colorizing \"cat\"."
+DESCRIPTION="Colorizing \"cat\""
 HOMEPAGE="https://github.com/jingweno/ccat"
 SRC_URI=""
 
@@ -37,10 +37,8 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog
-	elog "It's recommended to alias ccat to cat:"
+	elog "\nIt's recommended to alias ccat to cat:"
 	elog "   alias cat=ccat"
 	elog
-	elog "See documentation: https://github.com/jingweno/ccat#usage"
-	elog
+	elog "See documentation: https://github.com/jingweno/ccat#usage\n"
 }
