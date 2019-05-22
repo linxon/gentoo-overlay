@@ -1,11 +1,11 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit eutils linux-info
 
-DESCRIPTION="Simple script daemon for automount home dir to tmpfs when your system is booting and extract all user data there"
+DESCRIPTION="Simple script daemon for automount target user homedir to tmpfs"
 HOMEPAGE="https://github.com/linxon/u2tmpfs"
 LICENSE="GPL-3"
 
@@ -17,7 +17,6 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-RESTRICT="mirror"
 SLOT="0"
 IUSE=""
 
@@ -26,8 +25,8 @@ RDEPEND="${DEPEND}
 	app-shells/bash"
 
 src_prepare() {
-	epatch "${FILESDIR}"/fix-skipping-while-updating.patch
-	eapply_user
+	eapply "${FILESDIR}"/fix-skipping-while-updating.patch
+	default
 }
 
 pkg_setup() {
@@ -38,7 +37,7 @@ pkg_setup() {
 
 src_install() {
 	keepdir /var/lib/${PN}
-	fperms 740 /var/lib/${PN}
+	fperms 750 /var/lib/${PN}
 
 	newinitd "${FILESDIR}"/u2tmpfs.initd ${PN}
 	newconfd "${FILESDIR}"/u2tmpfs.confd ${PN}
