@@ -15,12 +15,3 @@ x11-themes/retrosmart-icon-theme
 # Use this at your own risk (^_^)
 x11-misc/linxon-scripts
 
-# Masked for removal in 30 days.
-# You can get it from the "pentoo" overlay
-# https://github.com/pentoo/pentoo-overlay/tree/master/net-vpn/tuntox
-net-vpn/tuntox
-
-# Masked for removal in 30 days.
-# You can get it from the "pentoo" overlay
-# https://github.com/pentoo/pentoo-overlay/tree/master/sys-fs/ubi_reader
-sys-fs/ubi_reader

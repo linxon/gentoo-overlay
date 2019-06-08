@@ -1,7 +1,0 @@
-/var/log/tuntox/tuntox.log {
-	compress
-	daily
-	rotate 3
-	notifempty
-	missingok
-}
