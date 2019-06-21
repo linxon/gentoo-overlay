@@ -1,15 +1,14 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_COMPAT=( python3_{5,6,7} )
 PLOCALES="be bg el ru"
 
 inherit eutils gnome2-utils l10n xdg-utils python-r1
 
 DESCRIPTION="Panel indicator (GUI) for YandexDisk CLI client"
 HOMEPAGE="https://github.com/slytomcat/yandex-disk-indicator"
-SRC_URI=""
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
@@ -22,8 +21,7 @@ else
 fi
 
 LICENSE="GPL-3"
-RESTRICT="mirror"
-SLOT="0"
+SLOT=0
 IUSE="nls"
 
 RDEPEND="${PYTHON_DEPS}
@@ -41,8 +39,8 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_prepare() {
-	mv -v todo.txt TODO || die
-	mv -v build/yd-tools/debian/changelog ChangeLog || die
+	mv todo.txt TODO || die
+	mv build/yd-tools/debian/changelog ChangeLog || die
 
 	# Change "Exec" path in *.desktop files
 	sed -i \
@@ -53,19 +51,21 @@ src_prepare() {
 		l10n_find_plocales_changes "translations" "yandex-disk-indicator_" ".po"
 
 		rm_loc() {
-			rm -fv translations/yandex-disk-indicator_${1}.{mo,po} || die
-			rm -fv translations/{actions-,ya-setup-}${1}.lang || die
+			ebegin "Disable locale: ${1}"
+			rm -f translations/yandex-disk-indicator_${1}.{mo,po} || die
+			rm -f translations/{actions-,ya-setup-}${1}.lang || die
+			eend
 		}
 		l10n_for_each_disabled_locale_do rm_loc
 	else
 		for x in ${PLOCALES}; do
-			rm -fv translations/yandex-disk-indicator_${x}.{mo,po} || die
-			rm -fv translations/{actions-,ya-setup-}${x}.lang || die
+			ebegin "Disable locale: ${x}"
+			rm -f translations/yandex-disk-indicator_${x}.{mo,po} || die
+			rm -f translations/{actions-,ya-setup-}${x}.lang || die
+			eend
 		done
 	fi
 
-	# Fix bug: https://github.com/slytomcat/yandex-disk-indicator/issues/197
-	epatch "${FILESDIR}"/${P}_disable_show_synchronized_sub_menu_while_updating.patch
 	eapply_user
 }
 
