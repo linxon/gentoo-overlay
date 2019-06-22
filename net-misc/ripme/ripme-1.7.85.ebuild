@@ -10,14 +10,13 @@ HOMEPAGE="https://github.com/RipMeApp/ripme"
 LICENSE="MIT"
 SRC_URI="https://github.com/RipMeApp/ripme/releases/download/${PV}/ripme.jar -> ${P}.jar"
 KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror"
-SLOT="0"
+SLOT=0
 
 S="${WORKDIR}"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	>=virtual/jdk-1.7"
+	virtual/jre"
 
 src_unpack() {
 	unpack ${A} && cp "${DISTDIR}"/"${P}.jar" "${WORKDIR}" || die
