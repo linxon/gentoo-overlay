@@ -11,7 +11,7 @@ SRC_URI=""
 
 EGIT_REPO_URI="https://github.com/linxon/linxon-scripts"
 if [[ "${PV}" != *9999 ]]; then
-	EGIT_COMMIT="8904e637e5fe446e8279497b6d1f219188a35874"
+	EGIT_COMMIT="1b4dc834760bd5873a94b3420a14d578069f854c"
 	KEYWORDS="~amd64 ~x86"
 fi
 
