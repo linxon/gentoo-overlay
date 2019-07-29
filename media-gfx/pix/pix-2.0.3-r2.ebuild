@@ -11,7 +11,7 @@ SRC_URI="https://github.com/linuxmint/pix/archive/${PV}.tar.gz -> ${P}.tar.gz"
 RESTRICT="mirror"
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~x86"
 IUSE="-cdr debug +exif gnome-keyring +gstreamer http +jpeg json lcms nls +raw +slideshow +svg tiff test webkit +webp"
 
 RDEPEND="
