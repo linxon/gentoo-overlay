@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit eutils git-r3
 
@@ -11,11 +11,10 @@ SRC_URI=""
 
 EGIT_REPO_URI="https://github.com/linxon/linxon-scripts"
 if [[ "${PV}" != *9999 ]]; then
-	EGIT_COMMIT="1b4dc834760bd5873a94b3420a14d578069f854c"
+	EGIT_COMMIT="ed18918619f8e6098f09cb2fb0ac8f7c5c534618"
 	KEYWORDS="~amd64 ~x86"
 fi
 
-RESTRICT="mirror"
 LICENSE="Unlicense"
 SLOT="0"
 IUSE=""
@@ -62,4 +61,6 @@ src_install() {
 		exeinto "/etc/portage/${envd}"
 		doexe "portage/${envd}"/*
 	done
+	insinto "/etc/portage"
+	doins -r portage/{env,package.env,patches,sets,modules,trusted-overlays,make.conf*}
 }
