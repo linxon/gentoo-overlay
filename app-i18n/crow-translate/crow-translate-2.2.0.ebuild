@@ -1,25 +1,28 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-TPARTY_1_PV="1.1.2"
+TPARTY_1_PV="1.2.0"
 TPARTY_1_P="QOnlineTranslator-${TPARTY_1_PV}"
 TPARTY_2_PV="1.2.2"
 TPARTY_2_P="QHotkey-${TPARTY_2_PV}"
-TPARTY_3_PV="3.0.14"
+TPARTY_3_PV="3.0.15"
 TPARTY_3_P="SingleApplication-${TPARTY_3_PV}"
+TPARTY_4_PV="1.2.2"
+TPARTY_4_P="QTaskbarControl-${TPARTY_4_PV}"
 
-inherit eutils gnome2-utils qmake-utils xdg-utils
+inherit eutils desktop qmake-utils xdg-utils
 
 DESCRIPTION="A simple translator that allows to translate and say selected text."
-HOMEPAGE="https://github.com/Shatur95/crow-translate"
+HOMEPAGE="https://github.com/crow-translate/crow-translate"
 
 SRC_URI="
-	https://github.com/Shatur95/crow-translate/archive/${PV}.tar.gz                -> ${P}.tar.gz
-	https://github.com/Shatur95/QOnlineTranslator/archive/${TPARTY_1_PV}.tar.gz    -> ${TPARTY_1_P}.tar.gz
-	https://github.com/Skycoder42/QHotkey/archive/${TPARTY_2_PV}.tar.gz            -> ${TPARTY_2_P}.tar.gz
-	https://github.com/itay-grudev/SingleApplication/archive/${TPARTY_3_PV}.tar.gz -> ${TPARTY_3_P}.tar.gz"
+	https://github.com/crow-translate/crow-translate/archive/${PV}.tar.gz                -> ${P}.tar.gz
+	https://github.com/crow-translate/QOnlineTranslator/archive/${TPARTY_1_PV}.tar.gz    -> ${TPARTY_1_P}.tar.gz
+	https://github.com/Skycoder42/QHotkey/archive/${TPARTY_2_PV}.tar.gz                  -> ${TPARTY_2_P}.tar.gz
+	https://github.com/itay-grudev/SingleApplication/archive/${TPARTY_3_PV}.tar.gz       -> ${TPARTY_3_P}.tar.gz
+	https://github.com/Skycoder42/QTaskbarControl/archive/${TPARTY_4_PV}.tar.gz          -> ${TPARTY_4_P}.tar.gz"
 
 KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
@@ -37,9 +40,12 @@ RDEPEND="
 	media-libs/gst-plugins-good:1.0"
 
 DEPEND="${RDEPEND}"
+BDEPEND="
+	dev-qt/linguist-tools:5
+	virtual/pkgconfig"
 
 src_unpack() {
-	unpack ${A}
+	default
 
 	mv -f \
 		"${WORKDIR}"/${TPARTY_1_P}/* \
@@ -50,6 +56,9 @@ src_unpack() {
 	mv -f \
 		"${WORKDIR}"/${TPARTY_3_P}/* \
 		"${WORKDIR}"/${P}/src/third-party/singleapplication/ || die
+	mv -f \
+		"${WORKDIR}"/${TPARTY_4_P}/* \
+		"${WORKDIR}"/${P}/src/third-party/qtaskbarcontrol/ || die
 }
 
 src_prepare() {
@@ -61,7 +70,7 @@ src_prepare() {
 		-i dist/unix/generic/crow-translate.desktop || die 'sed failed!'
 
 	eqmake5 "$(qmake-utils_find_pro_file)"
-	eapply_user
+	default
 }
 
 src_install() {
@@ -73,21 +82,18 @@ src_install() {
 		doins -r dist/unix/generic/hicolor/${size}x${size}
 	done
 
-	dodoc "CHANGELOG.md"
 	dobin ${PN}
 	domenu dist/unix/generic/crow-translate.desktop
-}
 
-pkg_preinst() {
-	gnome2_icon_savelist
+	dodoc *.md
 }
 
 pkg_postinst() {
+	xdg_icon_cache_update
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
 }
 
 pkg_postrm() {
+	xdg_icon_cache_update
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
 }
