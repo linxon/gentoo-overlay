@@ -6,14 +6,17 @@ gentoo-overlay
 Useful tools for gentoo linux
 
 ---
-#### Make sure that layman and git are installed
-```
-# emerge --sync && emerge app-portage/layman git
-```
-
 #### Add this overlay
 
 ```
+# eselect repository enable linxon
+# emaint sync --repo linxon
+```
+
+#### Using layman (make sure that layman and git are installed)
+
+```
+# emerge --sync && emerge app-portage/layman git
 # layman -a linxon
 ```
 
@@ -24,10 +27,10 @@ or
 ```
 
 #### Manually
-Add an entry to `/etc/portage/repos.conf`:
+Add an entry to `/etc/portage/repos.conf/linxon.conf`:
 ```ini
 [linxon]
-location = /usr/local/portage/linxon
+location = /var/db/repos/linxon
 sync-uri = https://github.com/linxon/gentoo-overlay.git
 sync-type = git
 auto-sync = yes
