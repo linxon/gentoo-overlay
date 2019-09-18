@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit eutils git-r3
+inherit desktop eutils git-r3
 
 DESCRIPTION="My simple scripts."
 HOMEPAGE="http://www.linxon.ru"
@@ -11,7 +11,7 @@ SRC_URI=""
 
 EGIT_REPO_URI="https://github.com/linxon/linxon-scripts"
 if [[ "${PV}" != *9999 ]]; then
-	EGIT_COMMIT="ed18918619f8e6098f09cb2fb0ac8f7c5c534618"
+	EGIT_COMMIT="77b84736469f34d756c1bc8f56126edc0e7346cd"
 	KEYWORDS="~amd64 ~x86"
 fi
 
