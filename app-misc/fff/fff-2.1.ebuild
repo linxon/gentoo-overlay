@@ -20,8 +20,7 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="
-	sys-apps/util-linux
-	sys-process/procps
+	sys-devel/binutils
 	x11-misc/xdotool"
 
 src_compile() {
@@ -33,4 +32,12 @@ src_install() {
 
 	doman fff.1
 	dodoc README.md
+}
+
+pkg_postinst() {
+	einfo "\nAdd this to your .bashrc, .zshrc or equivalent:"
+	einfo "    f() {"
+	einfo "        fff \"\$@\""
+	einfo "        cd \"\$(cat \"\${XDG_CACHE_HOME:=\${HOME}/.cache}/fff/.fff_d\")\""
+	einfo "    }\n"
 }
