@@ -8,7 +8,7 @@ inherit gnome2-utils xdg-utils
 DESCRIPTION="A graphical hardware temperature monitor"
 HOMEPAGE="https://wpitchoune.net/psensor/"
 SRC_URI="https://wpitchoune.net/${PN}/files/${PN}-${PV}.tar.gz"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="~amd64 ~x86"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="+gtop +hddtemp nls +server +udisks X"
@@ -22,7 +22,7 @@ RDEPEND="
 	hddtemp? ( app-admin/hddtemp )
 	net-misc/curl
 	server? ( net-libs/libmicrohttpd )
-	sys-apps/lm_sensors
+	sys-apps/lm-sensors
 	udisks? ( sys-fs/udisks:2 )
 	X? (
 		>=x11-libs/gtk+-3.4:3
