@@ -1,0 +1,13 @@
+diff -ur a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	2019-10-01 07:41:50.000000000 +0300
++++ b/CMakeLists.txt	2019-10-02 12:57:23.208726117 +0300
+@@ -437,9 +437,6 @@
+ install( FILES translations/de_DE.qm DESTINATION ${CMAKE_INSTALL_DATADIR}/sirikali/translations )
+ install( FILES translations/ru_RU.qm DESTINATION ${CMAKE_INSTALL_DATADIR}/sirikali/translations )
+ 
+-install( FILES src/sirikali.1.gz DESTINATION ${CMAKE_INSTALL_DATADIR}/man/man1/ )
+-install( FILES src/sirikali.pkexec.1.gz DESTINATION ${CMAKE_INSTALL_DATADIR}/man/man1/ )
+-
+ install( FILES src/sirikali.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo/ )
+ 
+ endif()
