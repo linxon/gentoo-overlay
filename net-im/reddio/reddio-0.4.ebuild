@@ -10,7 +10,7 @@ HOMEPAGE="https://gitlab.com/aaronNG/reddio"
 
 EGIT_REPO_URI="https://gitlab.com/aaronNG/reddio"
 if [[ ${PV} != *9999 ]]; then
-	EGIT_COMMIT="66c12ce1911648451221adf8992122138f9fcba8"
+	EGIT_COMMIT="v${PV}"
 	KEYWORDS="~amd64 ~x86"
 fi
 
