@@ -1,8 +1,9 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6,3_7} )
+EAPI=7
+
+PYTHON_COMPAT=( python2_7 python3_{5,6,7} )
 
 inherit distutils-r1
 
@@ -14,18 +15,17 @@ if [[ ${PV} == *9999 ]]; then
 	EGIT_REPO_URI="https://github.com/amanusk/s-tui"
 else
 	MY_PV="${PV%%_pre}"
-	MY_P="${PN}-${MY_PV}"
 	SRC_URI="https://github.com/amanusk/s-tui/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
-	S="${WORKDIR}"/${MY_P}
+	S="${WORKDIR}/${PN}-${MY_PV}"
 fi
 
 LICENSE="GPL-2"
-RESTRICT="mirror"
 SLOT="0"
 IUSE="+stress"
-DEPEND=""
-RDEPEND="${PYTHON_DEPS}
-	>=dev-python/urwid-1.3.1[${PYTHON_USEDEP}]
-	>=dev-python/psutil-5.2.0
+
+DEPEND="${PYTHON_DEPS}"
+RDEPEND="${DEPEND}
+	dev-python/urwid[${PYTHON_USEDEP}]
+	dev-python/psutil[${PYTHON_USEDEP}]
 	stress? ( app-benchmarks/stress )"
