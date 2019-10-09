@@ -62,5 +62,5 @@ src_install() {
 		doexe "portage/${envd}"/*
 	done
 	insinto "/etc/portage"
-	doins -r portage/{env,package.env,patches,sets,modules,trusted-overlays,make.conf*}
+	doins -r portage/{env,package.env,patches}
 }
