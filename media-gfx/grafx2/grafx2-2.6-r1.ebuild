@@ -1,20 +1,22 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit gnome2-utils xdg-utils
+inherit desktop toolchain-funcs xdg-utils
 
-RECOIL_P="recoil-4.2.0"
 DESCRIPTION="A bitmap paint program specialized in 256 color drawing."
 HOMEPAGE="https://gitlab.com/GrafX2/grafX2"
 
+# get it from  src/Makefile < RECOILVER = (.*)
+RECOIL_P="recoil-4.3.1"
 SRC_URI="
 	https://gitlab.com/GrafX2/grafX2/-/archive/v${PV}/grafX2-v${PV}.tar.gz -> ${P}.tar.gz
 	recoil? ( mirror://sourceforge/recoil/${RECOIL_P}.tar.gz )"
 
+# recoil use GPL-2 too
 LICENSE="GPL-2"
-RESTRICT="mirror"
+
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+lua +recoil truetype"
@@ -25,28 +27,29 @@ DEPEND="
 	media-libs/libjpeg-turbo
 	media-libs/libsdl
 	media-libs/sdl-image
-	sys-libs/glibc
 	sys-libs/zlib
 	truetype? ( media-libs/sdl-ttf )
 	lua? ( >=dev-lang/lua-5.1.0:0 )"
 
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}"/grafX2-v${PV}
+S="${WORKDIR}/grafX2-v${PV}"
 
 src_unpack() {
 	default
 
 	if use recoil; then
-		mv "${WORKDIR}"/${RECOIL_P} "${S}"/3rdparty \
+		mv "${WORKDIR}/${RECOIL_P}" "${S}/3rdparty" \
 			|| die 'failed to install!'
 	fi
 }
 
 src_prepare() {
 	# Cleanup
-	rm -f doc/gpl-2.0.txt || die 'failed to install!'
-	eapply_user
+	rm -f doc/gpl-2.0.txt || die
+
+	sed -e "s/-Wall //" -i src/Makefile || die
+	default
 }
 
 src_compile() {
@@ -57,7 +60,7 @@ src_compile() {
 	use recoil || makeconf+=( "NORECOIL=1" )
 	use truetype || makeconf+=( "NOTTF=1" )
 
-	emake ${makeconf[@]}
+	emake CC="$(tc-getCC)" ${makeconf[@]}
 }
 
 src_install() {
@@ -75,26 +78,19 @@ src_install() {
 	doman misc/unix/grafx2.1
 	dodoc -r doc/*
 
-	mv -v "bin/${PN}-sdl" "bin/${PN}" || die 'failed to install!'
-	dobin bin/${PN}
+	newbin "bin/${PN}-sdl" $PN
 
-	make_desktop_entry \
-		"${PN}" \
-		"GrafX2" \
-		"${PN}" \
-		"Graphics;2DGraphics;"
-}
-
-pkg_preinst() {
-	gnome2_icon_savelist
+	make_desktop_entry $PN \
+		"GrafX2" $PN \
+		"Graphics;2DGraphics"
 }
 
 pkg_postinst() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
