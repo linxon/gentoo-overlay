@@ -1,11 +1,11 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-CMAKE_MIN_VERSION="2.8.11"
+EAPI=7
+
 BUILD_DIR="${S}"
 
-inherit eutils cmake-utils gnome2-utils xdg-utils wxwidgets
+inherit desktop eutils cmake-utils gnome2-utils wxwidgets xdg-utils
 
 DESCRIPTION="A cross-platform color picker"
 HOMEPAGE="https://github.com/nielssp/colorgrab"
@@ -16,37 +16,32 @@ if [[ ${PV} == *9999 ]]; then
 	EGIT_REPO_URI="https://github.com/nielssp/colorgrab"
 else
 	SRC_URI="https://github.com/nielssp/colorgrab/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="amd64 ~x86"
+	KEYWORDS="amd64 x86"
 fi
 
-RESTRICT="mirror"
 SLOT="0"
+IUSE=""
 
-RDEPEND="
-	sys-libs/glibc
-	x11-libs/wxGTK:3.0"
-
+RDEPEND="x11-libs/wxGTK:3.0"
 DEPEND="${RDEPEND}"
 
 src_install() {
 	local size
 
-	insinto /usr/share/icons/hicolor/scalable/apps/
-	newins img/scalable.svg ${PN}.svg
+	insinto "/usr/share/icons/hicolor/scalable/apps/"
+	newins "img/scalable.svg" "${PN}.svg"
 
 	for size in 16 32 48 64 128 256; do
-		insinto /usr/share/icons/hicolor/${size}x${size}/apps/
-		newins img/${size}x${size}.png ${PN}.png
+		insinto "/usr/share/icons/hicolor/${size}x${size}/apps/"
+		newins "img/${size}x${size}.png" "${PN}.png"
 	done
 
-	dobin ${PN}
+	dobin $PN
 	dodoc README.md
 
-	make_desktop_entry \
-		"${PN}" \
-		"ColorGrab" \
-		"${PN}" \
-		"Utility;Graphics;"
+	make_desktop_entry $PN \
+		"ColorGrab" $PN \
+		"Utility;Graphics"
 }
 
 pkg_preinst() {
@@ -55,5 +50,10 @@ pkg_preinst() {
 
 pkg_postinst() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
+}
+
+pkg_postrm() {
+	xdg_desktop_database_update
+	xdg_icon_cache_update
 }
