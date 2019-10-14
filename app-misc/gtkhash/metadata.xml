@@ -15,7 +15,7 @@
 		<flag name="nautilus">Build the Nautilus extension</flag>
 		<flag name="nemo">Build the Nemo extension</flag>
 		<flag name="nettle">Use the Nettle cryptographic library</flag>
-		<!--<flag name="openssl">Enable the libcrypto (a dev-libs/openssl library)</flag>-->
+		<flag name="openssl">Enable the libcrypto (a dev-libs/openssl library)</flag>
 		<flag name="thunar">Build the Thunar extension</flag>
 	</use>
 </pkgmetadata>
