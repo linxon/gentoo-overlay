@@ -14,18 +14,17 @@ TPARTY_4_P="QTaskbarControl-${TPARTY_4_PV}"
 
 inherit eutils desktop qmake-utils xdg-utils
 
-DESCRIPTION="A simple translator that allows to translate and say selected text."
+DESCRIPTION="A simple translator that allows to translate and say selected text"
 HOMEPAGE="https://github.com/crow-translate/crow-translate"
 
 SRC_URI="
-	https://github.com/crow-translate/crow-translate/archive/${PV}.tar.gz                -> ${P}.tar.gz
-	https://github.com/crow-translate/QOnlineTranslator/archive/${TPARTY_1_PV}.tar.gz    -> ${TPARTY_1_P}.tar.gz
-	https://github.com/Skycoder42/QHotkey/archive/${TPARTY_2_PV}.tar.gz                  -> ${TPARTY_2_P}.tar.gz
-	https://github.com/itay-grudev/SingleApplication/archive/${TPARTY_3_PV}.tar.gz       -> ${TPARTY_3_P}.tar.gz
-	https://github.com/Skycoder42/QTaskbarControl/archive/${TPARTY_4_PV}.tar.gz          -> ${TPARTY_4_P}.tar.gz"
+	https://github.com/crow-translate/crow-translate/archive/${PV}.tar.gz             -> ${P}.tar.gz
+	https://github.com/crow-translate/QOnlineTranslator/archive/${TPARTY_1_PV}.tar.gz -> ${TPARTY_1_P}.tar.gz
+	https://github.com/Skycoder42/QHotkey/archive/${TPARTY_2_PV}.tar.gz               -> ${TPARTY_2_P}.tar.gz
+	https://github.com/itay-grudev/SingleApplication/archive/${TPARTY_3_PV}.tar.gz    -> ${TPARTY_3_P}.tar.gz
+	https://github.com/Skycoder42/QTaskbarControl/archive/${TPARTY_4_PV}.tar.gz       -> ${TPARTY_4_P}.tar.gz"
 
 KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror"
 LICENSE="GPL-3"
 SLOT="0"
 IUSE=""
@@ -82,7 +81,7 @@ src_install() {
 		doins -r dist/unix/generic/hicolor/${size}x${size}
 	done
 
-	dobin ${PN}
+	dobin $PN
 	domenu dist/unix/generic/crow-translate.desktop
 
 	dodoc *.md
