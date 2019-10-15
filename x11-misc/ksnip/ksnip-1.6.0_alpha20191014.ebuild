@@ -1,19 +1,25 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit cmake-utils git-r3 gnome2-utils xdg-utils
+inherit cmake-utils xdg-utils
 
 DESCRIPTION="A Qt based screenshot tool"
 HOMEPAGE="https://github.com/DamirPorobic/ksnip"
-SRC_URI=""
 
-EGIT_REPO_URI="https://github.com/DamirPorobic/ksnip"
-EGIT_COMMIT="36e2bd32d73323542a41431268990232c07f3c85"
+if [[ ${PV} == *9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/DamirPorobic/ksnip"
+else
+	# snapshot: 20191014
+	HASH_COMMIT="ed9c9a4ab7c7bcaa1e5b60c155abcce353cea724"
 
-KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror"
+	SRC_URI="https://github.com/DamirPorobic/ksnip/archive/${HASH_COMMIT}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+	S="${WORKDIR}/${PN}-${HASH_COMMIT}"
+fi
+
 LICENSE="GPL-2"
 SLOT="0"
 IUSE=""
@@ -27,26 +33,22 @@ RDEPEND="
 	dev-qt/qtxml:5
 	dev-qt/qtx11extras:5
 	x11-libs/kcolorpicker
-	x11-libs/kimageannotator
+	>=x11-libs/kimageannotator-0.2.0
 	x11-libs/libxcb"
 
-DEPEND="${RDEPEND}
-	virtual/pkgconfig"
+DEPEND="${RDEPEND}"
+BDEPEND="virtual/pkgconfig"
 
 src_prepare() {
 	cmake-utils_src_prepare
 }
 
-pkg_preinst() {
-	gnome2_icon_savelist
-}
-
 pkg_postinst() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
