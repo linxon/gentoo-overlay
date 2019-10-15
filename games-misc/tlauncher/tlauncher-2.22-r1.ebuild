@@ -1,25 +1,25 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit eutils gnome2-utils xdg-utils
+inherit desktop eutils xdg-utils
 
 DESCRIPTION="A advanced launcher for Minecraft"
 HOMEPAGE="https://tlauncher.org"
-LICENSE="all-rights-reserved"
 
 SRC_URI="
 		https://tlauncher.org/download/3049 -> ${P}.jar
 		https://minecraft.net/apple-icon-180x180.png -> ${P}.png"
 
+LICENSE="all-rights-reserved"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86"
 SLOT="2"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	>=virtual/jdk-1.7"
+	|| ( virtual/jre virtual/jdk )"
 
 S="${WORKDIR}"
 
@@ -56,5 +56,10 @@ pkg_postinst() {
 	ewarn
 
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
+}
+
+pkg_postrm() {
+	xdg_desktop_database_update
+	xdg_icon_cache_update
 }
