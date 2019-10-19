@@ -1,0 +1,12 @@
+diff -ur a/tools/gpick.py b/tools/gpick.py
+--- a/tools/gpick.py	2011-05-16 08:44:23.000000000 +0400
++++ b/tools/gpick.py	2019-10-19 15:28:32.291966702 +0300
+@@ -109,7 +109,7 @@
+ 		except OSError, e:
+ 			revision = ''
+ 
+-		self.Replace(GPICK_BUILD_REVISION = revision,
++		self.Replace(GPICK_BUILD_REVISION = '',
+ 			GPICK_BUILD_DATE =  time.strftime ("%Y-%m-%d"),
+ 			GPICK_BUILD_TIME =  time.strftime ("%H:%M:%S"));	
+ 
