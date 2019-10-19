@@ -12,8 +12,8 @@ if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/DamirPorobic/ksnip"
 else
-	# snapshot: 20191014
-	HASH_COMMIT="ed9c9a4ab7c7bcaa1e5b60c155abcce353cea724"
+	# snapshot: 20191017
+	HASH_COMMIT="985ce71f04e5434ba711ad449ade0547da51f452"
 
 	SRC_URI="https://github.com/DamirPorobic/ksnip/archive/${HASH_COMMIT}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
