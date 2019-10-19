@@ -17,7 +17,7 @@ if [[ ${PV} == *9999 ]]; then
 else
 	MY_P="yandex-disk-indicator-${PV}"
 	SRC_URI="https://github.com/slytomcat/yandex-disk-indicator/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 x86"
 	S="${WORKDIR}/${MY_P}"
 fi
 
