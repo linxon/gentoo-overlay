@@ -1,13 +1,14 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit autotools gnome2 gnome2-utils xdg-utils
+inherit autotools gnome2-utils xdg-utils
 
-DESCRIPTION="Image management application"
+DESCRIPTION="A image management application"
 HOMEPAGE="https://github.com/linuxmint/pix"
 SRC_URI="https://github.com/linuxmint/pix/archive/${PV}.tar.gz -> ${P}.tar.gz"
+
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -45,18 +46,20 @@ DEPEND="${RDEPEND}
 	app-text/yelp-tools
 	dev-util/intltool
 	gnome-base/gnome-common
-	sys-devel/bison
-	sys-devel/flex
-	virtual/pkgconfig
 	test? ( ~app-text/docbook-xml-dtd-4.1.2 )"
 
+BDEPEND="
+	virtual/pkgconfig
+	sys-devel/bison
+	sys-devel/flex"
+
 src_prepare() {
-	gnome2_src_prepare
 	eautoreconf
+	default
 }
 
 src_configure() {
-	gnome2_src_configure \
+	econf \
 		--disable-static \
 		--disable-libchamplain \
 		$(use_enable cdr libbrasero) \
@@ -83,12 +86,12 @@ pkg_preinst() {
 
 pkg_postinst() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 	gnome2_schemas_update
 }
 
 pkg_postrm() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 	gnome2_schemas_update
 }
