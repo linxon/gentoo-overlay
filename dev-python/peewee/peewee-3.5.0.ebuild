@@ -1,9 +1,12 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-PYTHON_COMPAT=( python{2_7,3_5,3_6} )
+EAPI=7
+
+PYTHON_COMPAT=( python2_7 python3_{5,6,7} )
 PYTHON_REQ_USE="sqlite(+)"
+# Req'd to ensure a unique tmp.db for each python impl running the testsuite.
+DISTUTILS_IN_SOURCE_BUILD=1
 
 inherit distutils-r1
 
@@ -19,8 +22,6 @@ IUSE="doc examples"
 DEPEND="dev-python/cython[${PYTHON_USEDEP}]
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )"
-# Req'd to ensure a unique tmp.db for each python impl running the testsuite.
-DISTUTILS_IN_SOURCE_BUILD=1
 
 python_prepare_all() {
 	sed -i -e "s#test_suite='tests',##g;" ./setup.py || die
