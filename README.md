@@ -1,8 +1,6 @@
 
 gentoo-overlay
 =
-
-![Image](https://raw.githubusercontent.com/linxon/gentoo-overlay/master/logo.png)
 Useful tools for gentoo linux
 
 ---
@@ -37,4 +35,5 @@ auto-sync = yes
 ```
 ---
 
-
+#### Tool request
+if you have any suggestions for adding new tools please feel free to create a pull request or alert me via email@linxon.ru
