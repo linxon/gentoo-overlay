@@ -1,14 +1,14 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-CMAKE_MIN_VERSION="2.8.11"
+EAPI=7
+
+CMAKE_IN_SOURCE_BUILD=1
 
 inherit eutils cmake-utils gnome2-utils xdg-utils wxwidgets
 
 DESCRIPTION="A cross-platform graphical client for sending SPA knocks to fwknopd."
 HOMEPAGE="https://github.com/jp-bennett/fwknop-gui"
-LICENSE="GPL-3"
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
@@ -21,9 +21,8 @@ else
 	S="${WORKDIR}"/${MY_P}
 fi
 
-RESTRICT="mirror"
+LICENSE="GPL-3"
 SLOT="0"
-BUILD_DIR="${S}"
 
 RDEPEND="
 	app-crypt/gpgme
@@ -40,6 +39,7 @@ RDEPEND="
 	x11-libs/wxGTK:3.0"
 
 DEPEND="${RDEPEND}"
+BDEPEND="virtual/pkgconfig"
 
 pkg_preinst() {
 	gnome2_icon_savelist
@@ -47,5 +47,10 @@ pkg_preinst() {
 
 pkg_postinst() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
+}
+
+pkg_postrm() {
+	xdg_desktop_database_update
+	xdg_icon_cache_update
 }
