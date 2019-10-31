@@ -20,8 +20,11 @@ SLOT="0"
 IUSE=""
 
 DEPEND=""
-RDEPEND="app-shells/bash
-	virtual/awk"
+RDEPEND="
+	app-shells/bash
+	app-admin/stow
+	virtual/awk
+	virtual/tmpfiles"
 
 src_install() {
 	local misc_scr_exec=(
@@ -46,14 +49,14 @@ src_install() {
 		"System;Settings;"
 
 	# autorun-scriptd
-	exeinto /etc/xdg/autorun-script.d
+	exeinto "/etc/xdg/autorun-script.d"
 	doexe autorun-scriptd/autorun-script.d/*
 	insinto /etc/xdg/autostart/
 	doins autorun-scriptd/autorun-scriptd.desktop
 	dobin autorun-scriptd/autorun-scriptd.sh
 
 	# dotfiles
-	insinto /usr/share
+	insinto "/usr/share"
 	doins -r dotfiles
 
 	# portage env
@@ -62,5 +65,8 @@ src_install() {
 		doexe "portage/${envd}"/*
 	done
 	insinto "/etc/portage"
-	doins -r portage/{env,package.env,patches}
+	doins -r portage/{env,package.env,patches,sets}
+
+	insinto "/etc/tmpfiles.d/"
+	doins tmpfilesd/*.conf
 }
