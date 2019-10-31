@@ -23,6 +23,7 @@ DEPEND=""
 RDEPEND="
 	app-shells/bash
 	app-admin/stow
+	dev-util/ccache
 	virtual/awk
 	virtual/tmpfiles"
 
@@ -35,6 +36,7 @@ src_install() {
 		"toggle-conky"
 		"toggle-monitor"
 		"video-to-gif"
+		"ccache_env"
 	)
 
 	# misc
