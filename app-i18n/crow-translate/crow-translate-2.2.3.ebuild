@@ -3,7 +3,7 @@
 
 EAPI=7
 
-TPARTY_1_PV="1.2.0"
+TPARTY_1_PV="1.2.1"
 TPARTY_1_P="QOnlineTranslator-${TPARTY_1_PV}"
 TPARTY_2_PV="1.2.2"
 TPARTY_2_P="QHotkey-${TPARTY_2_PV}"
