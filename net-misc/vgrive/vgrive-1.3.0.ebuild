@@ -5,7 +5,7 @@ EAPI=7
 
 inherit gnome2-utils meson vala xdg-utils
 
-DESCRIPTION="Google Drive client for linux"
+DESCRIPTION="A Google Drive client for linux"
 HOMEPAGE="https://github.com/bcedu/VGrive"
 
 if [[ ${PV} == *9999 ]]; then
@@ -43,7 +43,6 @@ src_install() {
 }
 
 pkg_preinst() {
-	gnome2_icon_savelist
 	gnome2_schemas_savelist
 }
 
