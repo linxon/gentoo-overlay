@@ -1,0 +1,43 @@
+diff -ur a/cmake-config.h.in b/cmake-config.h.in
+--- a/cmake-config.h.in	2018-12-18 14:11:40.000000000 +0300
++++ b/cmake-config.h.in	2019-11-25 17:21:10.079490835 +0300
+@@ -4,6 +4,8 @@
+ #define PACKAGE_BUGREPORT "@PACKAGE_BUGREPORT@"
+ #define VERSION "@VERSION@"
+ 
++#define _GNU_SOURCE 1
++
+ #cmakedefine HAVE_LIBXML2
+ 
+ #cmakedefine HAVE_FNMATCH
+diff -ur a/src/CMakeLists.txt b/src/CMakeLists.txt
+--- a/src/CMakeLists.txt	2018-12-18 14:11:40.000000000 +0300
++++ b/src/CMakeLists.txt	2019-11-25 17:58:14.820708423 +0300
+@@ -135,6 +135,7 @@
+ 
+ ADD_LIBRARY(libckmame ${COMMON_SOURCES})
+ TARGET_LINK_LIBRARIES(libckmame ${ZLIB_LIBRARIES})
++TARGET_LINK_LIBRARIES(libckmame ${LIBXML2_LIBRARIES})
+ SET_PROPERTY(TARGET libckmame PROPERTY C_STANDARD 99)
+ SET_PROPERTY(TARGET libckmame PROPERTY C_STANDARD_REQUIRED ON)
+ 
+@@ -146,6 +147,8 @@
+   SET_PROPERTY(TARGET ${PROGRAM} PROPERTY C_STANDARD_REQUIRED ON)
+ ENDFOREACH()
+ 
++INSTALL(TARGETS libckmame DESTINATION ${CMAKE_INSTALL_LIBDIR})
++
+ FOREACH(PROGRAM ckmame detective mkmamedb)
+   TARGET_LINK_LIBRARIES(${PROGRAM} ${SUPPORT_LIBS_ABSOLUTE})
+ ENDFOREACH()
+diff -ur a/src/dir.c b/src/dir.c
+--- a/src/dir.c	2018-12-18 14:11:40.000000000 +0300
++++ b/src/dir.c	2019-11-25 17:22:13.431982933 +0300
+@@ -31,6 +31,7 @@
+   IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+ 
++#include "config.h"
+ 
+ #include <errno.h>
+ #include <limits.h>
