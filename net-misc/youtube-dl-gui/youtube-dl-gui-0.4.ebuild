@@ -1,11 +1,11 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1 gnome2-utils xdg-utils
+inherit desktop distutils-r1 xdg-utils
 
 DESCRIPTION="A cross platform front-end GUI of the popular youtube-dl"
 HOMEPAGE="https://mrs0m30n3.github.io/youtube-dl-gui/"
@@ -19,33 +19,32 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-RESTRICT="mirror"
 IUSE="+ffmpeg"
 SLOT="0"
 
-DEPEND="sys-devel/gettext"
-RDEPEND="
+BDEPEND="sys-devel/gettext"
+DEPEND="${PYTHON_DEPS}"
+RDEPEND="${DEPEND}
 	dev-python/wxpython:3.0[${PYTHON_USEDEP}]
-	dev-python/twodict
-	net-misc/youtube-dl
+	dev-python/twodict[${PYTHON_USEDEP}]
+	net-misc/youtube-dl[${PYTHON_USEDEP}]
 	ffmpeg? ( media-video/ffmpeg )"
 
 python_install_all() {
 	distutils-r1_python_install_all
 
-	make_desktop_entry \
-		"${PN}" \
+	make_desktop_entry $PN \
 		"Youtube-DLG" \
 		"youtube-dl-gui" \
-		"Network;GTK;" \
-		"StartupNotify=true"
-}
-
-pkg_preinst() {
-	gnome2_icon_savelist
+		"Network;GTK;"
 }
 
 pkg_postinst() {
+	xdg_icon_cache_update
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	xdg_icon_cache_update
+	xdg_desktop_database_update
 }
