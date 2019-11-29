@@ -16,22 +16,22 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-RESTRICT="mirror"
 LICENSE="MIT"
 SLOT="0"
-IUSE=""
+IUSE="+wide"
 
 RDEPEND="
 	media-sound/pulseaudio
-	sys-libs/ncurses:0[unicode]"
+	sys-libs/ncurses:0=[unicode]"
 
 DEPEND="${RDEPEND}"
+#BDEPEND="virtual/pkgconfig"
 
 DOCS=( ../README.md )
 
 S="${S}/src"
 
 src_configure() {
-	local mycmakeargs=( USE_WIDE=1 )
+	local mycmakeargs=( -DUSE_WIDE="$(usex wide)" ) # https://github.com/fulhax/ncpamixer/issues/25
 	cmake-utils_src_configure
 }
