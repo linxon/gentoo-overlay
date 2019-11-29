@@ -6,17 +6,18 @@ EAPI=7
 DESCRIPTION="Utility to grep log between two dates or tail last lines to time ago"
 HOMEPAGE="https://github.com/abbat/timegrep"
 SRC_URI="https://github.com/abbat/timegrep/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+
+KEYWORDS="amd64 x86"
 LICENSE="BSD"
-KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror"
 SLOT="0"
-IUSE=""
 
 DEPEND="dev-libs/libpcre"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
+	# do not clean before building
 	sed -e "s/\$(NAME): clean /\$(NAME): /" \
-		-i Makefile || die 'sed failed!'
-	eapply_user
+		-i Makefile || die
+
+	default
 }
