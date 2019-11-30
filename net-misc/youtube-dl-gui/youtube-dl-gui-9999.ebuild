@@ -27,7 +27,7 @@ DEPEND="${PYTHON_DEPS}"
 RDEPEND="${DEPEND}
 	dev-python/wxpython:3.0[${PYTHON_USEDEP}]
 	dev-python/twodict[${PYTHON_USEDEP}]
-	net-misc/youtube-dl[${PYTHON_USEDEP}]
+	net-misc/youtube-dl
 	ffmpeg? ( media-video/ffmpeg )"
 
 python_install_all() {
