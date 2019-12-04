@@ -14,7 +14,7 @@ KEYWORDS="~amd64 ~x86"
 SLOT=0
 
 DEPEND="app-arch/unzip"
-RDEPEND="virtual/jre"
+RDEPEND="|| ( virtual/jre virtual/jdk )"
 
 S="${WORKDIR}"
 
