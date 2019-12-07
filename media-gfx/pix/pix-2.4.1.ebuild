@@ -62,6 +62,7 @@ src_configure() {
 	econf \
 		--disable-static \
 		--disable-libchamplain \
+		--enable-cxx-warnings=$(usex test) \
 		$(use_enable cdr libbrasero) \
 		$(use_enable exif exiv2) \
 		$(use_enable gnome-keyring libsecret) \
@@ -79,8 +80,9 @@ src_configure() {
 		$(use_enable nls)
 }
 
-pkg_preinst() {
-	gnome2_schemas_savelist
+src_install() {
+	default
+	find "${ED}"/usr/lib* -name '*.la' -delete
 }
 
 pkg_postinst() {
