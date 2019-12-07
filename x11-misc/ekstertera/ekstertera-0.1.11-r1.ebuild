@@ -1,33 +1,33 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit qmake-utils l10n gnome2-utils xdg-utils
+inherit desktop qmake-utils xdg-utils
 
 DESCRIPTION="GUI client for Yandex.Disk"
 HOMEPAGE="https://github.com/abbat/ekstertera"
 SRC_URI="https://github.com/abbat/ekstertera/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror"
 LICENSE="GPL-3"
 SLOT="0"
-IUSE=""
+IUSE="svg"
 
 RDEPEND="
 	dev-libs/glib:2
 	dev-libs/libappindicator:2
 	dev-qt/qtcore:5
+	dev-qt/qtnetwork:5[ssl]
 	dev-qt/qtwidgets:5
-	dev-qt/qtsvg:5
+	svg? ( dev-qt/qtsvg:5 )
 	x11-libs/gdk-pixbuf:2
 	x11-libs/gtk+:2"
 
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
+	dev-qt/linguist-tools
 	virtual/pkgconfig"
-
-DOCS=( README.md AUTHORS ChangeLog )
 
 src_prepare() {
 	#
@@ -52,7 +52,7 @@ src_prepare() {
 
 	mv debian/changelog ChangeLog || die
 
-	eapply_user
+	default
 }
 
 src_install() {
@@ -66,25 +66,18 @@ src_install() {
 	insinto /usr/share/pixmaps/
 	doins src/icons/${PN}.xpm
 
+	domenu ekstertera.desktop
+	dodoc README.md AUTHORS ChangeLog
+
 	dobin ${PN}
-
-	make_desktop_entry \
-		"${PN}"        \
-		"Ekstertera"   \
-		"${PN}"        \
-		"Network;FileTransfer;Qt;"
-}
-
-pkg_preinst() {
-	gnome2_icon_savelist
 }
 
 pkg_postinst() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
