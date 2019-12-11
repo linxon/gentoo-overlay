@@ -15,8 +15,11 @@ x11-themes/retrosmart-icon-theme
 # Use this at your own risk (^_^)
 x11-misc/linxon-scripts
 
-# Masked for removal in 30 days. Doesn't work 
-# with xfce-base/thunar-1.8
+# Temporary mask because it doesn't work 
+# with xfce-base/thunar-1.8 for me
+# More:
+# * https://github.com/althonos/thunar-torrent-property/issues/1
+# * https://github.com/althonos/thunar-torrent-property/issues/3
 xfce-extra/thunar-torrent-property
 
 # Masked for removal in 30 days.
