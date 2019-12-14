@@ -11,40 +11,30 @@ HOMEPAGE="http://pixelitor.sourceforge.net/"
 MY_P="Pixelitor-${PV}"
 SRC_URI="https://github.com/lbalazscs/Pixelitor/releases/download/v${PV}/${MY_P}.jar"
 
-LICENSE="GPL-3"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+LICENSE="GPL-3"
 SLOT="0"
 
-DEPEND=""
-RDEPEND="${DEPEND}
-	|| ( virtual/jre virtual/jdk )"
+RDEPEND="|| ( virtual/jre virtual/jdk )"
 
 S="${WORKDIR}"
-
-src_unpack() {
-	unpack ${A} && cp "${DISTDIR}/${MY_P}.jar" "${WORKDIR}" || die
-	unpack "${FILESDIR}"/${PN}.png.tar.gz
-}
 
 src_install() {
 	local inst_dir="/opt/${P}"
 	local ex_file="${PN}.jar"
 
-	mv ${MY_P}.jar ${ex_file} || die
-
 	insinto "$inst_dir"
-	doins $ex_file
+	newins "${DISTDIR}/${MY_P}.jar" $ex_file
 
-	insinto "/usr/share/pixmaps/"
-	doins "${WORKDIR}"/${PN}.png
+	for s in 32 48 256; do
+		newicon -s ${s} images/pixelitor_icon${s}.png pixelitor_icon.png
+	done
 
-	make_wrapper "$PN" "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
+	make_wrapper $PN "/usr/bin/java -jar \"${inst_dir}/${ex_file}\""
 	make_desktop_entry $PN \
 		"Pixelitor" \
-		"${PN}" \
-		"Graphics" \
-		"Path=${inst_dir}"
+		"pixelitor_icon" \
+		"Graphics"
 }
 
 pkg_postinst() {
