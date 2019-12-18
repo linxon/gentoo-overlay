@@ -4,12 +4,12 @@
 EAPI=7
 
 BUILD_DIR="${S}"
+WX_GTK_VER="3.0"
 
-inherit desktop eutils cmake-utils gnome2-utils wxwidgets xdg-utils
+inherit desktop cmake-utils wxwidgets xdg-utils
 
 DESCRIPTION="A cross-platform color picker"
 HOMEPAGE="https://github.com/nielssp/colorgrab"
-LICENSE="MIT"
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
@@ -19,21 +19,20 @@ else
 	KEYWORDS="amd64 x86"
 fi
 
+LICENSE="MIT"
 SLOT="0"
-IUSE=""
 
-RDEPEND="x11-libs/wxGTK:3.0"
+RDEPEND="x11-libs/wxGTK:${WX_GTK_VER}[X]"
 DEPEND="${RDEPEND}"
 
+pkg_setup() {
+	setup-wxwidgets
+}
+
 src_install() {
-	local size
-
-	insinto "/usr/share/icons/hicolor/scalable/apps/"
-	newins "img/scalable.svg" "${PN}.svg"
-
-	for size in 16 32 48 64 128 256; do
-		insinto "/usr/share/icons/hicolor/${size}x${size}/apps/"
-		newins "img/${size}x${size}.png" "${PN}.png"
+	newicon -s scalable img/scalable.svg ${PN}.svg
+	for s in 16 32 48 64 128 256; do
+		newicon -s ${s} img/${s}x${s}.png ${PN}.png
 	done
 
 	dobin $PN
@@ -42,10 +41,6 @@ src_install() {
 	make_desktop_entry $PN \
 		"ColorGrab" $PN \
 		"Utility;Graphics"
-}
-
-pkg_preinst() {
-	gnome2_icon_savelist
 }
 
 pkg_postinst() {
