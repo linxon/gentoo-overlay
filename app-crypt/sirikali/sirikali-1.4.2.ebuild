@@ -15,14 +15,14 @@ LICENSE="GPL-2+ BSD-2"
 
 KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 SLOT=0
-IUSE="gnome-keyring kde policykit"
+IUSE="gnome-keyring +pwquality kde policykit"
 
 RDEPEND="
 	dev-libs/libgcrypt:0=
-	dev-libs/libpwquality
+	pwquality? ( dev-libs/libpwquality )
 	dev-qt/qtcore:5
-	dev-qt/qtgui:5[dbus,png,xcb]
-	dev-qt/qtnetwork:5[ssl]
+	dev-qt/qtgui:5
+	dev-qt/qtnetwork:5
 	dev-qt/qtwidgets:5
 	dev-qt/qtx11extras:5
 	gnome-keyring? ( app-crypt/libsecret )
@@ -51,10 +51,7 @@ src_unpack() {
 }
 
 src_configure() {
-	local mycmakeargs=(
-		'-DQT5=true'
-		'-DINTERNAL_LXQT_WALLET=true'
-	)
+	local mycmakeargs=( '-DINTERNAL_LXQT_WALLET=true' )
 
 	use kde || mycmakeargs+=( '-DNOKDESUPPORT=true' )
 	use gnome-keyring || mycmakeargs+=( '-DNOSECRETSUPPORT=true' )
@@ -67,8 +64,7 @@ src_install() {
 	cmake-utils_src_install
 
 	doman "${WORKDIR}"/sirikali.1
-	use policykit \
-		&& doman "${WORKDIR}"/sirikali.pkexec.1
+	use policykit && doman "${WORKDIR}"/sirikali.pkexec.1
 }
 
 pkg_postinst() {

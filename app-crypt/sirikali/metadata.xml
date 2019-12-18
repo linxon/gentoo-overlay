@@ -8,5 +8,6 @@
   <use>
     <flag name="gnome-keyring">Add support Gnome's libsecret secure storage of passwords</flag>
     <flag name="kde">Add support KDE's secure storage of passwords</flag>
+    <flag name="pwquality">Add <pkg>dev-libs/libpwquality</pkg> support</flag>
   </use>
 </pkgmetadata>
