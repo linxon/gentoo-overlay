@@ -4,45 +4,37 @@
 EAPI=7
 
 CMAKE_IN_SOURCE_BUILD=1
+WX_GTK_VER="3.0-gtk3"
 
-inherit eutils cmake-utils gnome2-utils xdg-utils wxwidgets
+inherit cmake-utils wxwidgets xdg-utils
 
-DESCRIPTION="A cross-platform graphical client for sending SPA knocks to fwknopd."
+DESCRIPTION="A cross-platform graphical client for sending SPA knocks to fwknopd"
 HOMEPAGE="https://github.com/jp-bennett/fwknop-gui"
 
 if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/jp-bennett/fwknop-gui"
 else
-	MY_PV="${PV}-release"
-	MY_P="${PN}-${MY_PV}"
-	SRC_URI="https://github.com/jp-bennett/fwknop-gui/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.gz"
+	SRC_URI="https://github.com/jp-bennett/fwknop-gui/archive/v${PV}-release.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
-	S="${WORKDIR}"/${MY_P}
+	S="${WORKDIR}/${P}-release"
 fi
 
-LICENSE="GPL-3"
+LICENSE="AGPL-3 GPL-3"
 SLOT="0"
 
 RDEPEND="
 	app-crypt/gpgme
-	dev-qt/qtcore:5
 	net-misc/curl
-	net-firewall/fwknop[client]
+	net-firewall/fwknop
 	media-gfx/qrencode
-	media-libs/libjpeg-turbo
-	media-libs/libpng:0
-	sys-libs/glibc
-	x11-libs/libnotify
-	x11-libs/pango
-	x11-libs/cairo
-	x11-libs/wxGTK:3.0"
+	x11-libs/wxGTK:${WX_GTK_VER}[X]"
 
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND} app-text/asciidoc"
 BDEPEND="virtual/pkgconfig"
 
-pkg_preinst() {
-	gnome2_icon_savelist
+pkg_setup() {
+	setup-wxwidgets
 }
 
 pkg_postinst() {
