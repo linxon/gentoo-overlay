@@ -66,7 +66,6 @@ src_prepare() {
 		-i $(qmake-utils_find_pro_file) || die
 
 	sed -e "s/Exec=crow/Exec=${PN}/" \
-		-e "s/С/C/g" \
 		-i dist/unix/generic/io.crow_translate.CrowTranslate.desktop || die
 
 	eqmake5 $(qmake-utils_find_pro_file)
