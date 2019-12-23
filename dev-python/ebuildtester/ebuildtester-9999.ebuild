@@ -22,4 +22,5 @@ DEPEND="
 src_install() {
 	distutils-r1_src_install
 	newbashcomp "${FILESDIR}/${PN}.bash-completion" "${PN}"
+	doman docs/*.1
 }
