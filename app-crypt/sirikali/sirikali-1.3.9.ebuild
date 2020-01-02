@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit cmake-utils eutils xdg-utils
+inherit cmake eutils xdg-utils
 
 DESCRIPTION="A Qt/C++ GUI front end to ecryptfs-simple, cryfs, gocryptfs, securefs and encfs"
 HOMEPAGE="https://mhogomchungu.github.io/sirikali"
@@ -60,11 +60,11 @@ src_configure() {
 	use gnome-keyring || mycmakeargs+=( '-DNOSECRETSUPPORT=true' )
 	use policykit || mycmakeargs+=( '-DPOLKIT_SUPPORT=false' )
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake_src_install
 
 	doman "${WORKDIR}"/sirikali.1
 	use policykit \
