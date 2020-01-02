@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -6,7 +6,7 @@ EAPI=7
 BUILD_DIR="${S}"
 WX_GTK_VER="3.0"
 
-inherit desktop cmake-utils wxwidgets xdg-utils
+inherit desktop cmake wxwidgets xdg-utils
 
 DESCRIPTION="A cross-platform color picker"
 HOMEPAGE="https://github.com/nielssp/colorgrab"
