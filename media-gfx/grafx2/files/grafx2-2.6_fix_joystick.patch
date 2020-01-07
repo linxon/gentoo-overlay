@@ -1,0 +1,15 @@
+diff -ur a/src/main.c b/src/main.c
+--- a/src/main.c	2019-01-10 11:40:57.000000000 +0300
++++ b/src/main.c	2020-01-07 13:45:51.238793956 +0300
+@@ -740,7 +740,11 @@
+ #if defined(USE_SDL2)
+   SDL_LogSetPriority(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_VERBOSE);
+ #endif
++#ifdef USE_JOYSTICK
+   Joystick = SDL_JoystickOpen(0);
++#else
++  Joystick = 0;
++#endif
+ #endif
+ #if defined(USE_SDL)
+   SDL_EnableKeyRepeat(250, 32);
