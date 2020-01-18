@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -12,7 +12,7 @@ if [[ ${PV} == *9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/althonos/thunar-torrent-property"
 else
-	HASH_COMMIT="69d6b28546087913d222335f5d405e5c1c89c1fe"
+	HASH_COMMIT="bbecd6941d295d0a4747ecc7936fe0d2b42996ab"
 
 	SRC_URI="https://github.com/althonos/thunar-torrent-property/archive/${HASH_COMMIT}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
