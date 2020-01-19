@@ -14,3 +14,7 @@ x11-themes/retrosmart-icon-theme
 
 # Use this at your own risk (^_^)
 x11-misc/linxon-scripts
+
+# Masked for removal in 30 days.
+# remove in Gentoo's favour
+sys-fs/fuse-overlayfs
