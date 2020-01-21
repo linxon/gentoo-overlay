@@ -1,15 +1,14 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{5,6,7} )
+PYTHON_COMPAT=( python3_{6,7,8} )
 
 inherit git-r3 python-r1
 
 DESCRIPTION="Download Youtube comments without using the Youtube API"
 HOMEPAGE="https://github.com/egbertbouman/youtube-comment-downloader"
-SRC_URI=""
 
 EGIT_REPO_URI="https://github.com/egbertbouman/youtube-comment-downloader"
 if [[ ${PV} != *9999 ]]; then
@@ -20,7 +19,6 @@ fi
 
 LICENSE="MIT"
 SLOT="0"
-IUSE=""
 
 DEPEND="${PYTHON_DEPS}"
 RDEPEND="${DEPEND}
