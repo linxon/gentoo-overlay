@@ -1,0 +1,13 @@
+diff -ur a/setup.py b/setup.py
+--- a/setup.py	2020-01-21 11:46:09.000000000 +0300
++++ b/setup.py	2020-01-22 18:03:22.364999305 +0300
+@@ -47,8 +47,5 @@
+         'console_scripts': [
+             'toot=toot.console:main',
+         ],
+-    },
+-    data_files=[
+-        ("", ["LICENSE", "CHANGELOG.md"])
+-    ]
++    }
+ )
