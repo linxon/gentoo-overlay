@@ -18,3 +18,6 @@ x11-misc/linxon-scripts
 # Masked for removal in 30 days.
 # remove in Gentoo's favour
 sys-fs/fuse-overlayfs
+
+# https://github.com/abbat/ekstertera/issues/11
+x11-misc/ekstertera
