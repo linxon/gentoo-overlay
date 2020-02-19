@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8} )
+PYTHON_COMPAT=( python3_{6,7} )
 
 inherit git-r3 bash-completion-r1 distutils-r1
 
@@ -16,6 +16,7 @@ SLOT="0"
 
 RDEPEND="app-emulation/docker"
 DEPEND="${PYTHON_DEPS}
+	app-portage/gentoopm[${PYTHON_USEDEP}]
 	dev-python/sphinx[${PYTHON_USEDEP}]"
 
 src_install() {
