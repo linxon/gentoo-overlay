@@ -16,7 +16,6 @@ SLOT="0"
 
 RDEPEND="app-emulation/docker"
 DEPEND="${PYTHON_DEPS}
-	app-portage/gentoopm[${PYTHON_USEDEP}]
 	dev-python/sphinx[${PYTHON_USEDEP}]"
 
 src_install() {
