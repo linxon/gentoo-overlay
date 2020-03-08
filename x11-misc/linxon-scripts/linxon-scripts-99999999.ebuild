@@ -17,9 +17,7 @@ fi
 
 LICENSE="Unlicense"
 SLOT="0"
-IUSE=""
 
-DEPEND=""
 RDEPEND="
 	app-shells/bash
 	app-admin/stow
@@ -38,12 +36,13 @@ src_install() {
 		"video-to-gif"
 		"ccache_env"
 		"qkernel-params"
+		"ego_vendor_generator"
+		"qmasked_deps_with"
 	)
 
 	# misc
 	for script in ${misc_scr_exec[@]}; do
-		mv -v misc/${script}/${script}.sh ${script} || die
-		dobin ${script}
+		newbin misc/${script}/${script}.sh ${script}
 	done
 	make_desktop_entry \
 		"toggle-monitor" \
