@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -29,12 +29,14 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 BDEPEND="
-	nls? ( sys-devel/gettext )
-	virtual/pkgconfig"
+	dev-util/intltool
+	sys-devel/autoconf-archive
+	virtual/pkgconfig
+	nls? ( sys-devel/gettext )"
 
 src_prepare() {
-	eautoreconf
 	default
+	eautoreconf
 }
 
 src_configure() {
@@ -43,7 +45,7 @@ src_configure() {
 		$(use_enable debug)
 	)
 
-	econf "${myeconfargs[@]}" || die
+	econf "${myeconfargs[@]}"
 }
 
 pkg_postinst() {
