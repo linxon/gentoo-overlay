@@ -50,7 +50,7 @@ src_install() {
 	systemd_dounit "${FILESDIR}"/swapspace.service
 
 	insinto "/etc"
-	newins "${FILESDIR}"/swapspace.conf ${PN}.conf
+	doins "${FILESDIR}"/swapspace.conf
 
 	doman doc/*.8
 	dodoc README.md NEWS INSTALL ChangeLog \
