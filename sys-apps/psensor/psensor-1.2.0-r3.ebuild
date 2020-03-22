@@ -1,18 +1,18 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit gnome2-utils xdg-utils
+inherit autotools flag-o-matic gnome2-utils xdg-utils
 
 DESCRIPTION="A graphical hardware temperature monitor"
 HOMEPAGE="https://wpitchoune.net/psensor/"
 SRC_URI="https://wpitchoune.net/psensor/files/${P}.tar.gz"
 
-KEYWORDS="~amd64 ~x86"
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="+gtop +hddtemp nls +server +udisks X"
+KEYWORDS="~amd64 ~x86"
+IUSE="+gtop +hddtemp nls +server udisks X"
 
 BDEPEND="nls? ( sys-devel/gettext )"
 RDEPEND="
@@ -38,14 +38,17 @@ DEPEND="${RDEPEND}"
 
 PATCHES=( "${FILESDIR}"/${P}_fix_errors.patch )
 
-src_configure() {
-	local econfargs=(
-		$(use_with gtop)
-		$(use_enable nls)
-		$(use_with X x)
-	)
+src_prepare() {
+	default
+	eautoreconf
+}
 
-	econf "${econfargs[@]}" || die
+src_configure() {
+	append-cflags '-std=gnu11'
+	econf \
+		$(use_enable nls) \
+		$(use_with gtop) \
+		$(use_with X x)
 }
 
 pkg_preinst() {
