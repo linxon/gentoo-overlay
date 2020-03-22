@@ -16,7 +16,8 @@ SLOT="0"
 
 RDEPEND="app-emulation/docker"
 DEPEND="${PYTHON_DEPS}
-	dev-python/sphinx[${PYTHON_USEDEP}]"
+	dev-python/sphinx[${PYTHON_USEDEP}]
+	dev-python/setuptools_scm[${PYTHON_USEDEP}]"
 
 src_install() {
 	distutils-r1_src_install
