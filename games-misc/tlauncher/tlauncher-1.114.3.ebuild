@@ -5,7 +5,7 @@ EAPI=7
 
 inherit desktop eutils xdg-utils
 
-DESCRIPTION="A advanced launcher for Minecraft"
+DESCRIPTION="An advanced launcher for Minecraft"
 HOMEPAGE="https://tlauncher.org"
 
 # Get url: http://tlauncherrepo.com/tlauncher/legacy/bootstrap.json
