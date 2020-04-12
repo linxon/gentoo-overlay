@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{5,6,7} )
+PYTHON_COMPAT=( python3_{6,7} )
 
 inherit gnome2-utils meson python-single-r1 xdg-utils
 
@@ -23,8 +23,14 @@ SLOT="0"
 
 RDEPEND="${PYTHON_DEPS}
 	dev-libs/glib:=
-	>=dev-python/peewee-3.5.0[${PYTHON_USEDEP}]
-	media-libs/mutagen[${PYTHON_USEDEP}]
+	$(python_gen_cond_dep '
+		dev-python/distro[${PYTHON_MULTI_USEDEP}]
+		dev-python/requests[${PYTHON_MULTI_USEDEP}]
+		dev-python/pytz[${PYTHON_MULTI_USEDEP}]
+		dev-python/pygobject:3[${PYTHON_MULTI_USEDEP}]
+		>=dev-python/peewee-3.5.0[${PYTHON_MULTI_USEDEP}]
+		media-libs/mutagen[${PYTHON_MULTI_USEDEP}]
+	')
 	media-libs/gstreamer:1.0=[introspection]
 	x11-libs/gtk+:3[introspection]
 	x11-libs/gdk-pixbuf[introspection]
