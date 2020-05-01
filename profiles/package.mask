@@ -20,9 +20,5 @@ x11-misc/ekstertera
 
 # Masked for removal in 30 days. (2020-02-15)
 # py2 application
-media-gfx/gnome-specimen
-
-# Masked for removal in 30 days. (2020-02-15)
-# py2 application
 app-admin/brutessh
 
