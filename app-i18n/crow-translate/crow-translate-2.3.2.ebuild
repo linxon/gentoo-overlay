@@ -3,11 +3,11 @@
 
 EAPI=7
 
-TPARTY_1_PV="1.2.2"
+TPARTY_1_PV="1.2.3"
 TPARTY_1_P="QOnlineTranslator-${TPARTY_1_PV}"
 TPARTY_2_PV="1.3.0"
 TPARTY_2_P="QHotkey-${TPARTY_2_PV}"
-TPARTY_3_PV="3.0.18"
+TPARTY_3_PV="3.1.3"
 TPARTY_3_P="SingleApplication-${TPARTY_3_PV}"
 TPARTY_4_PV="2.0.0"
 TPARTY_4_P="QTaskbarControl-${TPARTY_4_PV}"
@@ -21,13 +21,12 @@ SRC_URI="
 	https://github.com/crow-translate/crow-translate/archive/${PV}.tar.gz             -> ${P}.tar.gz
 	https://github.com/crow-translate/QOnlineTranslator/archive/${TPARTY_1_PV}.tar.gz -> ${TPARTY_1_P}.tar.gz
 	https://github.com/Skycoder42/QHotkey/archive/${TPARTY_2_PV}.tar.gz               -> ${TPARTY_2_P}.tar.gz
-	https://github.com/itay-grudev/SingleApplication/archive/${TPARTY_3_PV}.tar.gz    -> ${TPARTY_3_P}.tar.gz
+	https://github.com/itay-grudev/SingleApplication/archive/v${TPARTY_3_PV}.tar.gz    -> ${TPARTY_3_P}.tar.gz
 	https://github.com/Skycoder42/QTaskbarControl/archive/${TPARTY_4_PV}.tar.gz       -> ${TPARTY_4_P}.tar.gz"
 
 KEYWORDS="~amd64 ~x86"
 LICENSE="GPL-3"
 SLOT="0"
-IUSE=""
 
 RDEPEND="
 	dev-qt/qtgui:5
@@ -35,7 +34,7 @@ RDEPEND="
 	dev-qt/qtnetwork:5[ssl]
 	dev-qt/qtwidgets:5
 	dev-qt/qtx11extras:5
-	dev-qt/qtmultimedia:5[alsa]
+	dev-qt/qtmultimedia:5[gstreamer]
 	media-libs/gst-plugins-good:1.0"
 
 DEPEND="${RDEPEND}"
