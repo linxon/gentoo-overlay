@@ -18,7 +18,3 @@ x11-misc/linxon-scripts
 # https://github.com/abbat/ekstertera/issues/11
 x11-misc/ekstertera
 
-# Masked for removal in 30 days. (2020-02-15)
-# py2 application
-app-admin/brutessh
-
