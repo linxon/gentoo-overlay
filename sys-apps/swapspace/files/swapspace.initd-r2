@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+# Copyright 1999-2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+CONFIG_FILE="${CONFIG_FILE:-/etc/swapspace.conf}"
+PID_FILE="/run/${RC_SVCNAME}.pid"
+
+description="A dynamic swap manager"
+
+command="/usr/sbin/swapspace"
+command_args="-d --configfile=${CONFIG_FILE} --pidfile=${PID_FILE} ${SWAPSPACE_OPTS}"
+pidfile="${PID_FILE}"
+
+required_files="${CONFIG_FILE}"
+required_dirs="/var/lib/swapspace"
+
+depend() { need swap; }
+
+# vim: set ft=gentoo-init-d ts=4 :
