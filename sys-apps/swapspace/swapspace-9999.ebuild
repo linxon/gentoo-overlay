@@ -13,13 +13,16 @@ if [[ ${PV} == *9999 ]]; then
 	EGIT_REPO_URI="https://github.com/Tookmund/Swapspace"
 else
 	SRC_URI="https://github.com/Tookmund/Swapspace/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 ~x86"
 
 	S="${WORKDIR}/Swapspace-${PV}"
 fi
 
 LICENSE="GPL-2"
 SLOT="0"
+
+DEPEND="sys-apps/util-linux"
+RDEPEND="${DEPEND}"
 
 pkg_setup() {
 	local CONFIG_CHECK="~SWAP"
@@ -30,12 +33,6 @@ pkg_setup() {
 
 src_prepare() {
 	default
-
-	sed -i \
-		-e 's:#define ETCPREFIX "/usr/local":#define ETCPREFIX "/":' \
-		-e 's:#define VARPREFIX "/usr/local":#define VARPREFIX "/":' \
-		src/env.h || die
-
 	eautoreconf
 }
 
@@ -46,11 +43,11 @@ src_install() {
 	fperms 0700 "/var/lib/${PN}"
 
 	newconfd "${FILESDIR}"/swapspace.confd $PN
-	newinitd "${FILESDIR}"/swapspace.initd-r1 $PN
+	newinitd "${FILESDIR}"/swapspace.initd-r2 $PN
 	systemd_dounit "${FILESDIR}"/swapspace.service
 
 	insinto "/etc"
-	newins "${FILESDIR}"/swapspace.conf ${PN}.conf
+	doins "${FILESDIR}"/swapspace.conf
 
 	doman doc/*.8
 	dodoc README.md NEWS INSTALL ChangeLog \
