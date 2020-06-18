@@ -71,4 +71,8 @@ src_install() {
 
 	insinto "/etc/tmpfiles.d/"
 	doins tmpfilesd/*.conf
+
+	exeinto "/etc/cron.daily"
+	doexe crondaily/*
 }
+
