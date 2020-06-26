@@ -15,5 +15,5 @@ LICENSE="GPL-3"
 SLOT="0"
 
 RDEPEND="${PYTHON_DEPS}
-	dev-python/parse[${PYTHON_USEDEP}]"
+	>=dev-python/parse-1.15.0[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}"
