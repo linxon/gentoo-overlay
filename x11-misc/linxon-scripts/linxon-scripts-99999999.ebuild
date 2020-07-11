@@ -38,6 +38,7 @@ src_install() {
 		"qkernel-params"
 		"ego_vendor_generator"
 		"qmasked_deps_with"
+		"portage-updater"
 	)
 
 	# misc
@@ -75,4 +76,3 @@ src_install() {
 	exeinto "/etc/cron.daily"
 	doexe crondaily/*
 }
-
