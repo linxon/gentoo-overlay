@@ -6,6 +6,7 @@
 		<name>Yury Martynov</name>
 	</maintainer>
 	<use>
+		<flag name="blake2">Build with <pkg>app-crypt/libb2</pkg> support</flag>
 		<flag name="caja">Build extension for the Caja filemanager</flag>
 		<flag name="gcrypt">Use dev-libs/libgcrypt library</flag>
 		<flag name="gtk2">Use gtk2 instead of gtk3</flag>
