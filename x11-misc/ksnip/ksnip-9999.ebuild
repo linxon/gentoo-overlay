@@ -31,7 +31,7 @@ RDEPEND="
 	dev-qt/qtx11extras:5
 	kde-frameworks/extra-cmake-modules:5
 	x11-libs/kcolorpicker
-	>=x11-libs/kimageannotator-0.2.1
+	>=x11-libs/kimageannotator-0.3.1
 	x11-libs/libxcb"
 
 DEPEND="${RDEPEND}"
