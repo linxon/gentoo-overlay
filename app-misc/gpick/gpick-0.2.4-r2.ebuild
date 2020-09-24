@@ -16,7 +16,7 @@ if [[ ${PV} == *9999 ]]; then
 else
 	MY_P="${PN}-${PN}-${PV}"
 	SRC_URI="https://github.com/thezbyg/gpick/archive/gpick-${PV}.tar.gz"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 ~x86"
 	S="${WORKDIR}/${MY_P}"
 fi
 
