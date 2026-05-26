@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit user 
+#inherit user 
 
 DESCRIPTION="Command line pastebin for sharing terminal output"
 HOMEPAGE="http://termbin.com"
@@ -23,10 +23,10 @@ SLOT="0"
 RDEPEND="sys-libs/glibc"
 DEPEND="${RDEPEND}"
 
-pkg_setup() {
-	enewgroup ${PN}
-	enewuser ${PN} -1 -1 /var/lib/${PN} ${PN}
-}
+#pkg_setup() {
+#	enewgroup ${PN}
+#	enewuser ${PN} -1 -1 /var/lib/${PN} ${PN}
+#}
 
 src_install() {
 	dodoc README.md "${FILESDIR}"/nginx.conf.example
