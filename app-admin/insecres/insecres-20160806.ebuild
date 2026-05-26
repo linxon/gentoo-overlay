@@ -4,7 +4,7 @@
 EAPI=8
 EGO_PN="github.com/kkomelin/insecres"
 
-inherit git-r3 golang-build
+inherit git-r3 go-module
 
 DESCRIPTION="A console tool that finds insecure resources on HTTPS sites"
 HOMEPAGE="https://github.com/kkomelin/insecres"
