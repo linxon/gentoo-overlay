@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="An ncurses mixer for PulseAudio inspired by pavucontrol"
 HOMEPAGE="https://github.com/fulhax/ncpamixer"
