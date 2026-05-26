@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit user readme.gentoo-r1 gnome2-utils systemd xdg-utils
+inherit readme.gentoo-r1 gnome2-utils systemd xdg-utils # user
 
 DESCRIPTION="Anonymous torrent client Transmission-I2P based on 2.82 version"
 HOMEPAGE="https://github.com/l-n-s/transmission-i2p"
@@ -90,8 +90,8 @@ pkg_postinst() {
 	xdg_desktop_database_update
 	gnome2_icon_cache_update
 
-	enewgroup ${PN}
-	enewuser ${PN} -1 -1 /var/lib/${PN} ${PN}
+#	enewgroup ${PN}
+#	enewuser ${PN} -1 -1 /var/lib/${PN} ${PN}
 
 	if [[ ! -e "${EROOT%/}"/var/lib/${PN} ]]; then
 		mkdir -p "${EROOT%/}"/var/lib/${PN} || die
