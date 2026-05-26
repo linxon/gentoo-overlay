@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="A small thunar extension displaying the metadata in a torrent file"
 HOMEPAGE="https://github.com/althonos/thunar-torrent-property"
