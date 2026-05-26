@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit desktop  git-r3
+inherit desktop git-r3
 
 DESCRIPTION="My simple scripts."
 HOMEPAGE="http://www.linxon.ru"
