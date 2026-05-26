@@ -5,7 +5,7 @@ EAPI=8
 
 EGO_PN="github.com/jingweno/ccat"
 
-inherit golang-vcs-snapshot
+inherit go-module
 
 DESCRIPTION="Colorizing \"cat\""
 HOMEPAGE="https://github.com/jingweno/ccat"
