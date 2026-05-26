@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="XFCE4 HotCorner Panel Plugin"
 HOMEPAGE="https://github.com/brianhsu/xfce4-hotcorner-plugin"
