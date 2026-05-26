@@ -3,6 +3,7 @@
 
 EAPI=8
 
+DISTUTILS_USE_PEP517="setuptools"
 PYTHON_COMPAT=( python3_{13..14} )
 PYTHON_REQ_USE="sqlite(+)"
 # Req'd to ensure a unique tmp.db for each python impl running the testsuite.

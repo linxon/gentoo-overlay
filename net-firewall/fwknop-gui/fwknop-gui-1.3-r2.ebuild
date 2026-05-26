@@ -4,7 +4,7 @@
 EAPI=8
 
 CMAKE_IN_SOURCE_BUILD=1
-WX_GTK_VER="3.0-gtk3"
+WX_GTK_VER="3.2-gtk3"
 
 inherit cmake wxwidgets xdg-utils
 

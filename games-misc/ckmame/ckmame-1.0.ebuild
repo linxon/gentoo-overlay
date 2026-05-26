@@ -5,7 +5,7 @@ EAPI=8
 CMAKE_MIN_VERSION="3.0.2"
 BUILD_DIR="${S}"
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="A program to check ROM sets for MAME"
 HOMEPAGE="https://nih.at/ckmame/"
