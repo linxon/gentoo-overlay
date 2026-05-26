@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit user
+#inherit user
 
 DESCRIPTION="Thunar plugin to share files using Samba"
 HOMEPAGE="https://goodies.xfce.org/projects/thunar-plugins/thunar-shares-plugin"
@@ -22,9 +22,9 @@ DEPEND="${RDEPEND}
 	dev-util/intltool
 	virtual/pkgconfig"
 
-pkg_setup() {
-	enewgroup sambashare
-}
+#pkg_setup() {
+#	enewgroup sambashare
+#}
 
 src_install() {
 	default

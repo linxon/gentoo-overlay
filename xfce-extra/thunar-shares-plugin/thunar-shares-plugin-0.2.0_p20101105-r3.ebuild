@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit user autotools
+inherit autotools # user
 
 DESCRIPTION="Thunar plugin to share files using Samba"
 HOMEPAGE="https://goodies.xfce.org/projects/thunar-plugins/thunar-shares-plugin"
@@ -25,7 +25,7 @@ DEPEND="${RDEPEND}
 
 pkg_setup() {
 	DOCS=( AUTHORS ChangeLog NEWS README TODO "${FILESDIR}"/smb.conf.example )
-	enewgroup sambashare
+#	enewgroup sambashare
 }
 
 src_configure() {
