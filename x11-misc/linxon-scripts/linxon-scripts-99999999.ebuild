@@ -6,7 +6,7 @@ EAPI=8
 inherit desktop git-r3
 
 DESCRIPTION="My simple scripts."
-HOMEPAGE="http://www.linxon.ru"
+HOMEPAGE="https://www.linxon.ru"
 SRC_URI=""
 
 EGIT_REPO_URI="https://github.com/linxon/linxon-scripts"
@@ -62,16 +62,20 @@ src_install() {
 	doins -r dotfiles
 
 	# portage env
-	for envd in repo.postsync.d postsync.d; do
-		exeinto "/etc/portage/${envd}"
-		doexe "portage/${envd}"/*
-	done
-	insinto "/etc/portage"
-	doins -r portage/{env,package.env,patches,sets}
+	#for envd in repo.postsync.d postsync.d; do
+	#	exeinto "/etc/portage/${envd}"
+	#	doexe "portage/${envd}"/*
+	#done
+	#insinto "/etc/portage"
+	#doins -r portage/{env,package.env,patches,sets}
 
 	insinto "/etc/tmpfiles.d/"
 	doins tmpfilesd/*.conf
 
 	exeinto "/etc/cron.daily"
 	doexe crondaily/*
+}
+
+pkg_postinst() {
+	elog "\n    stow -d /usr/share/dotfiles -t ~/ -S <dotfile_name>\n"
 }
