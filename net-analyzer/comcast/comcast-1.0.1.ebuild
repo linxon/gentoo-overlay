@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit git-r3 golang-build
+inherit git-r3 go-module
 
 DESCRIPTION="Simulating shitty network connections so you can build better systems"
 HOMEPAGE="https://github.com/tylertreat/comcast"
