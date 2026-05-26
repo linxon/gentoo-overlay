@@ -1,9 +1,9 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
-inherit eutils
+inherit 
 
 DESCRIPTION="Clearlooks-VK is a simple GTK theme for XFCE4 and other"
 HOMEPAGE="https://github.com/linxon/clearlooks-vk"

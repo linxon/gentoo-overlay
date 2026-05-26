@@ -1,10 +1,10 @@
 # Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 PYTHON_COMPAT=( python3_{4,5,6,7} )
 
-inherit eutils git-r3 python-r1
+inherit  git-r3 python-r1
 
 DESCRIPTION="Visualize when your system was running."
 HOMEPAGE="https://github.com/p-e-w/ranwhen"

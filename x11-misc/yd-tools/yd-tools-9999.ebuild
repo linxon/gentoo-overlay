@@ -1,12 +1,12 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 PYTHON_COMPAT=( python3_{6,7} )
 PLOCALES="be bg el ru"
 
-inherit desktop eutils l10n python-r1 xdg-utils
+inherit desktop  l10n python-r1 xdg-utils
 
 DESCRIPTION="A panel indicator (GUI) for YandexDisk CLI client"
 HOMEPAGE="https://github.com/slytomcat/yandex-disk-indicator"

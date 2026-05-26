@@ -1,10 +1,10 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 PYTHON_COMPAT=( python2_7 )
 
-inherit eutils git-r3 python-r1
+inherit  git-r3 python-r1
 
 DESCRIPTION="An N-Curses Based, Virtual Rubik's Cube "
 HOMEPAGE="https://github.com/calebabutler/nrubik"

@@ -1,10 +1,10 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 PYTHON_COMPAT=( python2_7 )
 
-inherit eutils python-r1 git-r3 gnome2-utils xdg-utils
+inherit  python-r1 git-r3 gnome2-utils xdg-utils
 
 DESCRIPTION="Widget Factory for testing GTK styles/themes"
 HOMEPAGE="https://github.com/Aurora-and-Equinox/PyTWF"

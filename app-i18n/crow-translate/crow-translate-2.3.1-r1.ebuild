@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 TPARTY_1_PV="1.2.2"
 TPARTY_1_P="QOnlineTranslator-${TPARTY_1_PV}"
@@ -12,7 +12,7 @@ TPARTY_3_P="SingleApplication-${TPARTY_3_PV}"
 TPARTY_4_PV="2.0.0"
 TPARTY_4_P="QTaskbarControl-${TPARTY_4_PV}"
 
-inherit eutils desktop qmake-utils xdg-utils
+inherit  desktop qmake-utils xdg-utils
 
 DESCRIPTION="A simple translator that allows to translate and say selected text"
 HOMEPAGE="https://github.com/crow-translate/crow-translate"

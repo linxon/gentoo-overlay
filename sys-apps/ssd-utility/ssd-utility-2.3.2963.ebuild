@@ -1,11 +1,11 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 MY_PN="SSDUtility"
 MY_P="${MY_PN}_${PV}"
 
-inherit eutils gnome2-utils xdg-utils
+inherit  gnome2-utils xdg-utils
 
 DESCRIPTION="SSD Utility is complementary management software designed to help you maintain, monitor and tune your OCZ SSD"
 HOMEPAGE="https://ocz.com/us/download/ssd-utility"

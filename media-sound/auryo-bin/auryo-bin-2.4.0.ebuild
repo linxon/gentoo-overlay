@@ -1,9 +1,9 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
-inherit eutils unpacker gnome2-utils xdg-utils
+inherit  unpacker gnome2-utils xdg-utils
 
 DESCRIPTION="Unofficial Soundcloud Desktop App"
 HOMEPAGE="https://github.com/Superjo149/auryo"

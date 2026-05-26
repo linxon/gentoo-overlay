@@ -1,9 +1,9 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
-inherit toolchain-funcs eutils
+inherit toolchain-funcs 
 
 DESCRIPTION="A small utility to access /dev/mem and read/write to any memory location"
 HOMEPAGE="http://free-electrons.com/pub/mirror/"

@@ -1,11 +1,11 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 EGO_PN="github.com/jesseduffield/lazydocker"
 
-inherit eutils golang-vcs-snapshot
+inherit  golang-vcs-snapshot
 
 DESCRIPTION="A simple terminal UI for both docker and docker-compose"
 HOMEPAGE="https://github.com/jesseduffield/lazydocker"

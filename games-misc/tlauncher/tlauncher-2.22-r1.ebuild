@@ -1,9 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit desktop eutils xdg-utils
+inherit desktop  xdg-utils
 
 DESCRIPTION="An advanced launcher for Minecraft"
 HOMEPAGE="https://tlauncher.org"

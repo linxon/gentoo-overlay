@@ -1,11 +1,11 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 EGO_PN="github.com/GoogleContainerTools/container-diff"
 
-inherit eutils golang-vcs-snapshot
+inherit  golang-vcs-snapshot
 
 DESCRIPTION="Diff your Docker containers"
 HOMEPAGE="https://github.com/GoogleContainerTools/container-diff"

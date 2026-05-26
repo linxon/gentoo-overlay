@@ -1,10 +1,10 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 PYTHON_COMPAT=( python2_7 )
 
-inherit eutils python-r1
+inherit  python-r1
 
 DESCRIPTION="Configurable vHost generator for Apache 2.2, Apache 2.4 and Nginx"
 HOMEPAGE="https://github.com/devilbox/vhost-gen"
