@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="A program to check ROM sets for MAME"
 HOMEPAGE="https://nih.at/ckmame/"
