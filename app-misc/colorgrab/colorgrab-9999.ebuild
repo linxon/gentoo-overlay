@@ -4,7 +4,7 @@
 EAPI=8
 
 BUILD_DIR="${S}"
-WX_GTK_VER="3.0"
+WX_GTK_VER="3.2-gtk3"
 
 inherit desktop cmake wxwidgets xdg-utils
 
