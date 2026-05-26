@@ -22,7 +22,6 @@ RDEPEND="
 	app-shells/bash
 	app-admin/stow
 	dev-util/ccache
-	virtual/awk
 	virtual/tmpfiles"
 
 src_install() {
