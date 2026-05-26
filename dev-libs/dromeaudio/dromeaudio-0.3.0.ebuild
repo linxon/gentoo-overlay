@@ -5,7 +5,7 @@ EAPI=8
 CMAKE_MIN_VERSION="2.4"
 BUILD_DIR="${S}"
 
-inherit  cmake-utils
+inherit cmake
 
 DESCRIPTION="A small audio manipulation and playback library that's written in C++"
 HOMEPAGE="https://github.com/joshb/DromeAudio"
