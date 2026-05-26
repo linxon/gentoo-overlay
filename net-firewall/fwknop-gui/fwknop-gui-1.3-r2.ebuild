@@ -6,7 +6,7 @@ EAPI=8
 CMAKE_IN_SOURCE_BUILD=1
 WX_GTK_VER="3.0-gtk3"
 
-inherit cmake-utils wxwidgets xdg-utils
+inherit cmake wxwidgets xdg-utils
 
 DESCRIPTION="A cross-platform graphical client for sending SPA knocks to fwknopd"
 HOMEPAGE="https://github.com/jp-bennett/fwknop-gui"
